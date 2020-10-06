@@ -1,0 +1,365 @@
+diff '--exclude=.git' -urN a/src/nautilus-files-view.c b/src/nautilus-files-view.c
+--- a/src/nautilus-files-view.c	2020-10-05 01:09:48.828174561 -0500
++++ b/src/nautilus-files-view.c	2020-10-05 01:09:56.873138358 -0500
+@@ -5036,7 +5036,8 @@
+ static GMenuModel *
+ build_menu_for_extension_menu_items (NautilusFilesView *view,
+                                      const gchar       *extension_prefix,
+-                                     GList             *menu_items)
++                                     GList             *menu_items,
++                                     char              *category)
+ {
+     GList *l;
+     GMenu *gmenu;
+@@ -5061,34 +5062,39 @@
+                       "name", &name,
+                       NULL);
+ 
+-        escaped_name = g_uri_escape_string (name, NULL, TRUE);
+-        extension_id = g_strdup_printf ("extension_%s_%d_%s",
+-                                        extension_prefix, idx, escaped_name);
+-        add_extension_action (view, item, extension_id);
+-
+-        detailed_action_name = g_strconcat ("view.", extension_id, NULL);
+-        menu_item = g_menu_item_new (label, detailed_action_name);
+-
+-        if (menu != NULL)
++        if (strcmp(category, "extensions") == 0 && strncmp(name, "TerminalNautilus", strlen("TerminalNautilus")) != 0 ||
++            strcmp(category, "terminal-extensions") == 0 && strncmp(name, "TerminalNautilus", strlen("TerminalNautilus")) == 0)
+         {
+-            GList *children;
+-            g_autoptr (GMenuModel) children_menu = NULL;
+-
+-            children = nautilus_menu_get_items (menu);
+-            children_menu = build_menu_for_extension_menu_items (view, extension_id, children);
+-            g_menu_item_set_submenu (menu_item, children_menu);
+-
+-            nautilus_menu_item_list_free (children);
++            escaped_name = g_uri_escape_string (name, NULL, TRUE);
++            extension_id = g_strdup_printf ("extension_%s_%d_%s",
++                                            extension_prefix, idx, escaped_name);
++            add_extension_action (view, item, extension_id);
++
++            detailed_action_name = g_strconcat ("view.", extension_id, NULL);
++            menu_item = g_menu_item_new (label, detailed_action_name);
++
++            if (menu != NULL)
++            {
++                GList *children;
++                g_autoptr (GMenuModel) children_menu = NULL;
++
++                children = nautilus_menu_get_items (menu);
++                children_menu = build_menu_for_extension_menu_items (view, extension_id, children, category);
++                g_menu_item_set_submenu (menu_item, children_menu);
++
++                nautilus_menu_item_list_free (children);
++            }
++
++            g_menu_append_item (gmenu, menu_item);
++            idx++;
++
++            g_free (extension_id);
++            g_free (detailed_action_name);
++            g_object_unref (menu_item);
+         }
+ 
+-        g_menu_append_item (gmenu, menu_item);
+-        idx++;
+-
+-        g_free (extension_id);
+-        g_free (detailed_action_name);
+         g_free (name);
+         g_free (label);
+-        g_object_unref (menu_item);
+     }
+ 
+     return G_MENU_MODEL (gmenu);
+@@ -5098,16 +5104,33 @@
+ update_extensions_menus (NautilusFilesView *view,
+                          GtkBuilder        *builder)
+ {
++    NautilusFilesViewPrivate *priv;
+     GList *selection_items, *background_items;
+     GObject *object;
+     g_autoptr (GMenuModel) background_menu = NULL;
++    g_autoptr (GMenu) background_menu2 = NULL;
+     g_autoptr (GMenuModel) selection_menu = NULL;
++    g_autoptr (GMenu) selection_menu2 = NULL;
+ 
++    priv = nautilus_files_view_get_instance_private (view);
+     selection_items = get_extension_selection_menu_items (view);
+     if (selection_items != NULL)
+     {
+-        selection_menu = build_menu_for_extension_menu_items (view, "extensions",
+-                                                              selection_items);
++        selection_menu = build_menu_for_extension_menu_items (view, "selection",
++                                                              selection_items, "extensions");
++
++        selection_menu2 = build_menu_for_extension_menu_items (view, "selection",
++                                                               selection_items, "terminal-extensions");
++
++        nautilus_gmenu_merge (priv->selection_menu_model,
++                              selection_menu,
++                              "extensions",
++                              FALSE);
++
++        nautilus_gmenu_merge (priv->selection_menu_model,
++                              selection_menu2,
++                              "terminal-extensions",
++                              FALSE);
+ 
+         object = gtk_builder_get_object (builder, "selection-extensions-section");
+         nautilus_gmenu_set_from_model (G_MENU (object), selection_menu);
+@@ -5118,8 +5141,21 @@
+     background_items = get_extension_background_menu_items (view);
+     if (background_items != NULL)
+     {
+-        background_menu = build_menu_for_extension_menu_items (view, "extensions",
+-                                                               background_items);
++        background_menu = build_menu_for_extension_menu_items (view, "background",
++                                                               background_items, "extensions");
++
++        background_menu2 = build_menu_for_extension_menu_items (view, "background",
++                                                                background_items, "terminal-extensions");
++
++        nautilus_gmenu_merge (priv->background_menu_model,
++                              background_menu,
++                              "extensions",
++                              FALSE);
++
++        nautilus_gmenu_merge (priv->background_menu_model,
++                              background_menu2,
++                              "terminal-extensions",
++                              FALSE);
+ 
+         object = gtk_builder_get_object (builder, "background-extensions-section");
+         nautilus_gmenu_set_from_model (G_MENU (object), background_menu);
+diff '--exclude=.git' -urN a/src/nautilus-ui-utilities.c b/src/nautilus-ui-utilities.c
+--- a/src/nautilus-ui-utilities.c	2020-10-02 07:27:27.000000000 -0500
++++ b/src/nautilus-ui-utilities.c	2020-10-05 01:09:56.874138354 -0500
+@@ -32,6 +32,70 @@
+ #include <string.h>
+ #include <glib/gi18n.h>
+ 
++static GMenuModel *
++find_gmenu_model (GMenuModel  *model,
++                  const gchar *model_id)
++{
++    gint i, n_items;
++    GMenuModel *insertion_model = NULL;
++
++    n_items = g_menu_model_get_n_items (model);
++
++    for (i = 0; i < n_items && !insertion_model; i++)
++    {
++        gchar *id = NULL;
++        if (g_menu_model_get_item_attribute (model, i, "id", "s", &id) &&
++            g_strcmp0 (id, model_id) == 0)
++        {
++            insertion_model = g_menu_model_get_item_link (model, i, G_MENU_LINK_SECTION);
++            if (!insertion_model)
++            {
++                insertion_model = g_menu_model_get_item_link (model, i, G_MENU_LINK_SUBMENU);
++            }
++        }
++        else
++        {
++            GMenuModel *submodel;
++            GMenuModel *submenu;
++            gint j, j_items;
++
++            submodel = g_menu_model_get_item_link (model, i, G_MENU_LINK_SECTION);
++
++            if (!submodel)
++            {
++                submodel = g_menu_model_get_item_link (model, i, G_MENU_LINK_SUBMENU);
++            }
++
++            if (!submodel)
++            {
++                continue;
++            }
++
++            j_items = g_menu_model_get_n_items (submodel);
++            for (j = 0; j < j_items; j++)
++            {
++                submenu = g_menu_model_get_item_link (submodel, j, G_MENU_LINK_SUBMENU);
++                if (submenu)
++                {
++                    insertion_model = find_gmenu_model (submenu, model_id);
++                    g_object_unref (submenu);
++                }
++
++                if (insertion_model)
++                {
++                    break;
++                }
++            }
++
++            g_object_unref (submodel);
++        }
++
++        g_free (id);
++    }
++
++    return insertion_model;
++}
++
+ /**
+  * nautilus_gmenu_set_from_model:
+  * @target_menu: the #GMenu to be filled
+@@ -68,6 +132,49 @@
+     }
+ }
+ 
++/*
++ * The original GMenu is modified adding to the section @submodel_name
++ * the items in @gmenu_to_merge.
++ * @gmenu_to_merge should be a list of menu items.
++ */
++void
++nautilus_gmenu_merge (GMenu       *original,
++                      GMenu       *gmenu_to_merge,
++                      const gchar *submodel_name,
++                      gboolean     prepend)
++{
++    gint i, n_items;
++    GMenuModel *submodel;
++    GMenuItem *item;
++
++    g_return_if_fail (G_IS_MENU (original));
++    g_return_if_fail (G_IS_MENU (gmenu_to_merge));
++
++    submodel = find_gmenu_model (G_MENU_MODEL (original), submodel_name);
++
++    g_return_if_fail (submodel != NULL);
++
++    n_items = g_menu_model_get_n_items (G_MENU_MODEL (gmenu_to_merge));
++
++    for (i = 0; i < n_items; i++)
++    {
++        if (prepend)
++        {
++            item = g_menu_item_new_from_model (G_MENU_MODEL (gmenu_to_merge),
++                                               n_items - i - 1);
++            g_menu_prepend_item (G_MENU (submodel), item);
++        }
++        else
++        {
++            item = g_menu_item_new_from_model (G_MENU_MODEL (gmenu_to_merge), i);
++            g_menu_append_item (G_MENU (submodel), item);
++        }
++        g_object_unref (item);
++    }
++
++    g_object_unref (submodel);
++}
++
+ #define NAUTILUS_THUMBNAIL_FRAME_LEFT 3
+ #define NAUTILUS_THUMBNAIL_FRAME_TOP 3
+ #define NAUTILUS_THUMBNAIL_FRAME_RIGHT 3
+diff '--exclude=.git' -urN a/src/nautilus-ui-utilities.h b/src/nautilus-ui-utilities.h
+--- a/src/nautilus-ui-utilities.h	2020-10-02 07:27:27.000000000 -0500
++++ b/src/nautilus-ui-utilities.h	2020-10-05 01:09:56.874138354 -0500
+@@ -27,6 +27,10 @@
+ 
+ void        nautilus_gmenu_set_from_model           (GMenu             *target_menu,
+                                                      GMenuModel        *source_model);
++void        nautilus_gmenu_merge                    (GMenu             *original,
++                                                     GMenu             *gmenu_to_merge,
++                                                     const gchar       *submodel_name,
++                                                     gboolean           prepend);
+ 
+ void        nautilus_ui_frame_image                 (GdkPixbuf        **pixbuf);
+ void        nautilus_ui_frame_video                 (GdkPixbuf        **pixbuf);
+diff '--exclude=.git' -urN a/src/resources/ui/nautilus-files-view-context-menus.ui b/src/resources/ui/nautilus-files-view-context-menus.ui
+--- a/src/resources/ui/nautilus-files-view-context-menus.ui	2020-10-05 01:09:48.829174557 -0500
++++ b/src/resources/ui/nautilus-files-view-context-menus.ui	2020-10-05 01:10:20.406032450 -0500
+@@ -15,6 +15,12 @@
+       <attribute name="action">win.bookmark-current-location</attribute>
+     </item>
+     <section>
++      <attribute name="id">terminal-extensions</attribute>
++    </section>
++    <section>
++      <attribute name="id">extensions</attribute>
++    </section>
++    <section>
+       <item>
+         <attribute name="label" translatable="yes">Create _Link</attribute>
+         <attribute name="action">view.create-link</attribute>
+@@ -23,15 +29,15 @@
+     </section>
+     <section>
+       <item>
+-        <attribute name="label" translatable="yes">_Paste</attribute>
+-        <attribute name="action">view.paste</attribute>
+-      </item>
+-      <item>
+         <attribute name="label" translatable="yes">Select _All</attribute>
+         <attribute name="action">view.select-all</attribute>
+       </item>
+     </section>
+-    <section id="background-extensions-section">
++    <section>
++      <item>
++        <attribute name="label" translatable="yes">_Paste</attribute>
++        <attribute name="action">view.paste</attribute>
++      </item>
+     </section>
+     <section>
+       <item>
+@@ -74,6 +80,7 @@
+         <attribute name="action">view.open-item-new-window</attribute>
+         <attribute name="hidden-when">action-disabled</attribute>
+       </item>
++      <attribute name="id">terminal-extensions</attribute>
+     </section>
+     <section>
+       <item>
+@@ -82,6 +89,9 @@
+         <attribute name="hidden-when">action-disabled</attribute>
+       </item>
+     </section>
++    <section>
++      <attribute name="id">extensions</attribute>
++    </section>
+     <section id="drive-section">
+       <item>
+         <attribute name="label" translatable="yes">_Mount</attribute>
+@@ -145,6 +155,10 @@
+         <attribute name="label" translatable="yes">Copy to…</attribute>
+         <attribute name="action">view.copy-to</attribute>
+       </item>
++      <item>
++        <attribute name="label" translatable="yes">Rena_me…</attribute>
++        <attribute name="action">view.rename</attribute>
++      </item>
+     </section>
+     <section>
+       <item>
+@@ -175,12 +189,6 @@
+     </section>
+     <section>
+       <item>
+-        <attribute name="label" translatable="yes">Rena_me…</attribute>
+-        <attribute name="action">view.rename</attribute>
+-      </item>
+-    </section>
+-    <section>
+-      <item>
+         <attribute name="label" translatable="yes">Set As Wallpaper</attribute>
+         <attribute name="action">view.set-as-wallpaper</attribute>
+         <attribute name="hidden-when">action-disabled</attribute>
+@@ -194,11 +202,6 @@
+       </item>
+     </section>
+     <section>
+-      <attribute name="id">extensions</attribute>
+-    </section>
+-    <section id="selection-extensions-section">
+-    </section>
+-    <section>
+       <item>
+         <attribute name="label" translatable="yes">Tags</attribute>
+         <attribute name="action">view.edit-tags</attribute>

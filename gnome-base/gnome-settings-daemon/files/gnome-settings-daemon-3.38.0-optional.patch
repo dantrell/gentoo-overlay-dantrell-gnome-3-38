@@ -1,0 +1,87 @@
+diff '--exclude=.git' -urN a/meson.build b/meson.build
+--- a/meson.build	2020-09-13 17:34:14.000000000 -0500
++++ b/meson.build	2020-10-04 09:42:02.462341321 -0500
+@@ -138,9 +138,6 @@
+   gudev_dep = dependency('gudev-1.0')
+ endif
+ config_h.set10('HAVE_GUDEV', enable_gudev)
+-if host_is_linux
+-  assert(enable_gudev, 'GUdev is not optional on Linux platforms')
+-endif
+ 
+ has_timerfd_create = cc.has_function('timerfd_create')
+ config_h.set10('HAVE_TIMERFD', has_timerfd_create)
+@@ -155,7 +152,7 @@
+ config_h.set10('HAVE_WAYLAND', enable_wayland)
+ 
+ # wacom (disabled for s390/s390x and non Linux platforms)
+-enable_wacom = host_is_linux_not_s390
++enable_wacom = host_is_linux_not_s390 and get_option('wacom')
+ if enable_wacom
+   assert(enable_gudev, 'GUDev support is required for wacom support.')
+   libwacom_dep = dependency('libwacom', version: '>= 0.7')
+@@ -217,7 +214,6 @@
+ 
+ # Sharing plugin
+ enable_network_manager = get_option('network_manager')
+-assert(enable_network_manager or not host_is_linux, 'NetworkManager support is not optional on Linux platforms')
+ if enable_network_manager
+   # network manager
+   libnm_dep = dependency('libnm', version: '>= 1.0')
+@@ -266,10 +262,12 @@
+ output += '        compiler:                 ' + cc.get_id() + '\n'
+ output += '        cflags:                   ' + ' '.join(compiler_flags) + '\n\n'
+ output += '        ALSA support:             ' + enable_alsa.to_string() + '\n'
++output += '        Colord support             ' + enable_colord.to_string() + '\n'
++output += '        GUdev support             ' + enable_gudev.to_string() + '\n'
+ output += '        NetworkManager support:   ' + enable_network_manager.to_string() + '\n'
+ output += '        Smartcard support:        ' + enable_smartcard.to_string() + '\n'
+ output += '        USB Protection support:   ' + enable_usb_protection.to_string() + '\n'
+-output += '        Cups support:             ' + enable_cups.to_string() + '\n'
++output += '        CUPS support:             ' + enable_cups.to_string() + '\n'
+ output += '        Wayland support:          ' + enable_wayland.to_string() + '\n'
+ output += '        Wacom support:            ' + enable_wacom.to_string() + '\n'
+ output += '        RFKill support:           ' + enable_rfkill.to_string() + '\n'
+diff '--exclude=.git' -urN a/meson_options.txt b/meson_options.txt
+--- a/meson_options.txt	2020-09-13 17:34:14.000000000 -0500
++++ b/meson_options.txt	2020-10-04 09:43:03.975056904 -0500
+@@ -3,12 +3,13 @@
+ option('systemd', type: 'boolean', value: true, description: 'Enable systemd integration')
+ 
+ option('alsa', type: 'boolean', value: true, description: 'build with ALSA support (not optional on Linux platforms)')
+-option('gudev', type: 'boolean', value: true, description: 'build with gudev device support (not optional on Linux platforms)')
++option('gudev', type: 'boolean', value: true, description: 'build with gudev device support')
+ option('cups', type: 'boolean', value: true, description: 'build with CUPS support')
+-option('network_manager', type: 'boolean', value: true, description: 'build with NetworkManager support (not optional on Linux platforms)')
++option('network_manager', type: 'boolean', value: true, description: 'build with NetworkManager support')
+ option('rfkill', type: 'boolean', value: true, description: 'build with rfkill support (not optional on Linux platforms)')
+ option('smartcard', type: 'boolean', value: true, description: 'build with smartcard support')
+ option('usb-protection', type: 'boolean', value: true, description: 'build with usb-protection support')
++option('wacom', type: 'boolean', value: true, description: 'build with Wacom support')
+ option('wayland', type: 'boolean', value: true, description: 'build with Wayland support')
+ option('wwan', type: 'boolean', value: true, description: 'build with WWAN support')
+ option('colord', type: 'boolean', value: true, description: 'build with colord support')
+diff '--exclude=.git' -urN a/plugins/color/meson.build b/plugins/color/meson.build
+--- a/plugins/color/meson.build	2020-09-13 17:34:14.000000000 -0500
++++ b/plugins/color/meson.build	2020-10-04 09:42:29.649215605 -0500
+@@ -11,7 +11,6 @@
+ )
+ 
+ deps = plugins_deps + [
+-  colord_dep,
+   gnome_desktop_dep,
+   lcms_dep,
+   libcanberra_gtk_dep,
+@@ -20,6 +19,12 @@
+   m_dep,
+ ]
+ 
++if enable_colord
++  deps += [
++    colord_dep
++  ]
++endif
++
+ cflags += ['-DBINDIR="@0@"'.format(gsd_bindir)]
+ 
+ executable(
