@@ -29,7 +29,7 @@ DEPEND="
 	>=media-libs/gst-plugins-good-1.6.0:1.0
 	>=media-libs/grilo-0.3.0:0.3[playlist]
 	>=dev-libs/libpeas-1.1.0[gtk]
-	>=dev-libs/totem-pl-parser-3.10.1:0=[introspection]
+	>=dev-libs/totem-pl-parser-3.26.5:0=[introspection]
 	>=media-libs/clutter-1.17.3:1.0[gtk]
 	>=media-libs/clutter-gst-2.99.2:3.0
 	>=media-libs/clutter-gtk-1.8.1:1.0
