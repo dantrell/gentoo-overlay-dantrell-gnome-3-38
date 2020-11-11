@@ -23,7 +23,7 @@ RDEPEND="
 	dev-lang/spidermonkey:78=
 	dev-libs/libffi:=
 	cairo? ( x11-libs/cairo[X] )
-	sysprof? ( >=dev-util/sysprof-3.33.32 )
+	sysprof? ( >=dev-util/sysprof-3.38.1 )
 "
 DEPEND="${RDEPEND}
 	gnome-base/gnome-common
