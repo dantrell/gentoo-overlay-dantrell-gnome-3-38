@@ -18,7 +18,6 @@ IUSE="gtk-doc spell test +vala"
 
 RESTRICT="!test? ( test )"
 
-# X libs are not needed for OSX (aqua)
 DEPEND="
 	>=dev-libs/glib-2.44:2
 	>=x11-libs/gtk+-3.22.0:3[introspection]
