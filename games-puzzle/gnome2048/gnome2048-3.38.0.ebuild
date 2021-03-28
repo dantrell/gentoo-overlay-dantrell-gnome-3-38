@@ -16,19 +16,19 @@ IUSE=""
 
 RDEPEND="
 	dev-libs/glib:2[dbus]
-	>=dev-libs/libgee-0.14:0.8
-	>=dev-libs/libgnome-games-support-1.7.1:1=
+	>=x11-libs/gtk+-3.12:3
 	>=media-libs/clutter-1.12:1.0
 	>=media-libs/clutter-gtk-1.6:1.0
-	>=x11-libs/gtk+-3.12:3
+	>=dev-libs/libgee-0.14:0.8
+	>=dev-libs/libgnome-games-support-1.7.1:1=
 "
 DEPEND="${RDEPEND}
-	$(vala_depend)
 	app-text/yelp-tools
 	dev-libs/appstream-glib
 	>=dev-util/intltool-0.50
 	sys-devel/gettext
 	virtual/pkgconfig
+	$(vala_depend)
 "
 
 src_prepare() {
