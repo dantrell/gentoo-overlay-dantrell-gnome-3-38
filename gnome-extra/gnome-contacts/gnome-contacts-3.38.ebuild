@@ -32,7 +32,7 @@ RDEPEND="
 	>=x11-libs/gtk+-3.23.1:3
 	v4l? ( >=media-video/cheese-3.5.91:= )
 	telepathy? ( >=net-libs/telepathy-glib-0.22 )
-	>=gui-libs/libhandy-1.0.0:1.0=
+	>=gui-libs/libhandy-1.0.0:1=
 "
 DEPEND="${RDEPEND}"
 BDEPEND="

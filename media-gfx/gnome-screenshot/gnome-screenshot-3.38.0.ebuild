@@ -19,7 +19,7 @@ DEPEND="
 	x11-libs/libXext
 	>=dev-libs/glib-2.35.1:2[dbus]
 	>=x11-libs/gtk+-3.12.0:3
-	>=gui-libs/libhandy-0.90.0:1.0=
+	>=gui-libs/libhandy-0.90.0:1=
 	>=media-libs/libcanberra-0.26-r2[gtk3]
 "
 RDEPEND="${DEPEND}

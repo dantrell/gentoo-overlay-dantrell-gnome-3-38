@@ -33,7 +33,7 @@ COMMON_DEPEND="
 	>=x11-misc/colord-0.1.34:0=
 	>=x11-libs/gdk-pixbuf-2.23.0:2
 	>=dev-libs/glib-2.56.0:2
-	>=gui-libs/libhandy-0.90.0:1.0=
+	>=gui-libs/libhandy-0.90.0:1=
 	>=gnome-base/gnome-desktop-3.27.90:3=
 	>=gnome-base/gnome-settings-daemon-3.27.90[colord,input_devices_wacom?]
 	>=gnome-base/gsettings-desktop-schemas-3.31.0
