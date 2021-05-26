@@ -125,7 +125,7 @@ DEPEND="${COMMON_DEPEND}
 PATCHES=(
 	# Make some panels and dependencies optional
 	# https://bugzilla.gnome.org/686840, 697478, 700145
-	"${FILESDIR}"/${PN}-3.38.0-optional.patch
+	"${FILESDIR}"/${PN}-3.38.6-optional.patch
 )
 
 src_configure() {
