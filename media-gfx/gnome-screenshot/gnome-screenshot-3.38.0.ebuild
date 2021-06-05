@@ -11,16 +11,18 @@ LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE=""
+IUSE="X"
 
 # libcanberra 0.26-r2 is needed for gtk+:3 fixes
 DEPEND="
-	x11-libs/libX11
-	x11-libs/libXext
+	X? (
+		x11-libs/libX11
+		x11-libs/libXext
+	)
 	>=dev-libs/glib-2.35.1:2[dbus]
 	>=x11-libs/gtk+-3.12.0:3
-	>=gui-libs/libhandy-0.90.0:1=
 	>=media-libs/libcanberra-0.26-r2[gtk3]
+	>=gui-libs/libhandy-1:1=
 "
 RDEPEND="${DEPEND}
 	>=gnome-base/gsettings-desktop-schemas-0.1.0
@@ -36,6 +38,13 @@ BDEPEND="
 DOC_CONTENTS="${P} saves screenshots in ~/Pictures/ and defaults to
 	non-interactive mode when launched from a terminal. If you want to choose
 	where to save the screenshot, run 'gnome-screenshot --interactive'"
+
+src_configure() {
+	local emesonargs=(
+		$(meson_feature X x11)
+	)
+	meson_src_configure
+}
 
 src_install() {
 	meson_src_install

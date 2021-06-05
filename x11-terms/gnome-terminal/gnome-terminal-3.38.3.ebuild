@@ -1,7 +1,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
-GNOME2_LA_PUNT="yes"
+EAPI="7"
 
 inherit autotools gnome2 readme.gentoo-r1
 
@@ -16,24 +15,25 @@ IUSE="debug +deprecated-transparency +gnome-shell +nautilus vanilla-hotkeys +van
 
 # FIXME: automagic dependency on gtk+[X], just transitive but needs proper control, bug 624960
 RDEPEND="
-	>=dev-libs/glib-2.42:2
-	>=x11-libs/gtk+-3.20:3
+	>=dev-libs/glib-2.52:2
+	>=x11-libs/gtk+-3.22.27:3
 	>=x11-libs/vte-0.62.0:2.91[!vanilla-notify?]
 	>=dev-libs/libpcre2-10
 	>=gnome-base/dconf-0.14
 	>=gnome-base/gsettings-desktop-schemas-0.1.0
 	sys-apps/util-linux
 	gnome-shell? ( gnome-base/gnome-shell )
-	nautilus? ( >=gnome-base/nautilus-3 )
+	nautilus? ( >=gnome-base/nautilus-3.28.0 )
 "
+DEPEND="${RDEPEND}"
 # itstool required for help/* with non-en LINGUAS, see bug #549358
 # xmllint required for glib-compile-resources, see bug #549304
-DEPEND="${RDEPEND}
+BDEPEND="
 	dev-libs/libxml2:2
+	dev-libs/libxslt
 	dev-util/gdbus-codegen
-	>=dev-util/intltool-0.50
 	dev-util/itstool
-	sys-devel/gettext
+	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 "
 

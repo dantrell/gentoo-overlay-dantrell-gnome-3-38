@@ -1,7 +1,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
-PYTHON_COMPAT=( python{3_6,3_7,3_8,3_9} )
+PYTHON_COMPAT=( python{3_8,3_9,3_10} )
 
 inherit gnome.org gnome2-utils meson python-any-r1 readme.gentoo-r1 xdg
 
@@ -19,14 +19,14 @@ IUSE="libnotify nautilus packagekit"
 # pango used in fr-window
 RDEPEND="
 	>=app-arch/libarchive-3:=
-	>=dev-libs/glib-2.36:2
+	>=dev-libs/glib-2.38:2
 	>=dev-libs/json-glib-0.14
-	>=x11-libs/gtk+-3.13.2:3
+	>=x11-libs/gtk+-3.22.0:3
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf:2
 	x11-libs/pango
 	libnotify? ( >=x11-libs/libnotify-0.4.3:= )
-	nautilus? ( >=gnome-base/nautilus-3[-vanilla-menu-compress] )
+	nautilus? ( >=gnome-base/nautilus-3.28.0[-vanilla-menu-compress] )
 	packagekit? ( app-admin/packagekit-base )
 "
 DEPEND="${RDEPEND}"

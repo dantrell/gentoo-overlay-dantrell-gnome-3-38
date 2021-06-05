@@ -12,31 +12,28 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Gedit"
 
 LICENSE="GPL-2+ CC-BY-SA-3.0"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~*"
 
-IUSE="gtk-doc spell test +vala"
-
-RESTRICT="!test? ( test )"
+IUSE="+python gtk-doc spell"
+REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 DEPEND="
-	>=dev-libs/glib-2.44:2
+	>=dev-libs/glib-2.64:2
+	>=dev-libs/libpeas-1.14.1[gtk]
+	>=dev-libs/gobject-introspection-1.54:=
 	>=x11-libs/gtk+-3.22.0:3[introspection]
 	>=x11-libs/gtksourceview-4.0.2:4[introspection]
-	>=gui-libs/tepl-4.4
-	>=dev-libs/libpeas-1.14.1[gtk]
-	>=dev-libs/libxml2-2.5.0:2
-	>=net-libs/libsoup-2.60:2.4
-	x11-libs/libX11
+	gui-libs/tepl:5
 
 	spell? ( >=app-text/gspell-0.2.5:0= )
-	>=dev-libs/gobject-introspection-1.54:=
-
-	${PYTHON_DEPS}
-	$(python_gen_cond_dep '
-		dev-python/pycairo[${PYTHON_MULTI_USEDEP}]
-		>=dev-python/pygobject-3:3[cairo,${PYTHON_MULTI_USEDEP}]
-		dev-libs/libpeas[python,${PYTHON_SINGLE_USEDEP}]
-	')
+	python? (
+		${PYTHON_DEPS}
+		$(python_gen_cond_dep '
+			dev-python/pycairo[${PYTHON_USEDEP}]
+			>=dev-python/pygobject-3:3[cairo,${PYTHON_USEDEP}]
+			dev-libs/libpeas[python,${PYTHON_SINGLE_USEDEP}]
+		')
+	)
 "
 RDEPEND="${DEPEND}
 	x11-themes/adwaita-icon-theme
@@ -52,23 +49,29 @@ BDEPEND="
 	virtual/pkgconfig
 "
 PATCHES=(
-	"${FILESDIR}"/${PN}-3.38.0-make-spell-optional.patch
+	# Don't force off overlay scrollbars for dubious reasons that GNOME designers heavily
+	# disagree with; those wanting them off in general would set that globally for gtk
+	"${FILESDIR}"/${PN}-3.38.0-restore-overlay-scrollbars.patch
+	# Make gspell and python optional
+	"${FILESDIR}"/${PN}-3.38.0-make-gspell-optional.patch
+	"${FILESDIR}"/${PN}-3.38.0-make-python-optional.patch
 )
 
 pkg_setup() {
-	python-single-r1_pkg_setup
+	use python && python-single-r1_pkg_setup
 }
 
 src_prepare() {
-	use vala && vala_src_prepare
+	vala_src_prepare
 	xdg_src_prepare
 }
 
 src_configure() {
 	local emesonargs=(
+		$(meson_use python)
 		$(meson_use gtk-doc gtk_doc)
-		$(meson_use test require_all_tests)
-		$(meson_use spell)
+		-Duser_documentation=true
+		$(meson_feature spell)
 	)
 	meson_src_configure
 }
@@ -78,9 +81,10 @@ src_test() { :; }
 
 src_install() {
 	meson_src_install
-
-	python_optimize
-	python_optimize "${ED}/usr/$(get_libdir)/gedit/plugins/"
+	if use python; then
+		python_optimize
+		python_optimize "${ED}/usr/$(get_libdir)/gedit/plugins/"
+	fi
 }
 
 pkg_postinst() {

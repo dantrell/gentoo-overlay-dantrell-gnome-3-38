@@ -16,6 +16,7 @@ REQUIRED_USE="vala? ( introspection )"
 
 RESTRICT="!test? ( test )"
 
+# We keep newer glib/gtk+ deps to avoid GtkEventControllerMotion backports gettings used
 RDEPEND="
 	>=dev-libs/glib-2.56.0:2
 	>=x11-libs/gtk+-3.24.0:3[introspection?]
@@ -27,6 +28,7 @@ BDEPEND="
 	>=dev-util/meson-0.49.0
 	vala? ( $(vala_depend) )
 	dev-libs/libxml2:2
+	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 	gtk-doc? ( dev-util/gtk-doc )
 "

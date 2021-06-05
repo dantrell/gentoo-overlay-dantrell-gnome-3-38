@@ -1,9 +1,10 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
+VALA_MIN_API_VERSION="0.40"
 VALA_MAX_API_VERSION="0.44"
 
-inherit gnome.org gnome2-utils meson vala xdg
+inherit gnome.org gnome2-utils meson vala virtualx xdg
 
 DESCRIPTION="A calculator application for GNOME"
 HOMEPAGE="https://wiki.gnome.org/Apps/Calculator"
@@ -12,19 +13,22 @@ LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE=""
+IUSE="+introspection test"
+
+RESTRICT="!test? ( test )"
 
 # gtksourceview vapi definitions in dev-lang/vala itself are too old, and newer vala removes them
 # altogether, thus we need them installed by gtksourceview[vala]
 RDEPEND="
 	>=dev-libs/glib-2.40.0:2
-	>=x11-libs/gtk+-3.19.3:3
-	>=x11-libs/gtksourceview-4.0.2:4
+	dev-libs/libxml2:2
 	>=net-libs/libsoup-2.42:2.4
 	>=dev-libs/libgee-0.20.0:0.8
-	dev-libs/libxml2:2
 	dev-libs/mpc:=
 	dev-libs/mpfr:0=
+	>=x11-libs/gtk+-3.19.3:3
+	>=x11-libs/gtksourceview-4.0.2:4
+	introspection? ( >=dev-libs/gobject-introspection-1.58:= )
 "
 DEPEND="${RDEPEND}"
 BDEPEND="
@@ -40,6 +44,22 @@ BDEPEND="
 src_prepare() {
 	xdg_src_prepare
 	vala_src_prepare
+	# Automagic dep on valadoc - don't bother for now
+	sed -e '/subdir.*doc/d' -i meson.build || die
+}
+
+src_configure() {
+	local emesonargs=(
+		-Ddisable-ui=false
+		#-Dvala-version # doesn't do anything in 3.34
+		$(meson_use !introspection disable-introspection)
+		$(meson_use test ui-tests)
+	)
+	meson_src_configure
+}
+
+src_test() {
+	virtx meson_src_test
 }
 
 pkg_postinst() {

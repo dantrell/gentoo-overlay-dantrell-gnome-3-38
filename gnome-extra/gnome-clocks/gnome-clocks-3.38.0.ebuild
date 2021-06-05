@@ -14,14 +14,14 @@ KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
-	>=dev-libs/glib-2.44:2
-	>=dev-libs/libgweather-3.27.2:2=
-	>=gnome-base/gnome-desktop-3.8:3=
+	>=dev-libs/glib-2.58:2
+	>=x11-libs/gtk+-3.20:3
 	>=media-libs/gsound-0.98
+	>=dev-libs/libgweather-3.32.0:2=
+	>=gnome-base/gnome-desktop-3.8:3=
 	>=sci-geosciences/geocode-glib-1
 	>=app-misc/geoclue-2.4:2.0
-	>=gui-libs/libhandy-1.0.0:1=
-	>=x11-libs/gtk+-3.20:3
+	>=gui-libs/libhandy-1.0.0:1
 "
 DEPEND="${RDEPEND}"
 BDEPEND="
@@ -32,11 +32,16 @@ BDEPEND="
 	$(vala_depend)
 	dev-libs/libgweather:2[vala]
 	media-libs/gsound[vala]
+	gui-libs/libhandy:1[vala]
 "
 
 src_prepare() {
 	xdg_src_prepare
 	vala_src_prepare
+}
+
+src_configure() {
+	meson_src_configure -Dprofile=default
 }
 
 pkg_postinst() {

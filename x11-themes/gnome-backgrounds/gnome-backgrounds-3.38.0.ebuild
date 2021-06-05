@@ -1,6 +1,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="7"
 
 inherit gnome.org meson xdg
 
@@ -13,8 +13,9 @@ KEYWORDS="*"
 
 IUSE="vanilla-live"
 
+DEPEND=""
 RDEPEND="!<x11-themes/gnome-themes-standard-3.14"
-DEPEND=">=sys-devel/gettext-0.19.8"
+BDEPEND=">=sys-devel/gettext-0.19.8"
 
 src_prepare() {
 	if ! use vanilla-live; then

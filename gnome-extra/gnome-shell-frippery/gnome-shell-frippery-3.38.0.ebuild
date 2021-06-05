@@ -1,6 +1,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="7"
 
 DESCRIPTION="Unofficial extension pack providing GNOME 2-like features for GNOME 3"
 HOMEPAGE="http://frippery.org/extensions/index.html"
@@ -17,7 +17,7 @@ RDEPEND="
 	>=dev-libs/gjs-1.29
 	dev-libs/gobject-introspection:=
 	gnome-base/gnome-menus:3[introspection]
-	>=gnome-base/gnome-shell-3.30
+	>=gnome-base/gnome-shell-3.38
 	media-libs/clutter:1.0[introspection]
 	x11-libs/pango[introspection]
 "

@@ -1,13 +1,12 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
-VALA_MIN_API_VERSION="0.28"
+EAPI="7"
 VALA_MAX_API_VERSION="0.50"
 
-inherit gnome2 meson vala
+inherit gnome.org gnome2-utils meson vala xdg
 
-DESCRIPTION="Nibbles clone for Gnome"
-HOMEPAGE="https://wiki.gnome.org/Apps/Nibbles"
+DESCRIPTION="Nibbles clone for GNOME"
+HOMEPAGE="https://wiki.gnome.org/Apps/Nibbles https://gitlab.gnome.org/GNOME/gnome-nibbles"
 
 LICENSE="GPL-3+ CC-BY-SA-3.0"
 SLOT="0"
@@ -16,24 +15,34 @@ KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
-	>=dev-libs/glib-2.40.0:2
-	dev-libs/libgee:0.8=
-	>=dev-libs/libgnome-games-support-1.7.1:1=
+	>=dev-libs/glib-2.42.0:2
 	>=media-libs/clutter-1.22.0:1.0
 	>=media-libs/clutter-gtk-1.4.0:1.0
-	>=media-libs/libcanberra-0.26[gtk3]
-	>=x11-libs/gtk+-3.18.0:3
+	dev-libs/libgee:0.8=
+	>=media-libs/gsound-1.0.2
+	>=x11-libs/gtk+-3.24.0:3
+	>=dev-libs/libgnome-games-support-1.7.1:1=
 "
-DEPEND="${RDEPEND}
-	$(vala_depend)
-	dev-libs/appstream-glib
-	>=dev-util/intltool-0.50.2
+DEPEND="${RDEPEND}"
+BDEPEND="
 	dev-util/itstool
-	sys-devel/gettext
+	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
+	$(vala_depend)
+	media-libs/gsound[vala]
 "
 
 src_prepare() {
+	xdg_src_prepare
 	vala_src_prepare
-	gnome2_src_prepare
+}
+
+pkg_postinst() {
+	xdg_pkg_postinst
+	gnome2_schemas_update
+}
+
+pkg_postrm() {
+	xdg_pkg_postrm
+	gnome2_schemas_update
 }

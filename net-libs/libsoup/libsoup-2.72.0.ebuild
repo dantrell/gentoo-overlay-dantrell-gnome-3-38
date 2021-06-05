@@ -12,16 +12,19 @@ LICENSE="LGPL-2.1+"
 SLOT="2.4"
 KEYWORDS="*"
 
-IUSE="gssapi gtk-doc +introspection samba ssl test +vala"
+IUSE="brotli gssapi gtk-doc +introspection samba ssl sysprof test +vala"
 REQUIRED_USE="vala? ( introspection )"
 
 RESTRICT="!test? ( test )"
 
 DEPEND="
-	>=dev-libs/glib-2.38:2[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.58:2[${MULTILIB_USEDEP}]
 	>=dev-db/sqlite-3.8.2:3[${MULTILIB_USEDEP}]
 	>=dev-libs/libxml2-2.9.1-r4:2[${MULTILIB_USEDEP}]
+	brotli? ( >=app-arch/brotli-1.0.6-r1:=[${MULTILIB_USEDEP}] )
 	>=net-libs/libpsl-0.20[${MULTILIB_USEDEP}]
+	sysprof? ( >=dev-util/sysprof-3.38:4[${MULTILIB_USEDEP}] )
+	sys-libs/zlib
 	gssapi? ( virtual/krb5[${MULTILIB_USEDEP}] )
 	introspection? ( >=dev-libs/gobject-introspection-1.54:= )
 	samba? ( net-fs/samba )
@@ -30,6 +33,7 @@ RDEPEND="${DEPEND}
 	>=net-libs/glib-networking-2.38.2[ssl?,${MULTILIB_USEDEP}]
 "
 BDEPEND="
+	dev-libs/glib
 	gtk-doc? ( >=dev-util/gtk-doc-1.20
 		app-text/docbook-xml-dtd:4.1.2 )
 	>=sys-devel/gettext-0.19.8
@@ -51,6 +55,8 @@ PATCHES=(
 src_prepare() {
 	use vala && vala_src_prepare
 	xdg_src_prepare
+	# https://gitlab.gnome.org/GNOME/libsoup/issues/159 - could work with libnss-myhostname
+	sed -e '/hsts/d' -i tests/meson.build || die
 }
 
 src_configure() {
@@ -64,16 +70,19 @@ src_configure() {
 
 multilib_src_configure() {
 	local emesonargs=(
-		-Dgssapi=$(multilib_native_usex gssapi enabled disabled)
+		$(meson_feature gssapi)
 		-Dkrb5_config="${CHOST}-krb5-config"
-		-Dntlm=$(multilib_native_usex samba enabled disabled)
+		$(meson_feature samba ntlm)
+		$(meson_feature brotli)
 		-Dntlm_auth="${EPREFIX}/usr/bin/ntlm_auth"
 		-Dtls_check=false # disables check, we still rdep on glib-networking
 		-Dgnome=false
 		-Dintrospection=$(multilib_native_usex introspection enabled disabled)
 		-Dvapi=$(multilib_native_usex vala enabled disabled)
-		-Dgtk-doc=$(multilib_native_usex gtk-doc true false)
+		-Dgtk_doc=$(multilib_native_usex gtk-doc true false)
 		$(meson_use test tests)
+		-Dinstalled_tests=false
+		$(meson_feature sysprof)
 	)
 	meson_src_configure
 }

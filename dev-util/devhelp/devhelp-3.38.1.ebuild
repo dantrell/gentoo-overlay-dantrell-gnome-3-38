@@ -1,14 +1,14 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
-PYTHON_COMPAT=( python{3_6,3_7,3_8,3_9} )
+PYTHON_COMPAT=( python{3_8,3_9,3_10} )
 
 inherit gnome.org gnome2-utils meson python-single-r1 xdg
 
 DESCRIPTION="An API documentation browser for GNOME"
 HOMEPAGE="https://wiki.gnome.org/Apps/Devhelp"
 
-LICENSE="GPL-3+"
+LICENSE="GPL-3+ CC-BY-SA-4.0"
 SLOT="0/3-6" # subslot = 3-(libdevhelp-3 soname version)
 KEYWORDS="*"
 
@@ -16,9 +16,9 @@ IUSE="gedit gtk-doc +introspection"
 REQUIRED_USE="gedit? ( ${PYTHON_REQUIRED_USE} )"
 
 DEPEND="
-	>=dev-libs/glib-2.56:2
+	>=dev-libs/glib-2.64:2
 	>=x11-libs/gtk+-3.22:3[introspection?]
-	>=net-libs/webkit-gtk-2.20:4[introspection?]
+	>=net-libs/webkit-gtk-2.24:4[introspection?]
 	>=gui-libs/amtk-5.0:5
 	gnome-base/gsettings-desktop-schemas
 	introspection? ( >=dev-libs/gobject-introspection-1.54:= )
@@ -27,7 +27,7 @@ RDEPEND="${DEPEND}
 	gedit? (
 		${PYTHON_DEPS}
 		$(python_gen_cond_dep '
-			app-editors/gedit[introspection,python,${PYTHON_SINGLE_USEDEP}]
+			app-editors/gedit[introspection(+),python,${PYTHON_SINGLE_USEDEP}]
 			dev-python/pygobject:3[${PYTHON_MULTI_USEDEP}]
 		')
 	)

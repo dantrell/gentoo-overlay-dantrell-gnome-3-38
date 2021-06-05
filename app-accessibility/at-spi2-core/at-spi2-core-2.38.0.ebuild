@@ -25,10 +25,10 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}"
 BDEPEND="
-	>=dev-util/meson-0.50.0
 	gtk-doc? (
 		>=dev-util/gtk-doc-1.25
-		app-text/docbook-xml-dtd:4.3 )
+		app-text/docbook-xml-dtd:4.3
+	)
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 "
@@ -53,7 +53,7 @@ multilib_src_compile() {
 }
 
 multilib_src_test() {
-	virtx meson_src_test
+	virtx dbus-run-session meson test -C "${BUILD_DIR}"
 }
 
 multilib_src_install() {
