@@ -2,7 +2,8 @@
 
 EAPI="7"
 VALA_USE_DEPEND="vapigen"
-VALA_MIN_API_VERSION="0.32"
+VALA_MIN_API_VERSION="0.48"
+VALA_MAX_API_VERSION="0.52"
 
 inherit gnome.org meson vala xdg
 

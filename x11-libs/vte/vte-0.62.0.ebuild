@@ -3,7 +3,7 @@
 EAPI="6"
 VALA_USE_DEPEND="vapigen"
 VALA_MIN_API_VERSION="0.48"
-VALA_MAX_API_VERSION="0.50"
+VALA_MAX_API_VERSION="0.52"
 
 inherit gnome2 meson vala
 
