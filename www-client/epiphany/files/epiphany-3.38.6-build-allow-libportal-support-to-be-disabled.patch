@@ -1,6 +1,6 @@
 diff '--exclude=.git' -urN a/lib/ephy-flatpak-utils.c b/lib/ephy-flatpak-utils.c
---- a/lib/ephy-flatpak-utils.c	2021-03-12 16:07:17.000000000 -0600
-+++ b/lib/ephy-flatpak-utils.c	2021-03-22 16:57:00.604795573 -0500
+--- a/lib/ephy-flatpak-utils.c	2021-08-12 14:43:19.000000000 -0500
++++ b/lib/ephy-flatpak-utils.c	2021-09-06 08:22:07.300619059 -0500
 @@ -28,7 +28,9 @@
  #include <fcntl.h>
  #include <gio/gio.h>
@@ -45,12 +45,12 @@ diff '--exclude=.git' -urN a/lib/ephy-flatpak-utils.c b/lib/ephy-flatpak-utils.c
  
  void
 diff '--exclude=.git' -urN a/meson.build b/meson.build
---- a/meson.build	2021-03-12 16:07:17.000000000 -0600
-+++ b/meson.build	2021-03-22 16:57:00.604795573 -0500
+--- a/meson.build	2021-08-12 14:43:19.000000000 -0500
++++ b/meson.build	2021-09-06 08:22:07.301619059 -0500
 @@ -1,7 +1,7 @@
  project('epiphany', 'c',
    license: 'GPL3+',
-   version: '3.38.3',
+   version: '3.38.6',
 -  meson_version: '>= 0.46.0',
 +  meson_version: '>= 0.47.0',
    default_options: ['c_std=gnu11',
@@ -99,8 +99,8 @@ diff '--exclude=.git' -urN a/meson.build b/meson.build
  gmp_dep = cc.find_library('gmp')
  m_dep = cc.find_library('m', required: false)
 diff '--exclude=.git' -urN a/meson_options.txt b/meson_options.txt
---- a/meson_options.txt	2021-03-12 16:07:17.000000000 -0600
-+++ b/meson_options.txt	2021-03-22 16:57:00.604795573 -0500
+--- a/meson_options.txt	2021-08-12 14:43:19.000000000 -0500
++++ b/meson_options.txt	2021-09-06 08:22:07.301619059 -0500
 @@ -4,6 +4,12 @@
    description: 'Enable developer mode'
  )

@@ -4,7 +4,7 @@ EAPI="7"
 
 inherit gnome.org gnome2-utils meson virtualx xdg
 
-DESCRIPTION="GNOME 3 compositing window manager based on Clutter"
+DESCRIPTION="GNOME compositing window manager based on Clutter"
 HOMEPAGE="https://gitlab.gnome.org/GNOME/mutter/"
 
 LICENSE="GPL-2+"
@@ -54,13 +54,13 @@ DEPEND="
 	>=dev-libs/atk-2.5.3[introspection?]
 	>=media-libs/libcanberra-0.26
 	sys-apps/dbus
-	media-libs/mesa[X(+),egl]
+	media-libs/mesa[X(+),egl(+)]
 	sysprof? ( >=dev-util/sysprof-capture-3.38.0:4 )
 	wayland? (
 		>=dev-libs/wayland-protocols-1.19
 		>=dev-libs/wayland-1.18.0
 		x11-libs/libdrm:=
-		>=media-libs/mesa-17.3[egl,gbm,wayland,gles2]
+		>=media-libs/mesa-17.3[egl(+),gbm(+),wayland,gles2]
 		>=dev-libs/libinput-1.7
 		systemd? ( sys-apps/systemd )
 		elogind? ( sys-auth/elogind )

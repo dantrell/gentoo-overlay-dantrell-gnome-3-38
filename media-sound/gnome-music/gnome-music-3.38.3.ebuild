@@ -27,8 +27,8 @@ DEPEND="${PYTHON_DEPS}
 	>=app-misc/tracker-2.3.0:=[introspection(+)]
 	>=x11-libs/pango-1.44.0
 	$(python_gen_cond_dep '
-		>=dev-python/pygobject-3.36.1:3[cairo,${PYTHON_MULTI_USEDEP}]
-		>=dev-python/pycairo-1.14.0[${PYTHON_MULTI_USEDEP}]
+		>=dev-python/pygobject-3.36.1:3[cairo,${PYTHON_USEDEP}]
+		>=dev-python/pycairo-1.14.0[${PYTHON_USEDEP}]
 	')
 	>=media-libs/grilo-0.3.13:0.3[introspection]
 	>=media-plugins/grilo-plugins-0.3.12:0.3

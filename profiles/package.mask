@@ -71,6 +71,7 @@ media-gfx/eog::gentoo
 media-gfx/gnome-screenshot::gentoo
 media-gfx/simple-scan::gentoo
 media-sound/gnome-music::gentoo
+media-video/cheese::gentoo
 media-video/totem::gentoo
 net-irc/polari::gentoo
 net-libs/glib-networking::gentoo
