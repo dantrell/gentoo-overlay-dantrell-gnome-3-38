@@ -96,6 +96,10 @@ pkg_pretend() {
 }
 
 src_prepare() {
+	# Work around -Werror=incompatible-pointer-types (GCC 11 default)
+	sed -i subprojects/libhandy/meson.build \
+		-e '/Werror=incompatible-pointer-types/d' || die
+
 	xdg_src_prepare
 	vala_src_prepare
 }

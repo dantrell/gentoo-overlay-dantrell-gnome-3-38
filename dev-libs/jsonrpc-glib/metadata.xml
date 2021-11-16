@@ -5,10 +5,7 @@
 		<email>gnome@gentoo.org</email>
 		<name>Gentoo GNOME Desktop</name>
 	</maintainer>
-	<use>
-		<flag name="brotli">Enable brotli decompression support</flag>
-		<flag name="gssapi">Enable GSSAPI support</flag>
-		<flag name="samba">Use <pkg>net-fs/samba</pkg> for NTLM Single
-			Sign-On</flag>
-	</use>
+	<longdescription>Jsonrpc-GLib is a JSON-RPC library for GLib. It includes support for
+		communicating as both a JSON-RPC client and server. Additionally, it
+		supports upgrating connections to use GVariant for less runtime overhead.</longdescription>
 </pkgmetadata>

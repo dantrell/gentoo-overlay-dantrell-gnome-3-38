@@ -2,6 +2,7 @@
 
 EAPI="7"
 PYTHON_COMPAT=( python{3_8,3_9,3_10} )
+VALA_MIN_API_VERSION="0.36"
 DISABLE_AUTOFORMATTING=1
 FORCE_PRINT_ELOG=1
 
@@ -13,7 +14,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Builder"
 # FIXME: Review licenses at some point
 LICENSE="GPL-3+ GPL-2+ LGPL-3+ LGPL-2+ MIT CC-BY-SA-3.0 CC0-1.0"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="*"
 
 IUSE="clang +devhelp doc +git +glade gtk-doc spell sysprof test"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
@@ -119,6 +120,14 @@ llvm_check_deps() {
 pkg_setup() {
 	python-single-r1_pkg_setup
 	use clang && llvm_pkg_setup
+}
+
+src_prepare() {
+	# Work around -Werror=incompatible-pointer-types (GCC 11 default)
+	sed -i meson.build \
+		-e '/Werror=incompatible-pointer-types/d' || die
+
+	xdg_src_prepare
 }
 
 src_configure() {

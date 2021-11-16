@@ -11,7 +11,7 @@ LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="office wayland +X"
+IUSE="office wayland webkit +X"
 REQUIRED_USE="|| ( wayland X )"
 
 # Optional app-office/libreoffice support (OOo to pdf and then preview)
@@ -28,7 +28,7 @@ DEPEND="
 	>=media-libs/harfbuzz-0.9.9:=
 	>=dev-libs/gobject-introspection-1.54:=
 	media-libs/musicbrainz:5=
-	net-libs/webkit-gtk:4[introspection]
+	webkit? ( net-libs/webkit-gtk:4[introspection] )
 	>=dev-libs/gjs-1.40
 "
 RDEPEND="${DEPEND}
@@ -39,6 +39,15 @@ BDEPEND="
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 "
+
+src_prepare() {
+	if ! use webkit; then
+		# From GNOME Without Systemd:
+		eapply "${FILESDIR}"/${PN}-3.38.1-make-webkit-optional.patch
+	fi
+
+	xdg_src_prepare
+}
 
 src_configure() {
 	# Prevent sandbox violations when we need write access to

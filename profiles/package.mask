@@ -15,6 +15,7 @@ dev-libs/atk::gentoo
 dev-libs/gjs::gentoo
 dev-libs/gobject-introspection-common::gentoo
 dev-libs/gobject-introspection::gentoo
+dev-libs/jsonrpc-glib::gentoo
 dev-libs/libdazzle::gentoo
 dev-python/pyatspi::gentoo
 dev-python/pygobject::gentoo
