@@ -10,7 +10,7 @@ HOMEPAGE="https://gitlab.gnome.org/GNOME/simple-scan"
 
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="*"
 
 IUSE="colord webp" # packagekit
 

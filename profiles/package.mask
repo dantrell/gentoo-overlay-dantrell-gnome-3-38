@@ -1,5 +1,4 @@
 app-accessibility/accerciser::gentoo
-app-accessibility/at-spi2-atk::gentoo
 app-accessibility/at-spi2-core::gentoo
 app-accessibility/orca::gentoo
 app-arch/file-roller::gentoo
@@ -11,7 +10,6 @@ app-editors/gnome-latex::gentoo
 app-misc/bijiben::gentoo
 app-misc/gnote::gentoo
 app-text/evince::gentoo
-dev-libs/atk::gentoo
 dev-libs/gjs::gentoo
 dev-libs/gobject-introspection-common::gentoo
 dev-libs/gobject-introspection::gentoo

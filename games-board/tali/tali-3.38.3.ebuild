@@ -9,7 +9,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Tali"
 
 LICENSE="GPL-2+ FDL-1.1+"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="*"
 
 IUSE=""
 

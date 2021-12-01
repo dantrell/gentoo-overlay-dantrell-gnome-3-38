@@ -12,7 +12,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Gedit"
 
 LICENSE="GPL-2+ CC-BY-SA-3.0"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="*"
 
 IUSE="+python gtk-doc spell"
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
