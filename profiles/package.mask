@@ -10,6 +10,7 @@ app-editors/gnome-latex::gentoo
 app-misc/bijiben::gentoo
 app-misc/gnote::gentoo
 app-text/evince::gentoo
+app-text/yelp-tools::gentoo
 dev-libs/gjs::gentoo
 dev-libs/gobject-introspection-common::gentoo
 dev-libs/gobject-introspection::gentoo
@@ -36,6 +37,7 @@ games-puzzle/hitori::gentoo
 games-puzzle/lightsoff::gentoo
 games-puzzle/quadrapassel::gentoo
 gnome-base/dconf-editor::gentoo
+gnome-base/gnome-applets::gentoo
 gnome-base/gnome-control-center::gentoo
 gnome-base/gnome-core-apps::gentoo
 gnome-base/gnome-core-libs::gentoo
@@ -43,6 +45,7 @@ gnome-base/gnome-desktop::gentoo
 gnome-base/gnome-extra-apps::gentoo
 gnome-base/gnome-flashback::gentoo
 gnome-base/gnome-light::gentoo
+gnome-base/gnome-panel::gentoo
 gnome-base/gnome-session::gentoo
 gnome-base/gnome-settings-daemon::gentoo
 gnome-base/gnome-shell::gentoo
@@ -78,6 +81,7 @@ net-libs/gnome-online-accounts::gentoo
 net-libs/libsoup-gnome::gentoo
 net-libs/libsoup::gentoo
 sci-geosciences/gnome-maps::gentoo
+sys-apps/baobab::gentoo
 sys-apps/gnome-disk-utility::gentoo
 www-client/epiphany::gentoo
 x11-libs/vte::gentoo

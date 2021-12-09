@@ -51,7 +51,7 @@ src_prepare() {
 	# 	https://src.fedoraproject.org/rpms/gnome-terminal/tree/f33
 	#
 	# From GNOME:
-	# 	https://gitlab.gnome.org/GNOME/gnome-terminal/-/commit/57ea15c4bdf15247f1d403aa24fb18efe23cd8a7
+	# 	https://gitlab.gnome.org/GNOME/gnome-terminal/commit/57ea15c4bdf15247f1d403aa24fb18efe23cd8a7
 	eapply "${FILESDIR}"/${PN}-3.38.0-revert-screen-use-clean-env-when-creating-new-tab.patch
 
 	if use deprecated-transparency; then
