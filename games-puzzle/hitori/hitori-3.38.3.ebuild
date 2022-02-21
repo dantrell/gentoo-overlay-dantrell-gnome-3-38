@@ -26,6 +26,10 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 "
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-3.38.3-meson-0.61-build.patch
+)
+
 pkg_postinst() {
 	xdg_pkg_postinst
 	gnome2_schemas_update
