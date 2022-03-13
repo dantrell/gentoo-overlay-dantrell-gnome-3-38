@@ -45,6 +45,9 @@ BDEPEND="
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.38.0-avoid-gnupg-circular-dep.patch
 	"${FILESDIR}"/${PN}-3.38.0-optional-vapi.patch
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831428
+	"${FILESDIR}"/${PN}-3.40.0-meson-0.61-build.patch
 )
 
 pkg_setup() {
