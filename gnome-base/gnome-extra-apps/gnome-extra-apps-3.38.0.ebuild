@@ -26,7 +26,7 @@ RDEPEND="
 	>=gnome-extra/gnome-calendar-${PV}
 	>=gnome-extra/gnome-characters-3.32.0
 	>=gnome-extra/gnome-clocks-${PV}
-	>=gnome-extra/gnome-getting-started-docs-3.36.0
+	>=gnome-extra/gnome-getting-started-docs-${PV}
 	>=gnome-extra/gnome-power-manager-3.32.0
 	>=gnome-extra/gnome-search-tool-3.6
 	>=gnome-extra/gnome-system-monitor-${PV}
@@ -34,12 +34,12 @@ RDEPEND="
 	>=gnome-extra/gnome-weather-3.36.0
 	>=gnome-extra/gucharmap-11.0.0:2.90
 	>=gnome-extra/nautilus-sendto-3.8.5
-	>=gnome-extra/sushi-3.34.0
+	>=gnome-extra/sushi-${PV}
 	>=media-gfx/gnome-font-viewer-3.33.0
 	>=media-gfx/gnome-screenshot-${PV}
-	>=media-sound/gnome-sound-recorder-3.34.0
-	>=media-sound/sound-juicer-3.24
-	>=media-video/cheese-3.34.0
+	>=media-sound/gnome-sound-recorder-${PV}
+	>=media-sound/sound-juicer-$(ver_cut 1-2)
+	>=media-video/cheese-${PV}
 	>=net-analyzer/gnome-nettool-3.8
 	>=net-misc/vinagre-3.22
 	>=net-misc/vino-3.22
@@ -52,8 +52,8 @@ RDEPEND="
 	boxes? ( >=gnome-extra/gnome-boxes-${PV} )
 	builder? ( >=dev-util/gnome-builder-${PV} )
 	california? ( >=gnome-extra/california-0.4.0 )
-	celluloid? ( >=media-video/celluloid-0.16 )
-	dino? ( >=net-im/dino-0.0.20190412 )
+	celluloid? ( >=media-video/celluloid-0.20 )
+	dino? ( >=net-im/dino-0.2.0 )
 	empathy? ( >=net-im/empathy-3.12.13 )
 	epiphany? ( >=www-client/epiphany-${PV} )
 	evolution? ( >=mail-client/evolution-${PV} )
@@ -62,7 +62,7 @@ RDEPEND="
 	fonts? (
 		>=media-fonts/noto-20181024
 		>=media-fonts/symbola-9.17
-		>=media-fonts/unifont-10.0.06 )
+		>=media-fonts/unifont-13.0.01 )
 	games? (
 		>=games-arcade/gnome-nibbles-${PV}
 		>=games-arcade/gnome-robots-${PV}
@@ -97,9 +97,9 @@ RDEPEND="
 		>=app-misc/tracker-3:3=
 		>=app-misc/tracker-miners-3:3=
 		>=gnome-extra/gnome-documents-3.33.0
-		>=media-gfx/gnome-photos-3.34.0
+		>=media-gfx/gnome-photos-${PV}
 		>=media-sound/gnome-music-${PV} )
-	usage? ( >=sys-process/gnome-usage-3.33.0 )
+	usage? ( >=sys-process/gnome-usage-3.38.0 )
 "
 DEPEND=""
 
