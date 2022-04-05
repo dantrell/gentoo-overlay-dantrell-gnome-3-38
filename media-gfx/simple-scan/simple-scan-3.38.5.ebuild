@@ -2,6 +2,7 @@
 
 EAPI="7"
 VALA_MIN_API_VERSION="0.34"
+VALA_MAX_API_VERSION="0.54"
 
 inherit gnome.org gnome2-utils meson vala xdg
 
@@ -43,6 +44,9 @@ BDEPEND="
 PATCHES=(
 	# Add control for optional dependencies
 	"${FILESDIR}"/${PN}-3.26-add-control-optional-deps.patch
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831891
+	"${FILESDIR}"/${PN}-40.7-fix-build-with-meson-0.61.1.patch
 )
 
 src_prepare() {

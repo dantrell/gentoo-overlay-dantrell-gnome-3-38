@@ -55,6 +55,10 @@ PATCHES=(
 	# Make gspell and python optional
 	"${FILESDIR}"/${PN}-3.38.0-make-gspell-optional.patch
 	"${FILESDIR}"/${PN}-3.38.0-make-python-optional.patch
+
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831925
+	"${FILESDIR}"/${PN}-40.1-fix-meson-0.61.patch
 )
 
 pkg_setup() {

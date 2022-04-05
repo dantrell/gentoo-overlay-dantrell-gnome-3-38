@@ -32,6 +32,12 @@ BDEPEND="
 	virtual/pkgconfig
 "
 
+PATCHES=(
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831556
+	"${FILESDIR}"/${PN}-40.2-fix-build-with-meson-0.61.1.patch
+)
+
 src_prepare() {
 	xdg_src_prepare
 	vala_src_prepare
