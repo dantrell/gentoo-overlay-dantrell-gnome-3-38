@@ -18,7 +18,7 @@ DEPEND="
 	>=x11-libs/gtk+-3.12:3[introspection]
 	media-libs/gst-plugins-bad:1.0
 	>=gui-libs/libhandy-0.80.0:1=
-	>=dev-libs/gobject-introspection-1.31.6
+	>=dev-libs/gobject-introspection-1.31.6:=
 	x11-libs/gdk-pixbuf:2[introspection]
 "
 RDEPEND="${DEPEND}
@@ -33,6 +33,12 @@ BDEPEND="
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 "
+
+PATCHES=(
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831924
+	"${FILESDIR}"/${PN}-40.0-fix-build-with-meson-0.61.1.patch
+)
 
 pkg_setup() {
 	python-any-r1_pkg_setup

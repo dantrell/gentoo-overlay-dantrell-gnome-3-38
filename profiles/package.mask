@@ -62,7 +62,6 @@ media-gfx/gnome-screenshot::gentoo
 media-gfx/simple-scan::gentoo
 media-sound/gnome-music::gentoo
 media-sound/gnome-sound-recorder::gentoo
-media-video/totem::gentoo
 net-irc/polari::gentoo
 net-libs/glib-networking::gentoo
 net-libs/gnome-online-accounts::gentoo

@@ -1,7 +1,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
-PYTHON_COMPAT=( python3_{7..9} )
+PYTHON_COMPAT=( python{3_8,3_9,3_10} )
 
 inherit gnome.org gnome2-utils meson python-any-r1 virtualx xdg
 
@@ -51,12 +51,17 @@ BDEPEND="
 	app-text/docbook-xsl-stylesheets
 	dev-util/desktop-file-utils
 	dev-util/gdbus-codegen
-	dev-util/glib-utils
 	dev-util/itstool
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 	test? ( $(python_gen_any_dep 'dev-util/dogtail[${PYTHON_USEDEP}]') )
 "
+
+PATCHES=(
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831933
+	"${FILESDIR}"/${PN}-40.0-fix-build-with-meson-0.61.1.patch
+)
 
 DOCS=() # meson installs docs itself
 
