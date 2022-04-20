@@ -9,7 +9,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Nautilus"
 
 LICENSE="GPL-3+ LGPL-2.1+"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="*"
 
 IUSE="gnome gtk-doc +introspection +previewer selinux sendto vanilla-menu vanilla-menu-compress vanilla-rename vanilla-search vanilla-thumbnailer"
 
@@ -52,6 +52,10 @@ PDEPEND="
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.30.5-docs-build.patch # Always install pregenerated manpage, keeping docs option for gtk-doc
+
+	# From GNOME:
+	# 	https://gitlab.gnome.org/GNOME/nautilus/-/commit/42b0362e9844f4c5114b21464185620eaadcfcaa
+	"${FILESDIR}"/${PN}-41.1-build-remove-incorrect-i18n-merge-file-argument.patch
 )
 
 src_prepare() {
@@ -76,6 +80,7 @@ src_prepare() {
 	fi
 
 	if ! use vanilla-rename; then
+		eapply -R "${FILESDIR}"/${PN}-3.38.2-list-view-fix-double-click-row-check-for-gesture.patch
 		eapply "${FILESDIR}"/${PN}-3.38.0-support-slow-double-click-to-rename.patch
 	fi
 

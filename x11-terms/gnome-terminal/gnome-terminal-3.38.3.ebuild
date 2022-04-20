@@ -9,7 +9,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Terminal/"
 
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="*"
 
 IUSE="debug +deprecated-transparency +gnome-shell +nautilus vanilla-hotkeys +vanilla-icon vanilla-notify vanilla-open-terminal"
 
@@ -17,7 +17,7 @@ IUSE="debug +deprecated-transparency +gnome-shell +nautilus vanilla-hotkeys +van
 RDEPEND="
 	>=dev-libs/glib-2.52:2
 	>=x11-libs/gtk+-3.22.27:3
-	>=x11-libs/vte-0.62.0:2.91[!vanilla-notify?]
+	>=x11-libs/vte-0.62.3:2.91[!vanilla-notify?]
 	>=dev-libs/libpcre2-10
 	>=gnome-base/dconf-0.14
 	>=gnome-base/gsettings-desktop-schemas-0.1.0
@@ -47,18 +47,11 @@ src_prepare() {
 		eapply "${FILESDIR}"/${PN}-3.32.1-desktop-icon.patch
 	fi
 
-	# From Fedora:
-	# 	https://src.fedoraproject.org/rpms/gnome-terminal/tree/f33
-	#
-	# From GNOME:
-	# 	https://gitlab.gnome.org/GNOME/gnome-terminal/commit/57ea15c4bdf15247f1d403aa24fb18efe23cd8a7
-	eapply "${FILESDIR}"/${PN}-3.38.0-revert-screen-use-clean-env-when-creating-new-tab.patch
-
 	if use deprecated-transparency; then
 		# From Fedora:
 		# 	https://src.fedoraproject.org/rpms/gnome-terminal/tree/f33
 		eapply "${FILESDIR}"/${PN}-3.28.1-build-dont-treat-warnings-as-errors.patch
-		eapply "${FILESDIR}"/${PN}-3.38.0-transparency.patch
+		eapply "${FILESDIR}"/${PN}-3.38.3-transparency.patch
 
 		# From GNOME:
 		# 	https://gitlab.gnome.org/GNOME/gnome-terminal/commit/b3c270b3612acd45f309521cf1167e1abd561c09
@@ -67,12 +60,12 @@ src_prepare() {
 		if ! use vanilla-notify; then
 			# From Fedora:
 			# 	https://src.fedoraproject.org/rpms/gnome-terminal/tree/f33
-			eapply "${FILESDIR}"/${PN}-3.38.0-open-notify-title-rebased.patch
+			eapply "${FILESDIR}"/${PN}-3.38.3-open-notify-title-rebased.patch
 		fi
 	elif ! use vanilla-notify; then
 		# From Fedora:
 		# 	https://src.fedoraproject.org/rpms/gnome-terminal/tree/f33
-		eapply "${FILESDIR}"/${PN}-3.38.0-open-notify-title.patch
+		eapply "${FILESDIR}"/${PN}-3.38.3-open-notify-title.patch
 	fi
 
 	if ! use vanilla-hotkeys; then

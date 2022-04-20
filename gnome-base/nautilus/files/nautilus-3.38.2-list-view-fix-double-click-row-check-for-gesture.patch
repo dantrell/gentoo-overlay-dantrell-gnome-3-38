@@ -1,0 +1,110 @@
+From 6faab0689debc4e799a386a6f776900b1a12f562 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Ant=C3=B3nio=20Fernandes?= <antoniof@gnome.org>
+Date: Mon, 21 Sep 2020 10:40:59 +0000
+Subject: [PATCH] list-view: Fix double-click row check for gesture
+
+Before porting to a GtkMultiPressGesture [1], for every double click,
+we would get 2 events of type GDK_BUTTON_PRESS for each click and 1
+event of type GDK_2BUTTON_PRESS after the second click [2]:
+
+    1st click: GDK_BUTTON_PRESS
+    2nd click: GDK_BUTTON_PRESS, followed by GDK_2BUTTON_PRESS
+
+So, in order to ensure the double click happened within the same list
+row, we used to save the clicked path for each GDK_BUTTON_PRESS event
+and compare the last two saved paths during the GDK_2BUTTON_PRESS one.
+
+However, now we only get a GtkMultiPressGEsture::pressed signal twice:
+
+    1st click: ::pressed is emited with n_press = 1
+    2st click: ::pressed is emited with n_press = 2
+
+Yet, we are still saving the clicked path only when n_press = 1, so,
+unless the user had already clicked this row before doing a double
+click, the saved paths don't match and we ignore the double click.
+
+Instead, it's enough to save the row path for the 1st click, as we
+can compare it directly with row path on the 2nd click.
+
+Fixes https://gitlab.gnome.org/GNOME/nautilus/-/issues/1599
+
+[1] 13a8d3efacbe160d2cc9158ec707ab99013d7f87
+[2] https://developer.gnome.org/gdk3/stable/gdk3-Events.html#GDK-2BUTTON-PRESS:CAPS
+
+
+(cherry picked from commit 3eb0a90f6957ba099842f955255448c39f2d4a97)
+---
+ src/nautilus-list-view-private.h |  2 +-
+ src/nautilus-list-view.c         | 21 +++++++--------------
+ 2 files changed, 8 insertions(+), 15 deletions(-)
+
+diff --git a/src/nautilus-list-view-private.h b/src/nautilus-list-view-private.h
+index 132534289..9d4cbad42 100644
+--- a/src/nautilus-list-view-private.h
++++ b/src/nautilus-list-view-private.h
+@@ -40,7 +40,7 @@ struct NautilusListViewDetails {
+ 
+   NautilusTreeViewDragDest *drag_dest;
+ 
+-  GtkTreePath *double_click_path[2]; /* Both clicks in a double click need to be on the same row */
++  GtkTreePath *first_click_path; /* Both clicks in a double click need to be on the same row */
+ 
+   GtkTreePath *new_selection_path;   /* Path of the new selection after removing a file */
+ 
+diff --git a/src/nautilus-list-view.c b/src/nautilus-list-view.c
+index e30fb6389..66e3373e2 100644
+--- a/src/nautilus-list-view.c
++++ b/src/nautilus-list-view.c
+@@ -586,9 +586,7 @@ on_tree_view_multi_press_gesture_pressed (GtkGestureMultiPress *gesture,
+     {
+         if (is_simple_click)
+         {
+-            g_clear_pointer (&view->details->double_click_path[1], gtk_tree_path_free);
+-            view->details->double_click_path[1] = view->details->double_click_path[0];
+-            view->details->double_click_path[0] = NULL;
++            g_clear_pointer (&view->details->first_click_path, gtk_tree_path_free);
+         }
+ 
+         gtk_tree_selection_unselect_all (gtk_tree_view_get_selection (tree_view));
+@@ -632,9 +630,8 @@ on_tree_view_multi_press_gesture_pressed (GtkGestureMultiPress *gesture,
+      * on the same item */
+     if (is_simple_click)
+     {
+-        g_clear_pointer (&view->details->double_click_path[1], gtk_tree_path_free);
+-        view->details->double_click_path[1] = view->details->double_click_path[0];
+-        view->details->double_click_path[0] = gtk_tree_path_copy (path);
++        g_clear_pointer (&view->details->first_click_path, gtk_tree_path_free);
++        view->details->first_click_path = gtk_tree_path_copy (path);
+     }
+ 
+     on_star = (g_strcmp0 (gtk_tree_view_column_get_title (column), "Star") == 0 &&
+@@ -657,8 +654,8 @@ on_tree_view_multi_press_gesture_pressed (GtkGestureMultiPress *gesture,
+ 
+         /* NOTE: Activation can actually destroy the view if we're switching */
+         if (!on_expander &&
+-            view->details->double_click_path[1] &&
+-            gtk_tree_path_compare (view->details->double_click_path[0], view->details->double_click_path[1]) == 0)
++            view->details->first_click_path &&
++            gtk_tree_path_compare (path, view->details->first_click_path) == 0)
+         {
+             if ((button == GDK_BUTTON_PRIMARY) && button_event_modifies_selection (event))
+             {
+@@ -3720,13 +3717,9 @@ nautilus_list_view_finalize (GObject *object)
+     g_free (list_view->details->original_name);
+     list_view->details->original_name = NULL;
+ 
+-    if (list_view->details->double_click_path[0])
++    if (list_view->details->first_click_path)
+     {
+-        gtk_tree_path_free (list_view->details->double_click_path[0]);
+-    }
+-    if (list_view->details->double_click_path[1])
+-    {
+-        gtk_tree_path_free (list_view->details->double_click_path[1]);
++        gtk_tree_path_free (list_view->details->first_click_path);
+     }
+     if (list_view->details->new_selection_path)
+     {
+-- 
+GitLab
+

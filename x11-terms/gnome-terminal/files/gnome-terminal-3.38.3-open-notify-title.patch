@@ -1,6 +1,6 @@
 diff '--exclude=.git' -urN a/src/org.gnome.Terminal.gschema.xml b/src/org.gnome.Terminal.gschema.xml
---- a/src/org.gnome.Terminal.gschema.xml	2020-10-04 11:01:08.068320968 -0500
-+++ b/src/org.gnome.Terminal.gschema.xml	2020-10-04 11:02:39.466883432 -0500
+--- a/src/org.gnome.Terminal.gschema.xml	2020-09-12 14:18:09.000000000 -0500
++++ b/src/org.gnome.Terminal.gschema.xml	2022-04-17 23:33:03.682005366 -0500
 @@ -24,6 +24,13 @@
  -->
  <schemalist gettext-domain="gnome-terminal">
@@ -44,7 +44,7 @@ diff '--exclude=.git' -urN a/src/org.gnome.Terminal.gschema.xml b/src/org.gnome.
      <key name="exit-action" enum="org.gnome.Terminal.ExitAction">
        <default>'close'</default>
        <summary>What to do with the terminal when the child command exits</summary>
-@@ -424,6 +446,10 @@
+@@ -414,6 +436,10 @@
        <default>'disabled'</default>
        <summary>Keyboard shortcut to toggle the read-only state</summary>
      </key>
@@ -56,9 +56,9 @@ diff '--exclude=.git' -urN a/src/org.gnome.Terminal.gschema.xml b/src/org.gnome.
        <default>'disabled'</default>
        <summary>Keyboard shortcut to reset the terminal</summary>
 diff '--exclude=.git' -urN a/src/preferences.ui b/src/preferences.ui
---- a/src/preferences.ui	2020-10-04 11:01:08.069320964 -0500
-+++ b/src/preferences.ui	2020-10-04 11:02:39.464883441 -0500
-@@ -1965,129 +1965,277 @@
+--- a/src/preferences.ui	2020-09-12 14:18:09.000000000 -0500
++++ b/src/preferences.ui	2022-04-17 23:33:03.680005374 -0500
+@@ -1918,129 +1918,277 @@
                              <property name="visible">True</property>
                              <property name="can_focus">False</property>
                              <property name="border_width">12</property>
@@ -443,8 +443,8 @@ diff '--exclude=.git' -urN a/src/preferences.ui b/src/preferences.ui
                              </child>
                            </object>
 diff '--exclude=.git' -urN a/src/profile-editor.c b/src/profile-editor.c
---- a/src/profile-editor.c	2020-10-04 11:01:08.069320964 -0500
-+++ b/src/profile-editor.c	2020-10-04 11:02:39.465883437 -0500
+--- a/src/profile-editor.c	2020-09-12 14:18:09.000000000 -0500
++++ b/src/profile-editor.c	2022-04-17 23:33:03.681005370 -0500
 @@ -1368,6 +1368,20 @@
                                              (GSettingsBindSetMapping) enum_to_string,
                                              terminal_preserve_working_directory_get_type, NULL);
@@ -468,7 +468,7 @@ diff '--exclude=.git' -urN a/src/profile-editor.c b/src/profile-editor.c
                                                         "use-custom-command-checkbutton"),
 diff '--exclude=.git' -urN a/src/terminal-accels.c b/src/terminal-accels.c
 --- a/src/terminal-accels.c	2020-09-12 14:18:09.000000000 -0500
-+++ b/src/terminal-accels.c	2020-10-04 11:02:39.463883446 -0500
++++ b/src/terminal-accels.c	2022-04-17 23:33:03.679005379 -0500
 @@ -76,6 +76,7 @@
  #define KEY_RESET               "reset"
  #define KEY_SAVE_CONTENTS       "save-contents"
@@ -486,8 +486,8 @@ diff '--exclude=.git' -urN a/src/terminal-accels.c b/src/terminal-accels.c
  
  static KeyEntry tabs_entries[] = {
 diff '--exclude=.git' -urN a/src/terminal-app.c b/src/terminal-app.c
---- a/src/terminal-app.c	2020-09-12 14:18:09.000000000 -0500
-+++ b/src/terminal-app.c	2020-10-04 11:02:39.460883461 -0500
+--- a/src/terminal-app.c	2021-02-04 11:48:39.000000000 -0600
++++ b/src/terminal-app.c	2022-04-17 23:33:03.677005387 -0500
 @@ -730,6 +730,31 @@
      gtk_widget_destroy (GTK_WIDGET (window));
  }
@@ -543,7 +543,7 @@ diff '--exclude=.git' -urN a/src/terminal-app.c b/src/terminal-app.c
  
 diff '--exclude=.git' -urN a/src/terminal-debug.c b/src/terminal-debug.c
 --- a/src/terminal-debug.c	2020-09-12 14:18:09.000000000 -0500
-+++ b/src/terminal-debug.c	2020-10-04 11:02:39.459883465 -0500
++++ b/src/terminal-debug.c	2022-04-17 23:33:03.676005391 -0500
 @@ -38,6 +38,7 @@
      { "profile",       TERMINAL_DEBUG_PROFILE       },
      { "settings-list", TERMINAL_DEBUG_SETTINGS_LIST },
@@ -554,7 +554,7 @@ diff '--exclude=.git' -urN a/src/terminal-debug.c b/src/terminal-debug.c
    _terminal_debug_flags = g_parse_debug_string (g_getenv ("GNOME_TERMINAL_DEBUG"),
 diff '--exclude=.git' -urN a/src/terminal-debug.h b/src/terminal-debug.h
 --- a/src/terminal-debug.h	2020-09-12 14:18:09.000000000 -0500
-+++ b/src/terminal-debug.h	2020-10-04 11:02:39.459883465 -0500
++++ b/src/terminal-debug.h	2022-04-17 23:33:03.676005391 -0500
 @@ -34,7 +34,8 @@
    TERMINAL_DEBUG_PROCESSES     = 1 << 6,
    TERMINAL_DEBUG_PROFILE       = 1 << 7,
@@ -567,7 +567,7 @@ diff '--exclude=.git' -urN a/src/terminal-debug.h b/src/terminal-debug.h
  void _terminal_debug_init(void);
 diff '--exclude=.git' -urN a/src/terminal-enums.h b/src/terminal-enums.h
 --- a/src/terminal-enums.h	2020-09-12 14:18:09.000000000 -0500
-+++ b/src/terminal-enums.h	2020-10-04 11:02:39.465883437 -0500
++++ b/src/terminal-enums.h	2022-04-17 23:33:03.681005370 -0500
 @@ -36,6 +36,14 @@
  
  typedef enum
@@ -584,8 +584,8 @@ diff '--exclude=.git' -urN a/src/terminal-enums.h b/src/terminal-enums.h
    TERMINAL_EXIT_RESTART,
    TERMINAL_EXIT_HOLD
 diff '--exclude=.git' -urN a/src/terminal-schemas.h b/src/terminal-schemas.h
---- a/src/terminal-schemas.h	2020-10-04 11:01:08.069320964 -0500
-+++ b/src/terminal-schemas.h	2020-10-04 11:02:39.466883432 -0500
+--- a/src/terminal-schemas.h	2020-09-12 14:18:09.000000000 -0500
++++ b/src/terminal-schemas.h	2022-04-17 23:33:03.682005366 -0500
 @@ -68,7 +68,10 @@
  #define TERMINAL_PROFILE_SCROLLBAR_POLICY_KEY           "scrollbar-policy"
  #define TERMINAL_PROFILE_SCROLL_ON_KEYSTROKE_KEY        "scroll-on-keystroke"
@@ -598,8 +598,8 @@ diff '--exclude=.git' -urN a/src/terminal-schemas.h b/src/terminal-schemas.h
  #define TERMINAL_PROFILE_USE_SKEY_KEY                   "use-skey"
  #define TERMINAL_PROFILE_USE_SYSTEM_FONT_KEY            "use-system-font"
 diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
---- a/src/terminal-screen.c	2020-10-04 11:01:08.070320959 -0500
-+++ b/src/terminal-screen.c	2020-10-04 11:02:39.466883432 -0500
+--- a/src/terminal-screen.c	2020-09-17 10:10:47.000000000 -0500
++++ b/src/terminal-screen.c	2022-04-17 23:35:21.433418931 -0500
 @@ -54,6 +54,7 @@
  #include "terminal-marshal.h"
  #include "terminal-schemas.h"
@@ -635,7 +635,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  };
  
  enum
-@@ -151,18 +163,33 @@
+@@ -151,16 +163,31 @@
  static gboolean terminal_screen_popup_menu (GtkWidget *widget);
  static gboolean terminal_screen_button_press (GtkWidget *widget,
                                                GdkEventButton *event);
@@ -643,8 +643,6 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
 +static gboolean terminal_screen_focus_in (GtkWidget *widget,
 +                                          GdkEventFocus *event);
 +
- static void terminal_screen_hierarchy_changed (GtkWidget *widget,
-                                                GtkWidget *previous_toplevel);
  static void terminal_screen_child_exited  (VteTerminal *terminal,
                                             int status);
  
@@ -687,8 +685,8 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
    widget_class->realize = terminal_screen_realize;
    widget_class->style_updated = terminal_screen_style_updated;
    widget_class->drag_data_received = terminal_screen_drag_data_received;
-@@ -623,6 +654,9 @@
-   widget_class->hierarchy_changed = terminal_screen_hierarchy_changed;
+@@ -622,6 +653,9 @@
+   widget_class->popup_menu = terminal_screen_popup_menu;
  
    terminal_class->child_exited = terminal_screen_child_exited;
 +  terminal_class->contents_changed = terminal_screen_contents_changed;
@@ -697,7 +695,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  
    signals[PROFILE_SET] =
      g_signal_new (I_("profile-set"),
-@@ -711,6 +745,10 @@
+@@ -710,6 +744,10 @@
    TerminalScreen *screen = TERMINAL_SCREEN (object);
    TerminalScreenPrivate *priv = screen->priv;
    GtkSettings *settings;
@@ -708,7 +706,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  
    /* Unset child PID so that when an eventual child-exited signal arrives,
     * we don't emit "close".
-@@ -722,6 +760,18 @@
+@@ -721,6 +759,18 @@
                                          0, 0, NULL, NULL,
                                          screen);
  
@@ -727,7 +725,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
    if (priv->idle_exec_source != 0)
      {
        g_source_remove (priv->idle_exec_source);
-@@ -758,6 +808,10 @@
+@@ -757,6 +807,10 @@
    g_slist_free_full (priv->match_tags, (GDestroyNotify) free_tag_data);
  
    g_free (priv->uuid);
@@ -738,7 +736,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  
    G_OBJECT_CLASS (terminal_screen_parent_class)->finalize (object);
  }
-@@ -777,28 +831,8 @@
+@@ -776,28 +830,8 @@
                           g_settings_get_int (profile, TERMINAL_PROFILE_DEFAULT_SIZE_COLUMNS_KEY),
                           g_settings_get_int (profile, TERMINAL_PROFILE_DEFAULT_SIZE_ROWS_KEY));
  
@@ -769,7 +767,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  
    vte_terminal_set_font_scale (VTE_TERMINAL (screen), zoom);
    terminal_screen_set_font (screen);
-@@ -842,6 +876,25 @@
+@@ -841,6 +875,25 @@
                                      GCancellable *cancellable,
                                      GError **error)
  {
@@ -796,7 +794,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  
    if (parent_screen == NULL)
 @@ -851,8 +904,17 @@
- 
+   terminal_unref_exec_data ExecData* data = exec_data_clone (parent_screen->priv->exec_data, FALSE);
    gs_free char* cwd = terminal_screen_get_current_dir (parent_screen);
  
 +  if (override_command != NULL)
@@ -814,7 +812,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
                           screen,
                           parent_screen,
                           cwd);
-@@ -1011,9 +1073,152 @@
+@@ -1011,9 +1073,158 @@
  }
  
  const char*
@@ -941,9 +939,15 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
 +    {
 +      gs_free char *current_cmdline_truncated = NULL;
 +      gs_free char *current_cmdline_valid = NULL;
++      glong len_truncated;
++      glong len_valid;
 +
 +      current_cmdline_valid = g_utf8_make_valid (priv->current_cmdline, -1);
-+      current_cmdline_truncated = g_utf8_substring (current_cmdline_valid, 0, 1024);
++      len_valid = g_utf8_strlen (current_cmdline_valid, -1);
++
++      len_truncated = len_valid > 1024 ? 1024 : len_valid;
++      current_cmdline_truncated = g_utf8_substring (current_cmdline_valid, 0, len_truncated);
++
 +      g_string_append_printf (title, " — %s", current_cmdline_truncated);
 +    }
 +
@@ -968,7 +972,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  }
  
  static void
-@@ -1025,6 +1230,7 @@
+@@ -1025,6 +1236,7 @@
    GObject *object = G_OBJECT (screen);
    VteTerminal *vte_terminal = VTE_TERMINAL (screen);
    TerminalWindow *window;
@@ -976,7 +980,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  
    g_object_freeze_notify (object);
  
-@@ -1055,6 +1261,13 @@
+@@ -1055,6 +1267,13 @@
        vte_terminal_set_cjk_ambiguous_width (vte_terminal, (int) width);
      }
  
@@ -990,8 +994,8 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
    if (gtk_widget_get_realized (GTK_WIDGET (screen)) &&
        (!prop_name ||
         prop_name == I_(TERMINAL_PROFILE_USE_SYSTEM_FONT_KEY) ||
-@@ -1080,6 +1293,13 @@
-       prop_name == I_(TERMINAL_PROFILE_BACKGROUND_TRANSPARENCY_PERCENT))
+@@ -1078,6 +1297,13 @@
+       prop_name == I_(TERMINAL_PROFILE_PALETTE_KEY))
      update_color_scheme (screen);
  
 +  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_SHOW_FOREGROUND_PROCESS_IN_TITLE))
@@ -1004,7 +1008,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
    if (!prop_name || prop_name == I_(TERMINAL_PROFILE_AUDIBLE_BELL_KEY))
        vte_terminal_set_audible_bell (vte_terminal, g_settings_get_boolean (profile, TERMINAL_PROFILE_AUDIBLE_BELL_KEY));
  
-@@ -1144,6 +1364,9 @@
+@@ -1142,6 +1368,9 @@
        vte_terminal_set_word_char_exceptions (vte_terminal, word_char_exceptions);
      }
  
@@ -1014,7 +1018,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
    g_object_thaw_notify (object);
  }
  
-@@ -1860,6 +2083,86 @@
+@@ -1810,6 +2039,86 @@
    return FALSE;
  }
  
@@ -1101,7 +1105,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  /**
   * terminal_screen_get_current_dir:
   * @screen:
-@@ -1890,7 +2193,12 @@
+@@ -1840,7 +2149,12 @@
  terminal_screen_window_title_changed (VteTerminal *vte_terminal,
                                        TerminalScreen *screen)
  {
@@ -1115,7 +1119,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  }
  
  static void
-@@ -1956,6 +2264,207 @@
+@@ -1906,6 +2220,207 @@
      }
  }
  
@@ -1323,7 +1327,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  static void
  terminal_screen_drag_data_received (GtkWidget        *widget,
                                      GdkDragContext   *context,
-@@ -2300,7 +2809,11 @@
+@@ -2250,7 +2765,11 @@
    if (fd == -1)
      return FALSE;
  
@@ -1335,7 +1339,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
    if (fgpid == -1 || fgpid == priv->child_pid)
      return FALSE;
  
-@@ -2331,7 +2844,35 @@
+@@ -2281,7 +2800,35 @@
  #else
    g_snprintf (filename, sizeof (filename), "/proc/%d/cmdline", fgpid);
    if (!g_file_get_contents (filename, &data_buf, &len, NULL))
@@ -1374,7 +1378,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  
 diff '--exclude=.git' -urN a/src/terminal-screen.h b/src/terminal-screen.h
 --- a/src/terminal-screen.h	2020-09-12 14:18:09.000000000 -0500
-+++ b/src/terminal-screen.h	2020-10-04 11:02:39.466883432 -0500
++++ b/src/terminal-screen.h	2022-04-17 23:33:03.682005366 -0500
 @@ -108,13 +108,28 @@
                                               GCancellable *cancellable,
                                               GError **error);
@@ -1406,7 +1410,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.h b/src/terminal-screen.h
  void       terminal_screen_get_size (TerminalScreen *screen,
 diff '--exclude=.git' -urN a/src/terminal-tab-label.c b/src/terminal-tab-label.c
 --- a/src/terminal-tab-label.c	2020-09-12 14:18:09.000000000 -0500
-+++ b/src/terminal-tab-label.c	2020-10-04 11:02:39.460883461 -0500
++++ b/src/terminal-tab-label.c	2022-04-17 23:33:03.677005387 -0500
 @@ -34,6 +34,7 @@
  struct _TerminalTabLabelPrivate
  {
@@ -1467,7 +1471,7 @@ diff '--exclude=.git' -urN a/src/terminal-tab-label.c b/src/terminal-tab-label.c
   *
 diff '--exclude=.git' -urN a/src/terminal-tab-label.h b/src/terminal-tab-label.h
 --- a/src/terminal-tab-label.h	2020-09-12 14:18:09.000000000 -0500
-+++ b/src/terminal-tab-label.h	2020-10-04 11:02:39.460883461 -0500
++++ b/src/terminal-tab-label.h	2022-04-17 23:33:03.677005387 -0500
 @@ -59,6 +59,10 @@
  void            terminal_tab_label_set_bold   (TerminalTabLabel *tab_label,
                                                 gboolean bold);
@@ -1480,8 +1484,8 @@ diff '--exclude=.git' -urN a/src/terminal-tab-label.h b/src/terminal-tab-label.h
  
  G_END_DECLS
 diff '--exclude=.git' -urN a/src/terminal-window.c b/src/terminal-window.c
---- a/src/terminal-window.c	2020-10-04 11:01:08.070320959 -0500
-+++ b/src/terminal-window.c	2020-10-04 11:02:39.467883427 -0500
+--- a/src/terminal-window.c	2021-01-01 16:58:09.000000000 -0600
++++ b/src/terminal-window.c	2022-04-17 23:33:03.683005362 -0500
 @@ -405,8 +405,30 @@
    terminal_window_switch_screen (window, screen);
    gtk_widget_grab_focus (GTK_WIDGET (screen));
@@ -1602,7 +1606,7 @@ diff '--exclude=.git' -urN a/src/terminal-window.c b/src/terminal-window.c
  action_reset_cb (GSimpleAction *action,
                   GVariant *parameter,
                   gpointer user_data)
-@@ -2086,6 +2188,7 @@
+@@ -2063,6 +2165,7 @@
      { "paste-uris",          action_paste_uris_cb,       NULL,   NULL, NULL },
      { "reset",               action_reset_cb,            "b",    NULL, NULL },
      { "select-all",          action_select_all_cb,       NULL,   NULL, NULL },
@@ -1610,7 +1614,7 @@ diff '--exclude=.git' -urN a/src/terminal-window.c b/src/terminal-window.c
      { "size-to",             action_size_to_cb,          "(uu)", NULL, NULL },
      { "tab-detach",          action_tab_detach_cb,       NULL,   NULL, NULL },
      { "tab-move-left",       action_tab_move_left_cb,    NULL,   NULL, NULL },
-@@ -2446,8 +2549,7 @@
+@@ -2415,8 +2518,7 @@
      return;
  
    title = terminal_screen_get_title (screen);

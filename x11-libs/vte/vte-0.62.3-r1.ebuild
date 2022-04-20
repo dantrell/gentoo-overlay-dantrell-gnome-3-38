@@ -12,7 +12,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Terminal/VTE"
 
 LICENSE="LGPL-3+ GPL-3+"
 SLOT="2.91"
-KEYWORDS=""
+KEYWORDS="~*"
 
 IUSE="+crypt debug gtk-doc +icu +introspection systemd +vala vanilla-notify"
 REQUIRED_USE="vala? ( introspection )"
@@ -45,7 +45,7 @@ src_prepare() {
 	if ! use vanilla-notify; then
 		# From Fedora:
 		# 	https://src.fedoraproject.org/rpms/vte291/tree/f33
-		eapply "${FILESDIR}"/${PN}-0.62.0-cntnr-precmd-preexec-scroll.patch
+		eapply "${FILESDIR}"/${PN}-0.62.3-cntnr-precmd-preexec-scroll.patch
 	fi
 
 	# -Ddebugg option enables various debug support via VTE_DEBUG, but also ggdb3; strip the latter

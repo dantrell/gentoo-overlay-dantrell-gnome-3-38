@@ -1,6 +1,6 @@
 diff '--exclude=.git' -urN a/po/am.po b/po/am.po
 --- a/po/am.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/am.po	2020-10-04 11:01:08.071320954 -0500
++++ b/po/am.po	2022-04-17 23:32:40.292105015 -0500
 @@ -214,8 +214,8 @@
  msgstr "<b>መደብ</b>"
  
@@ -25,7 +25,7 @@ diff '--exclude=.git' -urN a/po/am.po b/po/am.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/an.po b/po/an.po
 --- a/po/an.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/an.po	2020-10-04 11:01:08.071320954 -0500
++++ b/po/an.po	2022-04-17 23:32:40.292105015 -0500
 @@ -2241,8 +2241,8 @@
  #~ msgid "Use custom default terminal si_ze"
  #~ msgstr "Emplegar grandaria predeterminada presonali_zada de terminal"
@@ -61,7 +61,7 @@ diff '--exclude=.git' -urN a/po/an.po b/po/an.po
  #~ msgstr "Alcorces de teclau"
 diff '--exclude=.git' -urN a/po/ar.po b/po/ar.po
 --- a/po/ar.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/ar.po	2020-10-04 11:01:08.071320954 -0500
++++ b/po/ar.po	2022-04-17 23:32:40.293105011 -0500
 @@ -2574,11 +2574,11 @@
  #~ msgid "Default size:"
  #~ msgstr "الحجم المبدئي:"
@@ -102,7 +102,7 @@ diff '--exclude=.git' -urN a/po/ar.po b/po/ar.po
  #~ msgstr "_ظلل شفافية أو صورة الخلفية:"
 diff '--exclude=.git' -urN a/po/as.po b/po/as.po
 --- a/po/as.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/as.po	2020-10-04 11:01:08.071320954 -0500
++++ b/po/as.po	2022-04-17 23:32:40.293105011 -0500
 @@ -2163,11 +2163,11 @@
  #~ msgid "Default size:"
  #~ msgstr "অবিকল্পিত আকাৰ:"
@@ -143,7 +143,7 @@ diff '--exclude=.git' -urN a/po/as.po b/po/as.po
  #~ msgstr "স্বচ্ছ বা ছবিৰ সৈতে পটভূমি ছায়া আচ্ছন্ন কৰক (_h):"
 diff '--exclude=.git' -urN a/po/ast.po b/po/ast.po
 --- a/po/ast.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/ast.po	2020-10-04 11:01:08.072320949 -0500
++++ b/po/ast.po	2022-04-17 23:32:40.293105011 -0500
 @@ -1304,8 +1304,8 @@
  msgstr "_Basáu en:"
  
@@ -168,7 +168,7 @@ diff '--exclude=.git' -urN a/po/ast.po b/po/ast.po
  msgid "_Underline color:"
 diff '--exclude=.git' -urN a/po/az.po b/po/az.po
 --- a/po/az.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/az.po	2020-10-04 11:01:08.072320949 -0500
++++ b/po/az.po	2022-04-17 23:32:40.293105011 -0500
 @@ -218,8 +218,8 @@
  msgstr "<b>Arxa plan</b>"
  
@@ -193,7 +193,7 @@ diff '--exclude=.git' -urN a/po/az.po b/po/az.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/be.po b/po/be.po
 --- a/po/be.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/be.po	2020-10-04 11:01:08.072320949 -0500
++++ b/po/be.po	2022-04-17 23:32:40.294105006 -0500
 @@ -2635,3 +2635,6 @@
  
  #~ msgid "Current Locale"
@@ -203,7 +203,7 @@ diff '--exclude=.git' -urN a/po/be.po b/po/be.po
 +msgstr "Празрысты фон"
 diff '--exclude=.git' -urN a/po/be@latin.po b/po/be@latin.po
 --- a/po/be@latin.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/be@latin.po	2020-10-04 11:01:08.072320949 -0500
++++ b/po/be@latin.po	2022-04-17 23:32:40.294105006 -0500
 @@ -1146,8 +1146,8 @@
  msgstr "Na _bazie:"
  
@@ -228,7 +228,7 @@ diff '--exclude=.git' -urN a/po/be@latin.po b/po/be@latin.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/bg.po b/po/bg.po
 --- a/po/bg.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/bg.po	2020-10-04 11:01:08.072320949 -0500
++++ b/po/bg.po	2022-04-17 23:32:40.294105006 -0500
 @@ -2305,3 +2305,12 @@
  #: ../src/terminal-window.c:3953
  msgid "C_lose Window"
@@ -244,7 +244,7 @@ diff '--exclude=.git' -urN a/po/bg.po b/po/bg.po
 +msgstr "Задаване на заглавие"
 diff '--exclude=.git' -urN a/po/bn.po b/po/bn.po
 --- a/po/bn.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/bn.po	2020-10-04 11:01:08.073320944 -0500
++++ b/po/bn.po	2022-04-17 23:32:40.294105006 -0500
 @@ -1217,8 +1217,8 @@
  msgstr "চিহ্নিত বস্তুর উপর ভিত্তি করে: (_B)"
  
@@ -268,20 +268,20 @@ diff '--exclude=.git' -urN a/po/bn.po b/po/bn.po
  #: ../src/profile-preferences.glade.h:77
  msgid "_Unlimited"
 diff '--exclude=.git' -urN a/po/bn_IN.po b/po/bn_IN.po
---- a/po/bn_IN.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/bn_IN.po	2020-10-04 11:01:08.073320944 -0500
-@@ -2296,8 +2296,8 @@
- #~ msgid "Close Window"
- #~ msgstr "উইন্ডো বন্ধ করুন"
+--- a/po/bn_IN.po	2021-01-09 13:05:51.000000000 -0600
++++ b/po/bn_IN.po	2022-04-17 23:32:40.295105002 -0500
+@@ -2894,8 +2894,8 @@
+ #~ msgid "_Unlimited"
+ #~ msgstr "সীমাহীন (_U)"
  
 -#~ msgid "Set Title"
 -#~ msgstr "শিরোনাম নির্ধারণ করুন"
 +msgid "Set Title"
 +msgstr "শিরোনাম নির্ধারণ করুন"
  
- #~ msgid "Switch to Tab 2"
- #~ msgstr "ট্যাব ২-এ পরিবর্তন করুন"
-@@ -2356,5 +2356,8 @@
+ #~ msgid "Switch to Tab 3"
+ #~ msgstr "ট্যাব ৩-এ পরিবর্তন করুন"
+@@ -2936,5 +2936,8 @@
  #~ msgid "_Input Methods"
  #~ msgstr "ইনপুট পদ্ধতি (_I)"
  
@@ -294,7 +294,7 @@ diff '--exclude=.git' -urN a/po/bn_IN.po b/po/bn_IN.po
 +msgstr "স্বচ্চ পটভূমি "
 diff '--exclude=.git' -urN a/po/br.po b/po/br.po
 --- a/po/br.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/br.po	2020-10-04 11:01:08.073320944 -0500
++++ b/po/br.po	2022-04-17 23:32:40.295105002 -0500
 @@ -958,8 +958,8 @@
  msgstr ""
  
@@ -317,7 +317,7 @@ diff '--exclude=.git' -urN a/po/br.po b/po/br.po
  #: ../src/profile-preferences.glade.h:74
 diff '--exclude=.git' -urN a/po/bs.po b/po/bs.po
 --- a/po/bs.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/bs.po	2020-10-04 11:01:08.073320944 -0500
++++ b/po/bs.po	2022-04-17 23:32:40.295105002 -0500
 @@ -680,6 +680,10 @@
  msgid "Keyboard shortcut to make font smaller"
  msgstr "Kratica tastature za smanjivanje fonta"
@@ -341,7 +341,7 @@ diff '--exclude=.git' -urN a/po/bs.po b/po/bs.po
 +msgstr "Postavi naslov"
 diff '--exclude=.git' -urN a/po/ca.po b/po/ca.po
 --- a/po/ca.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/ca.po	2020-10-04 11:01:08.074320939 -0500
++++ b/po/ca.po	2022-04-17 23:32:40.295105002 -0500
 @@ -2490,3 +2490,15 @@
  
  #~ msgid "_Detach Tab"
@@ -360,7 +360,7 @@ diff '--exclude=.git' -urN a/po/ca.po b/po/ca.po
 +msgstr "Estableix el títol"
 diff '--exclude=.git' -urN a/po/ca@valencia.po b/po/ca@valencia.po
 --- a/po/ca@valencia.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/ca@valencia.po	2020-10-04 11:01:08.074320939 -0500
++++ b/po/ca@valencia.po	2022-04-17 23:32:40.295105002 -0500
 @@ -2357,3 +2357,15 @@
  
  #~ msgid "Whether to use a dark theme variant"
@@ -379,7 +379,7 @@ diff '--exclude=.git' -urN a/po/ca@valencia.po b/po/ca@valencia.po
 +msgstr "Estableix el títol"
 diff '--exclude=.git' -urN a/po/cs.po b/po/cs.po
 --- a/po/cs.po	2020-09-12 14:18:27.000000000 -0500
-+++ b/po/cs.po	2020-10-04 11:01:08.074320939 -0500
++++ b/po/cs.po	2022-04-17 23:32:40.296104998 -0500
 @@ -2422,3 +2422,15 @@
  #: src/terminal-window.c:3224
  msgid "C_lose Window"
@@ -398,7 +398,7 @@ diff '--exclude=.git' -urN a/po/cs.po b/po/cs.po
 +msgstr "Nastavit záhlaví"
 diff '--exclude=.git' -urN a/po/cy.po b/po/cy.po
 --- a/po/cy.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/cy.po	2020-10-04 11:01:08.074320939 -0500
++++ b/po/cy.po	2022-04-17 23:32:40.296104998 -0500
 @@ -1167,8 +1167,8 @@
  msgstr "Ei _seilio ar:"
  
@@ -423,7 +423,7 @@ diff '--exclude=.git' -urN a/po/cy.po b/po/cy.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/da.po b/po/da.po
 --- a/po/da.po	2020-09-12 14:18:27.000000000 -0500
-+++ b/po/da.po	2020-10-04 11:01:08.074320939 -0500
++++ b/po/da.po	2022-04-17 23:32:40.296104998 -0500
 @@ -2459,3 +2459,15 @@
  
  #~ msgid "_Detach Tab"
@@ -442,7 +442,7 @@ diff '--exclude=.git' -urN a/po/da.po b/po/da.po
 +msgstr "Gennemsigtig baggrund"
 diff '--exclude=.git' -urN a/po/de.po b/po/de.po
 --- a/po/de.po	2020-09-12 14:18:27.000000000 -0500
-+++ b/po/de.po	2020-10-04 11:01:08.075320935 -0500
++++ b/po/de.po	2022-04-17 23:32:40.296104998 -0500
 @@ -2538,3 +2538,15 @@
  
  #~ msgid "_Quit"
@@ -461,7 +461,7 @@ diff '--exclude=.git' -urN a/po/de.po b/po/de.po
 +msgstr "Transparenter Hintergrund"
 diff '--exclude=.git' -urN a/po/dz.po b/po/dz.po
 --- a/po/dz.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/dz.po	2020-10-04 11:01:08.075320935 -0500
++++ b/po/dz.po	2022-04-17 23:32:40.297104994 -0500
 @@ -1255,8 +1255,8 @@
  msgstr "གཞི་བཞག་སྟེ་:(_B)"
  
@@ -486,7 +486,7 @@ diff '--exclude=.git' -urN a/po/dz.po b/po/dz.po
  #, fuzzy
 diff '--exclude=.git' -urN a/po/el.po b/po/el.po
 --- a/po/el.po	2020-09-12 14:18:27.000000000 -0500
-+++ b/po/el.po	2020-10-04 11:01:08.075320935 -0500
++++ b/po/el.po	2022-04-17 23:32:40.297104994 -0500
 @@ -2888,17 +2888,17 @@
  #~ msgid "Default size:"
  #~ msgstr "Προεπιλεγμένο μέγεθος:"
@@ -520,7 +520,7 @@ diff '--exclude=.git' -urN a/po/el.po b/po/el.po
 +msgstr "Διάφανο παρασκήνιο"
 diff '--exclude=.git' -urN a/po/en@shaw.po b/po/en@shaw.po
 --- a/po/en@shaw.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/en@shaw.po	2020-10-04 11:01:08.075320935 -0500
++++ b/po/en@shaw.po	2022-04-17 23:32:40.297104994 -0500
 @@ -1212,8 +1212,8 @@
  msgstr "_𐑚𐑱𐑕 𐑪𐑯:"
  
@@ -545,7 +545,7 @@ diff '--exclude=.git' -urN a/po/en@shaw.po b/po/en@shaw.po
  msgid "_Underline color:"
 diff '--exclude=.git' -urN a/po/en_CA.po b/po/en_CA.po
 --- a/po/en_CA.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/en_CA.po	2020-10-04 11:01:08.076320930 -0500
++++ b/po/en_CA.po	2022-04-17 23:32:40.297104994 -0500
 @@ -219,8 +219,8 @@
  msgstr "<b>Background</b>"
  
@@ -570,7 +570,7 @@ diff '--exclude=.git' -urN a/po/en_CA.po b/po/en_CA.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/en_GB.po b/po/en_GB.po
 --- a/po/en_GB.po	2020-09-12 14:18:27.000000000 -0500
-+++ b/po/en_GB.po	2020-10-04 11:01:08.076320930 -0500
++++ b/po/en_GB.po	2022-04-17 23:32:40.298104989 -0500
 @@ -2828,8 +2828,8 @@
  #~ msgid "Default size:"
  #~ msgstr "Default size:"
@@ -617,7 +617,7 @@ diff '--exclude=.git' -urN a/po/en_GB.po b/po/en_GB.po
  #~ msgstr "S_hade transparent or image background:"
 diff '--exclude=.git' -urN a/po/eo.po b/po/eo.po
 --- a/po/eo.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/eo.po	2020-10-04 11:01:08.076320930 -0500
++++ b/po/eo.po	2022-04-17 23:32:40.298104989 -0500
 @@ -2827,8 +2827,8 @@
  #~ msgid "_Font:"
  #~ msgstr "_Tiparo:"
@@ -642,7 +642,7 @@ diff '--exclude=.git' -urN a/po/eo.po b/po/eo.po
  #~ msgstr "Maldekstre"
 diff '--exclude=.git' -urN a/po/es.po b/po/es.po
 --- a/po/es.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/es.po	2020-10-04 11:01:08.076320930 -0500
++++ b/po/es.po	2022-04-17 23:32:40.298104989 -0500
 @@ -2889,17 +2889,17 @@
  #~ msgid "Default size:"
  #~ msgstr "Tamaño predeterminado:"
@@ -680,7 +680,7 @@ diff '--exclude=.git' -urN a/po/es.po b/po/es.po
  #~ msgstr "No existe el perfil «%s», usando el perfil predeterminado\n"
 diff '--exclude=.git' -urN a/po/et.po b/po/et.po
 --- a/po/et.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/et.po	2020-10-04 11:01:08.077320925 -0500
++++ b/po/et.po	2022-04-17 23:32:40.298104989 -0500
 @@ -1747,3 +1747,6 @@
  
  #~ msgid "Choose base profile"
@@ -690,7 +690,7 @@ diff '--exclude=.git' -urN a/po/et.po b/po/et.po
 +msgstr "Läbipaistev taust"
 diff '--exclude=.git' -urN a/po/eu.po b/po/eu.po
 --- a/po/eu.po	2020-09-12 14:18:27.000000000 -0500
-+++ b/po/eu.po	2020-10-04 11:01:08.077320925 -0500
++++ b/po/eu.po	2022-04-17 23:32:40.298104989 -0500
 @@ -2333,3 +2333,15 @@
  
  #~ msgid "_Detach Tab"
@@ -709,7 +709,7 @@ diff '--exclude=.git' -urN a/po/eu.po b/po/eu.po
 +msgstr "Atzeko plano gardena"
 diff '--exclude=.git' -urN a/po/fa.po b/po/fa.po
 --- a/po/fa.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/fa.po	2020-10-04 11:01:08.077320925 -0500
++++ b/po/fa.po	2022-04-17 23:32:40.299104985 -0500
 @@ -2773,8 +2773,8 @@
  #~ msgid "Use custom default terminal si_ze"
  #~ msgstr "استفاده از اندازه‌ی _سفارشی پایانه‌ی پیش‌فرض"
@@ -745,7 +745,7 @@ diff '--exclude=.git' -urN a/po/fa.po b/po/fa.po
 +msgstr "پس‌زمینه‌ی شفاف"
 diff '--exclude=.git' -urN a/po/fi.po b/po/fi.po
 --- a/po/fi.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/fi.po	2020-10-04 11:01:08.077320925 -0500
++++ b/po/fi.po	2022-04-17 23:32:40.299104985 -0500
 @@ -2751,9 +2751,21 @@
  #~ msgid "_Update login records when command is launched"
  #~ msgstr "_Päivitä kirjautumistallenne kun komento käynnistetään"
@@ -770,7 +770,7 @@ diff '--exclude=.git' -urN a/po/fi.po b/po/fi.po
 +msgstr "Aseta otsikko"
 diff '--exclude=.git' -urN a/po/fr.po b/po/fr.po
 --- a/po/fr.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/fr.po	2020-10-04 11:01:08.077320925 -0500
++++ b/po/fr.po	2022-04-17 23:32:40.299104985 -0500
 @@ -2513,3 +2513,15 @@
  
  #~ msgid "_Detach Tab"
@@ -789,7 +789,7 @@ diff '--exclude=.git' -urN a/po/fr.po b/po/fr.po
 +msgstr "Définir le titre"
 diff '--exclude=.git' -urN a/po/fur.po b/po/fur.po
 --- a/po/fur.po	2020-09-12 14:18:27.000000000 -0500
-+++ b/po/fur.po	2020-10-04 11:01:08.078320920 -0500
++++ b/po/fur.po	2022-04-17 23:32:40.299104985 -0500
 @@ -545,6 +545,10 @@
  msgid "Which encoding to use"
  msgstr "Codifiche di doprâ"
@@ -824,7 +824,7 @@ diff '--exclude=.git' -urN a/po/fur.po b/po/fur.po
  #~ "text/plain dropped on terminal had wrong format (%d) or length (%d)\n"
 diff '--exclude=.git' -urN a/po/ga.po b/po/ga.po
 --- a/po/ga.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/ga.po	2020-10-04 11:01:08.078320920 -0500
++++ b/po/ga.po	2022-04-17 23:32:40.300104981 -0500
 @@ -1925,3 +1925,6 @@
  #: ../src/terminal-window.c:3582
  msgid "C_lose Terminal"
@@ -834,7 +834,7 @@ diff '--exclude=.git' -urN a/po/ga.po b/po/ga.po
 +msgstr "Cúlra trédhearcach"
 diff '--exclude=.git' -urN a/po/gl.po b/po/gl.po
 --- a/po/gl.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/gl.po	2020-10-04 11:01:08.078320920 -0500
++++ b/po/gl.po	2022-04-17 23:32:40.300104981 -0500
 @@ -2445,3 +2445,15 @@
  #: src/terminal-window.c:3224
  msgid "C_lose Window"
@@ -853,7 +853,7 @@ diff '--exclude=.git' -urN a/po/gl.po b/po/gl.po
 +msgstr "Fondo transparente"
 diff '--exclude=.git' -urN a/po/gu.po b/po/gu.po
 --- a/po/gu.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/gu.po	2020-10-04 11:01:08.078320920 -0500
++++ b/po/gu.po	2022-04-17 23:32:40.300104981 -0500
 @@ -2155,8 +2155,8 @@
  #~ msgid "Default size:"
  #~ msgstr "મૂળભૂત માપ:"
@@ -899,9 +899,9 @@ diff '--exclude=.git' -urN a/po/gu.po b/po/gu.po
  #~ msgid "No such profile \"%s\", using default profile\n"
  #~ msgstr "\"%s\" જેવી કોઈ રૂપરેખા નથી, મૂળભૂત રૂપરેખા વાપરી રહ્યા છે\n"
 diff '--exclude=.git' -urN a/po/he.po b/po/he.po
---- a/po/he.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/he.po	2020-10-04 11:01:08.079320916 -0500
-@@ -2882,17 +2882,17 @@
+--- a/po/he.po	2020-10-03 07:55:06.000000000 -0500
++++ b/po/he.po	2022-04-17 23:32:40.300104981 -0500
+@@ -2769,17 +2769,17 @@
  #~ msgid "Default size:"
  #~ msgstr "גודל בררת מחדל:"
  
@@ -925,7 +925,7 @@ diff '--exclude=.git' -urN a/po/he.po b/po/he.po
  
  #~ msgid "Current Locale"
  #~ msgstr "השפה הנוכחית"
-@@ -3704,8 +3704,8 @@
+@@ -3591,8 +3591,8 @@
  #~ msgid "_Solid color"
  #~ msgstr "צבע _אחיד"
  
@@ -938,7 +938,7 @@ diff '--exclude=.git' -urN a/po/he.po b/po/he.po
  #~ msgstr "No such profile \"%s\", using default profile\n"
 diff '--exclude=.git' -urN a/po/hi.po b/po/hi.po
 --- a/po/hi.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/hi.po	2020-10-04 11:01:08.079320916 -0500
++++ b/po/hi.po	2022-04-17 23:32:40.301104976 -0500
 @@ -2267,9 +2267,8 @@
  #~ msgid "Use custom default terminal si_ze"
  #~ msgstr "कस्टम डिफ़ॉल्ट टर्मिनल आकार का उपयोग करें (_z)"
@@ -986,7 +986,7 @@ diff '--exclude=.git' -urN a/po/hi.po b/po/hi.po
  #~ msgstr "एस/कुंजी चैलेंज प्रतिक्रिया"
 diff '--exclude=.git' -urN a/po/hr.po b/po/hr.po
 --- a/po/hr.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/hr.po	2020-10-04 11:01:08.079320916 -0500
++++ b/po/hr.po	2022-04-17 23:32:40.301104976 -0500
 @@ -2737,3 +2737,13 @@
  
  #~ msgid "Use transparency from system theme"
@@ -1003,7 +1003,7 @@ diff '--exclude=.git' -urN a/po/hr.po b/po/hr.po
 +msgstr "Postavi naslov"
 diff '--exclude=.git' -urN a/po/hu.po b/po/hu.po
 --- a/po/hu.po	2020-09-12 14:18:27.000000000 -0500
-+++ b/po/hu.po	2020-10-04 11:01:08.079320916 -0500
++++ b/po/hu.po	2022-04-17 23:32:40.301104976 -0500
 @@ -2433,3 +2433,15 @@
  #: src/terminal-window.c:3224
  msgid "C_lose Window"
@@ -1022,7 +1022,7 @@ diff '--exclude=.git' -urN a/po/hu.po b/po/hu.po
 +msgstr "Áttetsző háttér"
 diff '--exclude=.git' -urN a/po/hy.po b/po/hy.po
 --- a/po/hy.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/hy.po	2020-10-04 11:01:08.080320911 -0500
++++ b/po/hy.po	2022-04-17 23:32:40.301104976 -0500
 @@ -757,8 +757,8 @@
  msgstr ""
  
@@ -1047,7 +1047,7 @@ diff '--exclude=.git' -urN a/po/hy.po b/po/hy.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/id.po b/po/id.po
 --- a/po/id.po	2020-09-12 14:18:27.000000000 -0500
-+++ b/po/id.po	2020-10-04 11:01:08.080320911 -0500
++++ b/po/id.po	2022-04-17 23:32:40.301104976 -0500
 @@ -2442,3 +2442,15 @@
  
  #~ msgid "_Detach Tab"
@@ -1066,7 +1066,7 @@ diff '--exclude=.git' -urN a/po/id.po b/po/id.po
 +msgstr "Atur Judul"
 diff '--exclude=.git' -urN a/po/it.po b/po/it.po
 --- a/po/it.po	2020-09-12 14:18:27.000000000 -0500
-+++ b/po/it.po	2020-10-04 11:01:08.080320911 -0500
++++ b/po/it.po	2022-04-17 23:32:40.302104972 -0500
 @@ -2459,3 +2459,15 @@
  #: src/terminal-window.c:3224
  msgid "C_lose Window"
@@ -1085,7 +1085,7 @@ diff '--exclude=.git' -urN a/po/it.po b/po/it.po
 +msgstr "Imposta titolo"
 diff '--exclude=.git' -urN a/po/ja.po b/po/ja.po
 --- a/po/ja.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/ja.po	2020-10-04 11:01:08.080320911 -0500
++++ b/po/ja.po	2022-04-17 23:32:40.302104972 -0500
 @@ -2534,3 +2534,15 @@
  
  #~ msgid "_Incremental Search…"
@@ -1104,7 +1104,7 @@ diff '--exclude=.git' -urN a/po/ja.po b/po/ja.po
 +msgstr "タイトルを設定する"
 diff '--exclude=.git' -urN a/po/ka.po b/po/ka.po
 --- a/po/ka.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/ka.po	2020-10-04 11:01:08.080320911 -0500
++++ b/po/ka.po	2022-04-17 23:32:40.302104972 -0500
 @@ -219,8 +219,8 @@
  msgstr "<b>ფონი</b>"
  
@@ -1127,7 +1127,7 @@ diff '--exclude=.git' -urN a/po/ka.po b/po/ka.po
  #: ../src/gnome-terminal.glade2.h:87
 diff '--exclude=.git' -urN a/po/kk.po b/po/kk.po
 --- a/po/kk.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/kk.po	2020-10-04 11:01:08.081320906 -0500
++++ b/po/kk.po	2022-04-17 23:32:40.302104972 -0500
 @@ -2712,3 +2712,15 @@
  
  #~ msgid "Be quiet"
@@ -1146,7 +1146,7 @@ diff '--exclude=.git' -urN a/po/kk.po b/po/kk.po
 +msgstr "Атауын орнату"
 diff '--exclude=.git' -urN a/po/km.po b/po/km.po
 --- a/po/km.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/km.po	2020-10-04 11:01:08.081320906 -0500
++++ b/po/km.po	2022-04-17 23:32:40.303104968 -0500
 @@ -2909,8 +2909,8 @@
  #~ msgid "Background image _scrolls"
  #~ msgstr "រមូរ​រូបភាព​ផ្ទៃខាងក្រោយ"
@@ -1160,7 +1160,7 @@ diff '--exclude=.git' -urN a/po/km.po b/po/km.po
  #~ msgstr "ដាក់​ស្រមោល​ផ្ទៃខាងក្រោយ​ថ្លា ឬ​ផ្ទៃខាងក្រោយ​​រូបភាព ៖"
 diff '--exclude=.git' -urN a/po/kn.po b/po/kn.po
 --- a/po/kn.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/kn.po	2020-10-04 11:01:08.081320906 -0500
++++ b/po/kn.po	2022-04-17 23:32:40.303104968 -0500
 @@ -2261,8 +2261,8 @@
  #~ msgid "Use custom default terminal si_ze"
  #~ msgstr "ಅಗತ್ಯಾನುಗುಣ ಆದೇಶತೆರೆ ಗಾತ್ರವನ್ನು ಬಳಸು (_z)"
@@ -1196,7 +1196,7 @@ diff '--exclude=.git' -urN a/po/kn.po b/po/kn.po
 +msgstr "ಪಾರದರ್ಶಕ ಹಿನ್ನಲೆ"
 diff '--exclude=.git' -urN a/po/ko.po b/po/ko.po
 --- a/po/ko.po	2020-09-12 14:18:27.000000000 -0500
-+++ b/po/ko.po	2020-10-04 11:01:08.081320906 -0500
++++ b/po/ko.po	2022-04-17 23:32:40.303104968 -0500
 @@ -2474,3 +2474,15 @@
  
  #~ msgid "Verbose output"
@@ -1215,7 +1215,7 @@ diff '--exclude=.git' -urN a/po/ko.po b/po/ko.po
 +msgstr "제목 설정"
 diff '--exclude=.git' -urN a/po/ku.po b/po/ku.po
 --- a/po/ku.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/ku.po	2020-10-04 11:01:08.081320906 -0500
++++ b/po/ku.po	2022-04-17 23:32:40.303104968 -0500
 @@ -223,8 +223,8 @@
  msgstr "<b>Zemîn</b>"
  
@@ -1240,7 +1240,7 @@ diff '--exclude=.git' -urN a/po/ku.po b/po/ku.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/lt.po b/po/lt.po
 --- a/po/lt.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/lt.po	2020-10-04 11:01:08.082320901 -0500
++++ b/po/lt.po	2022-04-17 23:32:40.303104968 -0500
 @@ -2739,3 +2739,15 @@
  
  #~ msgid "Whether to use a dark theme variant"
@@ -1259,7 +1259,7 @@ diff '--exclude=.git' -urN a/po/lt.po b/po/lt.po
 +msgstr "Nustatyti pavadinimą"
 diff '--exclude=.git' -urN a/po/lv.po b/po/lv.po
 --- a/po/lv.po	2020-09-12 14:18:27.000000000 -0500
-+++ b/po/lv.po	2020-10-04 11:01:08.082320901 -0500
++++ b/po/lv.po	2022-04-17 23:32:40.304104964 -0500
 @@ -2691,3 +2691,19 @@
  
  #~ msgid "_Add or Remove…"
@@ -1282,7 +1282,7 @@ diff '--exclude=.git' -urN a/po/lv.po b/po/lv.po
 +msgstr "Iestatīt nosaukumu"
 diff '--exclude=.git' -urN a/po/mai.po b/po/mai.po
 --- a/po/mai.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/mai.po	2020-10-04 11:01:08.082320901 -0500
++++ b/po/mai.po	2022-04-17 23:32:40.304104964 -0500
 @@ -1044,8 +1044,8 @@
  msgstr "आधार पर: (_B)"
  
@@ -1307,7 +1307,7 @@ diff '--exclude=.git' -urN a/po/mai.po b/po/mai.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/mg.po b/po/mg.po
 --- a/po/mg.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/mg.po	2020-10-04 11:01:08.082320901 -0500
++++ b/po/mg.po	2022-04-17 23:32:40.304104964 -0500
 @@ -220,8 +220,8 @@
  msgstr "<b>Afara</b>"
  
@@ -1332,7 +1332,7 @@ diff '--exclude=.git' -urN a/po/mg.po b/po/mg.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/mk.po b/po/mk.po
 --- a/po/mk.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/mk.po	2020-10-04 11:01:08.083320897 -0500
++++ b/po/mk.po	2022-04-17 23:32:40.304104964 -0500
 @@ -863,8 +863,8 @@
  msgstr "_Базирано на:"
  
@@ -1357,7 +1357,7 @@ diff '--exclude=.git' -urN a/po/mk.po b/po/mk.po
  #| msgid "_Text color:"
 diff '--exclude=.git' -urN a/po/ml.po b/po/ml.po
 --- a/po/ml.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/ml.po	2020-10-04 11:01:08.083320897 -0500
++++ b/po/ml.po	2022-04-17 23:32:40.304104964 -0500
 @@ -2577,3 +2577,6 @@
  
  #~ msgid "_Unlimited"
@@ -1367,7 +1367,7 @@ diff '--exclude=.git' -urN a/po/ml.po b/po/ml.po
 +msgstr "പുറകിലുള്ളവ കാണാവുന്ന പശ്ചാത്തലം"
 diff '--exclude=.git' -urN a/po/mn.po b/po/mn.po
 --- a/po/mn.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/mn.po	2020-10-04 11:01:08.083320897 -0500
++++ b/po/mn.po	2022-04-17 23:32:40.305104960 -0500
 @@ -217,8 +217,8 @@
  msgstr "<b>Дэвсгэр</b>"
  
@@ -1392,7 +1392,7 @@ diff '--exclude=.git' -urN a/po/mn.po b/po/mn.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/mr.po b/po/mr.po
 --- a/po/mr.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/mr.po	2020-10-04 11:01:08.083320897 -0500
++++ b/po/mr.po	2022-04-17 23:32:40.305104960 -0500
 @@ -2219,8 +2219,8 @@
  #~ msgid "Default size:"
  #~ msgstr "पूर्वनिर्धारीत आकार:"
@@ -1439,7 +1439,7 @@ diff '--exclude=.git' -urN a/po/mr.po b/po/mr.po
  #~ msgstr "अकार्यान्वीतित"
 diff '--exclude=.git' -urN a/po/ms.po b/po/ms.po
 --- a/po/ms.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/ms.po	2020-10-04 11:01:08.084320892 -0500
++++ b/po/ms.po	2022-04-17 23:32:40.305104960 -0500
 @@ -2717,8 +2717,8 @@
  #~ msgid "_Profile name:"
  #~ msgstr "_Nama profil: "
@@ -1452,10 +1452,10 @@ diff '--exclude=.git' -urN a/po/ms.po b/po/ms.po
  #~ msgid "_Update login records when command is launched"
  #~ msgstr "_Kemaskini rekod logmasuk bila arahan dilancarkan"
 diff '--exclude=.git' -urN a/po/nb.po b/po/nb.po
---- a/po/nb.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/nb.po	2020-10-04 11:01:08.084320892 -0500
-@@ -2261,3 +2261,15 @@
- #: ../src/terminal-window.c:3210
+--- a/po/nb.po	2021-02-04 11:48:34.000000000 -0600
++++ b/po/nb.po	2022-04-17 23:32:40.305104960 -0500
+@@ -2406,3 +2406,15 @@
+ #: src/terminal-window.c:3224
  msgid "C_lose Window"
  msgstr "_Lukk vindu"
 +
@@ -1472,7 +1472,7 @@ diff '--exclude=.git' -urN a/po/nb.po b/po/nb.po
 +msgstr "Sett tittel"
 diff '--exclude=.git' -urN a/po/nds.po b/po/nds.po
 --- a/po/nds.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/nds.po	2020-10-04 11:01:08.084320892 -0500
++++ b/po/nds.po	2022-04-17 23:32:40.306104955 -0500
 @@ -748,8 +748,8 @@
  msgstr "_Steiht op:"
  
@@ -1497,7 +1497,7 @@ diff '--exclude=.git' -urN a/po/nds.po b/po/nds.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/ne.po b/po/ne.po
 --- a/po/ne.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/ne.po	2020-10-04 11:01:08.084320892 -0500
++++ b/po/ne.po	2022-04-17 23:32:40.306104955 -0500
 @@ -2398,8 +2398,8 @@
  #~ msgid "_None (use solid color)"
  #~ msgstr "कुनै पनि होइन (एउटै रङ प्रयोग गर्नुहोस्)"
@@ -1533,7 +1533,7 @@ diff '--exclude=.git' -urN a/po/ne.po b/po/ne.po
  #~ "text/plain dropped on terminal had wrong format (%d) or length (%d)\n"
 diff '--exclude=.git' -urN a/po/nl.po b/po/nl.po
 --- a/po/nl.po	2020-09-12 14:18:08.000000000 -0500
-+++ b/po/nl.po	2020-10-04 11:01:08.084320892 -0500
++++ b/po/nl.po	2022-04-17 23:32:40.306104955 -0500
 @@ -2776,3 +2776,15 @@
  
  #~ msgid "_Add or Remove…"
@@ -1552,7 +1552,7 @@ diff '--exclude=.git' -urN a/po/nl.po b/po/nl.po
 +msgstr "Transparante achtergrond"
 diff '--exclude=.git' -urN a/po/nn.po b/po/nn.po
 --- a/po/nn.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/nn.po	2020-10-04 11:01:08.085320887 -0500
++++ b/po/nn.po	2022-04-17 23:32:40.306104955 -0500
 @@ -1149,8 +1149,8 @@
  msgstr "_Tuft på:"
  
@@ -1577,7 +1577,7 @@ diff '--exclude=.git' -urN a/po/nn.po b/po/nn.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/oc.po b/po/oc.po
 --- a/po/oc.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/oc.po	2020-10-04 11:01:08.085320887 -0500
++++ b/po/oc.po	2022-04-17 23:32:40.307104951 -0500
 @@ -2944,8 +2944,8 @@
  #~ msgid "Save as..."
  #~ msgstr "Enregistrar jos..."
@@ -1613,7 +1613,7 @@ diff '--exclude=.git' -urN a/po/oc.po b/po/oc.po
  #~ "A subset of possible encodings are presented in the Encoding submenu. "
 diff '--exclude=.git' -urN a/po/or.po b/po/or.po
 --- a/po/or.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/or.po	2020-10-04 11:01:08.085320887 -0500
++++ b/po/or.po	2022-04-17 23:32:40.307104951 -0500
 @@ -2705,8 +2705,8 @@
  #~ msgid "Background image _scrolls"
  #~ msgstr "ପୃଷ୍ଠଭୂମି ଚିତ୍ର ସ୍କ୍ରୋଲଗୁଡିକ (_s)"
@@ -1627,7 +1627,7 @@ diff '--exclude=.git' -urN a/po/or.po b/po/or.po
  #~ msgstr "ଛାୟା ସ୍ବଚ୍ଛ କିମ୍ବା ଚିତ୍ର ପୃଷ୍ଠଭୂମି (_h):"
 diff '--exclude=.git' -urN a/po/pa.po b/po/pa.po
 --- a/po/pa.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/pa.po	2020-10-04 11:01:08.086320882 -0500
++++ b/po/pa.po	2022-04-17 23:32:40.307104951 -0500
 @@ -2718,10 +2718,9 @@
  #~ msgid "GNOME Terminal Client"
  #~ msgstr "ਗਨੋਮ ਟਰਮੀਨਲ ਕਲਾਇਟ"
@@ -1682,7 +1682,7 @@ diff '--exclude=.git' -urN a/po/pa.po b/po/pa.po
  #~ msgstr "S/ਸਵਿੱਚ ਚੈਲੰਜ਼ ਜਵਾਬ"
 diff '--exclude=.git' -urN a/po/ps.po b/po/ps.po
 --- a/po/ps.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/ps.po	2020-10-04 11:01:08.086320882 -0500
++++ b/po/ps.po	2022-04-17 23:32:40.307104951 -0500
 @@ -810,8 +810,8 @@
  msgstr ":پر بنسټ د_"
  
@@ -1706,9 +1706,9 @@ diff '--exclude=.git' -urN a/po/ps.po b/po/ps.po
  #: ../src/profile-preferences.glade.h:70
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/pt.po b/po/pt.po
---- a/po/pt.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/pt.po	2020-10-04 11:01:08.086320882 -0500
-@@ -2360,11 +2360,11 @@
+--- a/po/pt.po	2020-09-17 10:06:02.000000000 -0500
++++ b/po/pt.po	2022-04-17 23:32:40.308104947 -0500
+@@ -2938,11 +2938,11 @@
  #~ msgid "Default size:"
  #~ msgstr "Tamanho predefinido:"
  
@@ -1724,7 +1724,7 @@ diff '--exclude=.git' -urN a/po/pt.po b/po/pt.po
  
  #~ msgid "Title and Command"
  #~ msgstr "Título e comando"
-@@ -2372,8 +2372,8 @@
+@@ -2950,8 +2950,8 @@
  #~ msgid "_Unlimited"
  #~ msgstr "_Ilimitado"
  
@@ -1735,7 +1735,7 @@ diff '--exclude=.git' -urN a/po/pt.po b/po/pt.po
  
  #~ msgid "Current Locale"
  #~ msgstr "Configuração Regional Atual"
-@@ -3160,8 +3160,8 @@
+@@ -3705,8 +3705,8 @@
  #~ msgid "Background image _scrolls"
  #~ msgstr "Imagem de fundo _rola"
  
@@ -1748,7 +1748,7 @@ diff '--exclude=.git' -urN a/po/pt.po b/po/pt.po
  #~ msgstr "Transparente som_breado ou imagem de fundo:"
 diff '--exclude=.git' -urN a/po/pt_BR.po b/po/pt_BR.po
 --- a/po/pt_BR.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/pt_BR.po	2020-10-04 11:01:08.086320882 -0500
++++ b/po/pt_BR.po	2022-04-17 23:32:40.308104947 -0500
 @@ -2858,17 +2858,17 @@
  #~ msgid "Default size:"
  #~ msgstr "Tamanho padrão:"
@@ -1782,7 +1782,7 @@ diff '--exclude=.git' -urN a/po/pt_BR.po b/po/pt_BR.po
 +msgstr "Fundo transparente"
 diff '--exclude=.git' -urN a/po/ro.po b/po/ro.po
 --- a/po/ro.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/ro.po	2020-10-04 11:01:08.087320877 -0500
++++ b/po/ro.po	2022-04-17 23:32:40.308104947 -0500
 @@ -3514,8 +3514,8 @@
  #~ msgid "_Solid color"
  #~ msgstr "Culoare _solidă"
@@ -1796,7 +1796,7 @@ diff '--exclude=.git' -urN a/po/ro.po b/po/ro.po
  #~ msgstr "_Neliminat"
 diff '--exclude=.git' -urN a/po/ru.po b/po/ru.po
 --- a/po/ru.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/ru.po	2020-10-04 11:01:08.087320877 -0500
++++ b/po/ru.po	2022-04-17 23:32:40.308104947 -0500
 @@ -2552,3 +2552,19 @@
  
  #~ msgid "_Add or Remove…"
@@ -1819,7 +1819,7 @@ diff '--exclude=.git' -urN a/po/ru.po b/po/ru.po
 +msgstr "Установить заголовок"
 diff '--exclude=.git' -urN a/po/rw.po b/po/rw.po
 --- a/po/rw.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/rw.po	2020-10-04 11:01:08.087320877 -0500
++++ b/po/rw.po	2022-04-17 23:32:40.309104942 -0500
 @@ -749,7 +749,7 @@
  
  #: ../src/gnome-terminal.glade2.h:102
@@ -1839,7 +1839,7 @@ diff '--exclude=.git' -urN a/po/rw.po b/po/rw.po
  
 diff '--exclude=.git' -urN a/po/si.po b/po/si.po
 --- a/po/si.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/si.po	2020-10-04 11:01:08.087320877 -0500
++++ b/po/si.po	2022-04-17 23:32:40.309104942 -0500
 @@ -218,8 +218,8 @@
  msgstr "<b>පසුබිම</b>"
  
@@ -1864,7 +1864,7 @@ diff '--exclude=.git' -urN a/po/si.po b/po/si.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/sk.po b/po/sk.po
 --- a/po/sk.po	2020-09-12 14:18:27.000000000 -0500
-+++ b/po/sk.po	2020-10-04 11:01:08.088320872 -0500
++++ b/po/sk.po	2022-04-17 23:32:40.309104942 -0500
 @@ -3076,3 +3076,15 @@
  #~ "\n"
  #~ "Viac informácii o jednotlivých príkazoch získate pomocou „%s PRÍKAZ --"
@@ -1883,7 +1883,7 @@ diff '--exclude=.git' -urN a/po/sk.po b/po/sk.po
 +msgstr "Nastaviť titulok"
 diff '--exclude=.git' -urN a/po/sl.po b/po/sl.po
 --- a/po/sl.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/sl.po	2020-10-04 11:01:08.088320872 -0500
++++ b/po/sl.po	2022-04-17 23:32:40.309104942 -0500
 @@ -2836,17 +2836,17 @@
  #~ msgid "Default size:"
  #~ msgstr "Privzeta velikost:"
@@ -1917,7 +1917,7 @@ diff '--exclude=.git' -urN a/po/sl.po b/po/sl.po
 +msgstr "Prosojno ozadje"
 diff '--exclude=.git' -urN a/po/sq.po b/po/sq.po
 --- a/po/sq.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/sq.po	2020-10-04 11:01:08.088320872 -0500
++++ b/po/sq.po	2022-04-17 23:32:40.310104938 -0500
 @@ -225,8 +225,8 @@
  msgstr "<b>Sfondi</b>"
  
@@ -1942,7 +1942,7 @@ diff '--exclude=.git' -urN a/po/sq.po b/po/sq.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/sr.po b/po/sr.po
 --- a/po/sr.po	2020-09-12 14:18:27.000000000 -0500
-+++ b/po/sr.po	2020-10-04 11:01:08.088320872 -0500
++++ b/po/sr.po	2022-04-17 23:32:40.310104938 -0500
 @@ -2746,10 +2746,9 @@
  #~ msgid "GNOME Terminal Client"
  #~ msgstr "Клијент Гномовог терминала"
@@ -1993,7 +1993,7 @@ diff '--exclude=.git' -urN a/po/sr.po b/po/sr.po
 +msgstr "Провидна позадина"
 diff '--exclude=.git' -urN a/po/sr@latin.po b/po/sr@latin.po
 --- a/po/sr@latin.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/sr@latin.po	2020-10-04 11:01:08.088320872 -0500
++++ b/po/sr@latin.po	2022-04-17 23:32:40.310104938 -0500
 @@ -2576,10 +2576,9 @@
  #~ msgid "GNOME Terminal Client"
  #~ msgstr "Klijent Gnomovog terminala"
@@ -2044,7 +2044,7 @@ diff '--exclude=.git' -urN a/po/sr@latin.po b/po/sr@latin.po
 +msgstr "Providna pozadina"
 diff '--exclude=.git' -urN a/po/sv.po b/po/sv.po
 --- a/po/sv.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/sv.po	2020-10-04 11:01:08.089320868 -0500
++++ b/po/sv.po	2022-04-17 23:32:40.310104938 -0500
 @@ -2737,5 +2737,17 @@
  #~ msgid "Unknown completion request for \"%s\""
  #~ msgstr "Okänd kompletteringsbegäran för \"%s\""
@@ -2065,7 +2065,7 @@ diff '--exclude=.git' -urN a/po/sv.po b/po/sv.po
 +msgstr "A_nge titel..."
 diff '--exclude=.git' -urN a/po/ta.po b/po/ta.po
 --- a/po/ta.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/ta.po	2020-10-04 11:01:08.089320868 -0500
++++ b/po/ta.po	2022-04-17 23:32:40.311104934 -0500
 @@ -2171,10 +2171,9 @@
  #~ msgid "Show server options"
  #~ msgstr "சேவையக தேர்வுகளை காட்டுக"
@@ -2131,7 +2131,7 @@ diff '--exclude=.git' -urN a/po/ta.po b/po/ta.po
  #~ msgstr "\"%s\" என்ற வரியுரு கிடையாது, முன்னிருப்பு வரியுரு பயன்படுத்தப்படும்\n"
 diff '--exclude=.git' -urN a/po/te.po b/po/te.po
 --- a/po/te.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/te.po	2020-10-04 11:01:08.089320868 -0500
++++ b/po/te.po	2022-04-17 23:32:40.311104934 -0500
 @@ -2055,10 +2055,9 @@
  #~ msgid "Show server options"
  #~ msgstr "సేవకము ఐచ్చికాలను చూపించు"
@@ -2194,7 +2194,7 @@ diff '--exclude=.git' -urN a/po/te.po b/po/te.po
  #~ msgstr "పారదర్శకంగా మారు లేదా చిత్రము బ్యాక్‌గ్రౌండ్ కు మారు(_h):"
 diff '--exclude=.git' -urN a/po/tg.po b/po/tg.po
 --- a/po/tg.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/tg.po	2020-10-04 11:01:08.090320863 -0500
++++ b/po/tg.po	2022-04-17 23:32:40.311104934 -0500
 @@ -2158,23 +2158,23 @@
  #~ msgid "Default size:"
  #~ msgstr "Андозаи пешфарз:"
@@ -2229,7 +2229,7 @@ diff '--exclude=.git' -urN a/po/tg.po b/po/tg.po
  #~ msgstr "_Варақаи навбатӣ"
 diff '--exclude=.git' -urN a/po/th.po b/po/th.po
 --- a/po/th.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/th.po	2020-10-04 11:01:08.090320863 -0500
++++ b/po/th.po	2022-04-17 23:32:40.311104934 -0500
 @@ -2308,23 +2308,23 @@
  #~ msgid "Default size:"
  #~ msgstr "ขนาดปริยาย:"
@@ -2275,7 +2275,7 @@ diff '--exclude=.git' -urN a/po/th.po b/po/th.po
  #~ "You already have a profile called “%s”. Do you want to create another "
 diff '--exclude=.git' -urN a/po/tr.po b/po/tr.po
 --- a/po/tr.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/tr.po	2020-10-04 11:01:08.090320863 -0500
++++ b/po/tr.po	2022-04-17 23:32:40.312104930 -0500
 @@ -2731,3 +2731,15 @@
  
  #~ msgid "_Same as text color"
@@ -2294,7 +2294,7 @@ diff '--exclude=.git' -urN a/po/tr.po b/po/tr.po
 +msgstr "_Başlığı Ata..."
 diff '--exclude=.git' -urN a/po/ug.po b/po/ug.po
 --- a/po/ug.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/ug.po	2020-10-04 11:01:08.090320863 -0500
++++ b/po/ug.po	2022-04-17 23:32:40.312104930 -0500
 @@ -2616,8 +2616,8 @@
  #~ msgid "_Solid color"
  #~ msgstr "ساپ رەڭ(_S)"
@@ -2308,7 +2308,7 @@ diff '--exclude=.git' -urN a/po/ug.po b/po/ug.po
  #~ "You already have a profile called “%s”. Do you want to create another "
 diff '--exclude=.git' -urN a/po/uk.po b/po/uk.po
 --- a/po/uk.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/uk.po	2020-10-04 11:01:08.091320858 -0500
++++ b/po/uk.po	2022-04-17 23:32:40.312104930 -0500
 @@ -2422,3 +2422,18 @@
  #: src/terminal-window.c:3224
  msgid "C_lose Window"
@@ -2330,7 +2330,7 @@ diff '--exclude=.git' -urN a/po/uk.po b/po/uk.po
 +msgstr "Прозоре тло"
 diff '--exclude=.git' -urN a/po/vi.po b/po/vi.po
 --- a/po/vi.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/vi.po	2020-10-04 11:01:08.091320858 -0500
++++ b/po/vi.po	2022-04-17 23:32:40.312104930 -0500
 @@ -2703,8 +2703,8 @@
  #~ msgid "Default size:"
  #~ msgstr "Cỡ mặc định:"
@@ -2373,7 +2373,7 @@ diff '--exclude=.git' -urN a/po/vi.po b/po/vi.po
 +msgstr "Nền trong suốt"
 diff '--exclude=.git' -urN a/po/wa.po b/po/wa.po
 --- a/po/wa.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/wa.po	2020-10-04 11:01:08.091320858 -0500
++++ b/po/wa.po	2022-04-17 23:32:40.312104930 -0500
 @@ -224,8 +224,8 @@
  msgstr "<b>Fond</b>"
  
@@ -2409,7 +2409,7 @@ diff '--exclude=.git' -urN a/po/wa.po b/po/wa.po
  msgid "Set _Character Encoding"
 diff '--exclude=.git' -urN a/po/xh.po b/po/xh.po
 --- a/po/xh.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/xh.po	2020-10-04 11:01:08.091320858 -0500
++++ b/po/xh.po	2022-04-17 23:32:40.313104925 -0500
 @@ -217,8 +217,8 @@
  msgstr "<b>Okungasemva</b>"
  
@@ -2445,7 +2445,7 @@ diff '--exclude=.git' -urN a/po/xh.po b/po/xh.po
  msgid "Set _Character Encoding"
 diff '--exclude=.git' -urN a/po/zh_CN.po b/po/zh_CN.po
 --- a/po/zh_CN.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/zh_CN.po	2020-10-04 11:01:08.091320858 -0500
++++ b/po/zh_CN.po	2022-04-17 23:32:40.313104925 -0500
 @@ -2754,17 +2754,17 @@
  #~ msgid "Default size:"
  #~ msgstr "默认大小："
@@ -2479,7 +2479,7 @@ diff '--exclude=.git' -urN a/po/zh_CN.po b/po/zh_CN.po
 +msgstr "透明背景"
 diff '--exclude=.git' -urN a/po/zh_HK.po b/po/zh_HK.po
 --- a/po/zh_HK.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/zh_HK.po	2020-10-04 11:01:08.092320853 -0500
++++ b/po/zh_HK.po	2022-04-17 23:32:40.313104925 -0500
 @@ -2114,17 +2114,17 @@
  #~ msgid "Default size:"
  #~ msgstr "預設大小："
@@ -2512,9 +2512,9 @@ diff '--exclude=.git' -urN a/po/zh_HK.po b/po/zh_HK.po
 +msgid "Transparent background"
 +msgstr "透明背景"
 diff '--exclude=.git' -urN a/po/zh_TW.po b/po/zh_TW.po
---- a/po/zh_TW.po	2020-09-12 14:18:09.000000000 -0500
-+++ b/po/zh_TW.po	2020-10-04 11:01:08.092320853 -0500
-@@ -2723,17 +2723,17 @@
+--- a/po/zh_TW.po	2020-12-25 11:01:57.000000000 -0600
++++ b/po/zh_TW.po	2022-04-17 23:32:40.313104925 -0500
+@@ -2735,17 +2735,17 @@
  #~ msgid "Default size:"
  #~ msgstr "預設大小："
  
@@ -2538,7 +2538,7 @@ diff '--exclude=.git' -urN a/po/zh_TW.po b/po/zh_TW.po
  
  #~ msgid "Current Locale"
  #~ msgstr "目前的地區設定"
-@@ -2945,3 +2945,6 @@
+@@ -2957,3 +2957,6 @@
  
  #~ msgid "Show session management options"
  #~ msgstr "顯示作業階段管理選項"
@@ -2547,7 +2547,7 @@ diff '--exclude=.git' -urN a/po/zh_TW.po b/po/zh_TW.po
 +msgstr "透明背景"
 diff '--exclude=.git' -urN a/src/org.gnome.Terminal.gschema.xml b/src/org.gnome.Terminal.gschema.xml
 --- a/src/org.gnome.Terminal.gschema.xml	2020-09-12 14:18:09.000000000 -0500
-+++ b/src/org.gnome.Terminal.gschema.xml	2020-10-04 11:01:08.068320968 -0500
++++ b/src/org.gnome.Terminal.gschema.xml	2022-04-17 23:32:40.290105023 -0500
 @@ -349,6 +349,16 @@
        <default>'narrow'</default>
        <summary>Whether ambiguous-width characters are narrow or wide when using UTF-8 encoding</summary>
@@ -2567,7 +2567,7 @@ diff '--exclude=.git' -urN a/src/org.gnome.Terminal.gschema.xml b/src/org.gnome.
    <!-- Keybinding settings -->
 diff '--exclude=.git' -urN a/src/preferences.ui b/src/preferences.ui
 --- a/src/preferences.ui	2020-09-12 14:18:09.000000000 -0500
-+++ b/src/preferences.ui	2020-10-04 11:01:08.069320964 -0500
++++ b/src/preferences.ui	2022-04-17 23:32:40.290105023 -0500
 @@ -95,6 +95,11 @@
      <property name="step_increment">0.05</property>
      <property name="page_increment">0.25</property>
@@ -2631,7 +2631,7 @@ diff '--exclude=.git' -urN a/src/preferences.ui b/src/preferences.ui
                                    </object>
 diff '--exclude=.git' -urN a/src/profile-editor.c b/src/profile-editor.c
 --- a/src/profile-editor.c	2020-09-12 14:18:09.000000000 -0500
-+++ b/src/profile-editor.c	2020-10-04 11:01:08.069320964 -0500
++++ b/src/profile-editor.c	2022-04-17 23:32:40.290105023 -0500
 @@ -1431,6 +1431,22 @@
    profile_prefs_settings_bind (profile, TERMINAL_PROFILE_ENABLE_SIXEL_KEY, w,
                                 "active", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
@@ -2657,7 +2657,7 @@ diff '--exclude=.git' -urN a/src/profile-editor.c b/src/profile-editor.c
  /* Called once per Preferences window, to destroy stuff that doesn't depend on the profile being edited */
 diff '--exclude=.git' -urN a/src/terminal-schemas.h b/src/terminal-schemas.h
 --- a/src/terminal-schemas.h	2020-09-12 14:18:09.000000000 -0500
-+++ b/src/terminal-schemas.h	2020-10-04 11:01:08.069320964 -0500
++++ b/src/terminal-schemas.h	2022-04-17 23:32:40.291105019 -0500
 @@ -76,6 +76,9 @@
  #define TERMINAL_PROFILE_VISIBLE_NAME_KEY               "visible-name"
  #define TERMINAL_PROFILE_WORD_CHAR_EXCEPTIONS_KEY       "word-char-exceptions"
@@ -2669,8 +2669,8 @@ diff '--exclude=.git' -urN a/src/terminal-schemas.h b/src/terminal-schemas.h
  #define TERMINAL_SETTING_DEFAULT_SHOW_MENUBAR_KEY       "default-show-menubar"
  #define TERMINAL_SETTING_ENABLE_MENU_BAR_ACCEL_KEY      "menu-accelerator-enabled"
 diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
---- a/src/terminal-screen.c	2020-09-12 14:18:09.000000000 -0500
-+++ b/src/terminal-screen.c	2020-10-04 11:01:08.070320959 -0500
+--- a/src/terminal-screen.c	2020-09-17 10:10:47.000000000 -0500
++++ b/src/terminal-screen.c	2022-04-17 23:32:40.292105015 -0500
 @@ -151,6 +151,8 @@
  static gboolean terminal_screen_popup_menu (GtkWidget *widget);
  static gboolean terminal_screen_button_press (GtkWidget *widget,
@@ -2680,7 +2680,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  static void terminal_screen_child_exited  (VteTerminal *terminal,
                                             int status);
  
-@@ -618,6 +620,7 @@
+@@ -620,6 +622,7 @@
    widget_class->drag_data_received = terminal_screen_drag_data_received;
    widget_class->button_press_event = terminal_screen_button_press;
    widget_class->popup_menu = terminal_screen_popup_menu;
@@ -2688,7 +2688,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  
    terminal_class->child_exited = terminal_screen_child_exited;
  
-@@ -1072,7 +1075,9 @@
+@@ -1075,7 +1078,9 @@
        prop_name == I_(TERMINAL_PROFILE_HIGHLIGHT_COLORS_SET_KEY) ||
        prop_name == I_(TERMINAL_PROFILE_HIGHLIGHT_BACKGROUND_COLOR_KEY) ||
        prop_name == I_(TERMINAL_PROFILE_HIGHLIGHT_FOREGROUND_COLOR_KEY) ||
@@ -2699,7 +2699,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
      update_color_scheme (screen);
  
    if (!prop_name || prop_name == I_(TERMINAL_PROFILE_AUDIBLE_BELL_KEY))
-@@ -1143,6 +1148,32 @@
+@@ -1146,6 +1151,32 @@
  }
  
  static void
@@ -2732,7 +2732,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  update_color_scheme (TerminalScreen *screen)
  {
    GtkWidget *widget = GTK_WIDGET (screen);
-@@ -1157,6 +1188,7 @@
+@@ -1160,6 +1191,7 @@
    GdkRGBA *cursor_bgp = NULL, *cursor_fgp = NULL;
    GdkRGBA *highlight_bgp = NULL, *highlight_fgp = NULL;
    GtkStyleContext *context;
@@ -2740,7 +2740,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
    gboolean use_theme_colors;
  
    context = gtk_widget_get_style_context (widget);
-@@ -1200,6 +1232,18 @@
+@@ -1203,6 +1235,18 @@
      }
  
    colors = terminal_g_settings_get_rgba_palette (priv->profile, TERMINAL_PROFILE_PALETTE_KEY, &n_colors);
@@ -2759,7 +2759,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
    vte_terminal_set_colors (VTE_TERMINAL (screen), &fg, &bg,
                             colors, n_colors);
    vte_terminal_set_color_bold (VTE_TERMINAL (screen), boldp);
-@@ -1207,6 +1251,8 @@
+@@ -1210,6 +1254,8 @@
    vte_terminal_set_color_cursor_foreground (VTE_TERMINAL (screen), cursor_fgp);
    vte_terminal_set_color_highlight (VTE_TERMINAL (screen), highlight_bgp);
    vte_terminal_set_color_highlight_foreground (VTE_TERMINAL (screen), highlight_fgp);
@@ -2768,7 +2768,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  }
  
  static void
-@@ -1725,6 +1771,13 @@
+@@ -1728,6 +1774,13 @@
    terminal_screen_popup_info_unref (info);
  }
  
@@ -2783,9 +2783,9 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  terminal_screen_button_press (GtkWidget      *widget,
                                GdkEventButton *event)
 diff '--exclude=.git' -urN a/src/terminal-window.c b/src/terminal-window.c
---- a/src/terminal-window.c	2020-09-12 14:18:09.000000000 -0500
-+++ b/src/terminal-window.c	2020-10-04 11:01:08.070320959 -0500
-@@ -1954,6 +1954,32 @@
+--- a/src/terminal-window.c	2021-01-01 16:58:09.000000000 -0600
++++ b/src/terminal-window.c	2022-04-17 23:32:40.292105015 -0500
+@@ -1957,6 +1957,32 @@
  }
  
  static gboolean
@@ -2818,7 +2818,7 @@ diff '--exclude=.git' -urN a/src/terminal-window.c b/src/terminal-window.c
  terminal_window_state_event (GtkWidget            *widget,
                               GdkEventWindowState  *event)
  {
-@@ -2094,6 +2120,8 @@
+@@ -2097,6 +2123,8 @@
    };
    TerminalWindowPrivate *priv;
    TerminalApp *app;
@@ -2827,7 +2827,7 @@ diff '--exclude=.git' -urN a/src/terminal-window.c b/src/terminal-window.c
    GSettings *gtk_debug_settings;
    GtkWindowGroup *window_group;
    //  GtkAccelGroup *accel_group;
-@@ -2109,6 +2137,11 @@
+@@ -2112,6 +2140,11 @@
  
    gtk_widget_init_template (GTK_WIDGET (window));
  
@@ -2839,7 +2839,7 @@ diff '--exclude=.git' -urN a/src/terminal-window.c b/src/terminal-window.c
    uuid_generate (u);
    uuid_unparse (u, uuidstr);
    priv->uuid = g_strdup (uuidstr);
-@@ -2263,6 +2296,7 @@
+@@ -2266,6 +2299,7 @@
  
    widget_class->show = terminal_window_show;
    widget_class->realize = terminal_window_realize;
