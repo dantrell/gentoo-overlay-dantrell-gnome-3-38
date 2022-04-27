@@ -1,11 +1,11 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
+EAPI="8"
 
 inherit gnome.org gnome2-utils meson xdg
 
 DESCRIPTION="The Eye of GNOME image viewer"
-HOMEPAGE="https://wiki.gnome.org/Apps/EyeOfGnome"
+HOMEPAGE="https://wiki.gnome.org/Apps/EyeOfGnome https://gitlab.gnome.org/GNOME/eog"
 
 LICENSE="GPL-2+"
 SLOT="1"
@@ -27,7 +27,7 @@ RDEPEND="
 	exif? ( >=media-libs/libexif-0.6.14 )
 	lcms? ( media-libs/lcms:2 )
 	xmp? ( media-libs/exempi:2 )
-	jpeg? ( virtual/jpeg:0 )
+	jpeg? ( media-libs/libjpeg-turbo:0= )
 	introspection? ( >=dev-libs/gobject-introspection-1.54:= )
 	svg? ( >=gnome-base/librsvg-2.44.0:2 )
 	portal? ( sys-apps/xdg-desktop-portal )
@@ -42,6 +42,12 @@ BDEPEND="
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 "
+
+PATCHES=(
+	# From GNOME:
+	# 	https://gitlab.gnome.org/GNOME/eog/-/commit/07b60839da44988b3ad9e6ebc78bde4f3b0e622b
+	"${FILESDIR}"/${PN}-41.1-remove-incorrect-arg-for-i18n-merge-file.patch
+)
 
 src_configure() {
 	local emesonargs=(
