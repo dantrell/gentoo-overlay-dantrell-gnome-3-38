@@ -59,7 +59,7 @@ RDEPEND="
 		>=dev-libs/libcdio-paranoia-0.78.2 )
 	google? ( >=dev-libs/libgdata-0.17.9:=[crypt,gnome-online-accounts] )
 	gphoto2? ( >=media-libs/libgphoto2-2.5.0:= )
-	nfs? ( >=net-fs/libnfs-1.9.8 )
+	nfs? ( >=net-fs/libnfs-1.9.8:= )
 	net-misc/openssh
 "
 DEPEND="${RDEPEND}"

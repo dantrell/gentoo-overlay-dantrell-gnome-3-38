@@ -9,7 +9,7 @@ FORCE_PRINT_ELOG=1
 inherit gnome.org gnome2-utils llvm meson python-single-r1 readme.gentoo-r1 virtualx xdg
 
 DESCRIPTION="An IDE for writing GNOME-based software"
-HOMEPAGE="https://wiki.gnome.org/Apps/Builder"
+HOMEPAGE="https://wiki.gnome.org/Apps/Builder https://gitlab.gnome.org/GNOME/gnome-builder"
 
 # FIXME: Review licenses at some point
 LICENSE="GPL-3+ GPL-2+ LGPL-3+ LGPL-2+ MIT CC-BY-SA-3.0 CC0-1.0"
