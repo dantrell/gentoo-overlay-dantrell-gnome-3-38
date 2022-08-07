@@ -2,10 +2,10 @@
 
 EAPI="7"
 
-PYTHON_COMPAT=( python{3_8,3_9,3_10} )
+PYTHON_COMPAT=( python{3_8,3_9,3_10,3_11} )
 PYTHON_REQ_USE="xml"
 
-inherit gnome.org meson python-single-r1 toolchain-funcs xdg
+inherit gnome.org meson python-single-r1 xdg
 
 DESCRIPTION="Introspection system for GObject-based libraries"
 HOMEPAGE="https://wiki.gnome.org/Projects/GObjectIntrospection"
@@ -44,6 +44,13 @@ DEPEND="${RDEPEND}
 	test? ( x11-libs/cairo[glib] )
 "
 
+PATCHES=(
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831463
+	# 	https://bugs.gentoo.org/831427
+	"${FILESDIR}"/${PN}-1.68.0-meson-0.61.patch
+)
+
 pkg_setup() {
 	python-single-r1_pkg_setup
 }
@@ -53,7 +60,7 @@ src_configure() {
 		$(meson_feature test cairo)
 		$(meson_feature doctool)
 		$(meson_use gtk-doc gtk_doc)
-		-Dpython="${PYTHON}"
+		-Dpython="${EPYTHON}"
 	)
 	meson_src_configure
 }

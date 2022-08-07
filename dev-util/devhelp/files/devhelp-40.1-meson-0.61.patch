@@ -1,0 +1,30 @@
+diff '--exclude=.git' -urN a/data/meson.build b/data/meson.build
+--- a/data/meson.build	2021-08-26 07:31:14.000000000 -0500
++++ b/data/meson.build	2022-04-06 11:59:19.505879393 -0500
+@@ -17,7 +17,6 @@
+ 
+ appdata = 'org.gnome.Devhelp.appdata.xml'
+ I18N.merge_file(
+-  appdata,
+   input: appdata + '.in',
+   output: appdata,
+   po_dir: '../po/',
+@@ -27,7 +26,6 @@
+ 
+ desktop_file = 'org.gnome.Devhelp.desktop'
+ I18N.merge_file(
+-  desktop_file,
+   type: 'desktop',
+   input: desktop_file + '.in',
+   output: desktop_file,
+diff '--exclude=.git' -urN a/plugins/gedit-plugin/meson.build b/plugins/gedit-plugin/meson.build
+--- a/plugins/gedit-plugin/meson.build	2021-08-26 07:31:14.000000000 -0500
++++ b/plugins/gedit-plugin/meson.build	2022-04-06 11:58:12.373132917 -0500
+@@ -7,7 +7,6 @@
+ 
+ plugin_info_file = 'devhelp.plugin'
+ I18N.merge_file(
+-  plugin_info_file,
+   type: 'desktop',
+   input: plugin_info_file + '.desktop.in',
+   output: plugin_info_file,

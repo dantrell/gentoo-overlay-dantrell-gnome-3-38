@@ -1,7 +1,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
-PYTHON_COMPAT=( python{3_8,3_9,3_10} )
+PYTHON_COMPAT=( python{3_8,3_9,3_10,3_11} )
 
 inherit gnome.org gnome2-utils meson python-single-r1 xdg
 
@@ -39,7 +39,8 @@ BDEPEND="
 	dev-util/itstool
 	gtk-doc? (
 		>=dev-util/gtk-doc-1.25
-		app-text/docbook-xml-dtd:4.3 )
+		app-text/docbook-xml-dtd:4.3
+	)
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 "
@@ -47,6 +48,10 @@ BDEPEND="
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.30.1-optional-introspection.patch
 	"${FILESDIR}"/${PN}-3.30.1-optional-gedit.patch
+
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831928
+	"${FILESDIR}"/${PN}-40.1-meson-0.61.patch
 )
 
 pkg_setup() {
@@ -56,9 +61,9 @@ pkg_setup() {
 src_configure() {
 	local emesonargs=(
 		-Dflatpak_build=false
-		$(meson_use gedit gedit_plugin)
 		$(meson_use gtk-doc gtk_doc)
 		$(meson_use introspection)
+		$(meson_use gedit gedit_plugin)
 	)
 	meson_src_configure
 }

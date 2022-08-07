@@ -1,0 +1,58 @@
+diff '--exclude=.git' -urN a/data/meson.build b/data/meson.build
+--- a/data/meson.build	2021-08-17 18:33:58.000000000 -0500
++++ b/data/meson.build	2022-08-06 23:29:49.919758917 -0500
+@@ -16,7 +16,7 @@
+ desktopconf.set('systemd_hidden', have_systemd ? 'true' : 'false')
+ 
+ foreach desktop_file : desktop_files
+-  i18n.merge_file('desktop',
++  i18n.merge_file(
+     input: configure_file(
+       input: desktop_file + '.in.in',
+       output: desktop_file + '.in',
+diff '--exclude=.git' -urN a/src/calendar-server/meson.build b/src/calendar-server/meson.build
+--- a/src/calendar-server/meson.build	2021-08-17 18:33:58.000000000 -0500
++++ b/src/calendar-server/meson.build	2022-08-06 23:29:49.919758917 -0500
+@@ -27,7 +27,7 @@
+   install_dir: servicedir
+ )
+ 
+-i18n.merge_file('evolution-calendar.desktop',
++i18n.merge_file(
+   input: 'evolution-calendar.desktop.in',
+   output: 'evolution-calendar.desktop',
+   po_dir: po_dir,
+diff '--exclude=.git' -urN a/subprojects/extensions-app/data/meson.build b/subprojects/extensions-app/data/meson.build
+--- a/subprojects/extensions-app/data/meson.build	2021-08-17 18:33:58.000000000 -0500
++++ b/subprojects/extensions-app/data/meson.build	2022-08-06 23:29:49.919758917 -0500
+@@ -14,7 +14,7 @@
+ desktopconf.set('app_id', app_id)
+ desktopconf.set('prgname', prgname)
+ 
+-i18n.merge_file('desktop',
++i18n.merge_file(
+   input: configure_file(
+     input: desktop_file + '.in.in',
+     output: desktop_file + '.in',
+diff '--exclude=.git' -urN a/subprojects/extensions-app/data/metainfo/meson.build b/subprojects/extensions-app/data/metainfo/meson.build
+--- a/subprojects/extensions-app/data/metainfo/meson.build	2021-08-17 18:33:58.000000000 -0500
++++ b/subprojects/extensions-app/data/metainfo/meson.build	2022-08-06 23:30:24.556687971 -0500
+@@ -1,5 +1,5 @@
+ metainfo = app_id + '.metainfo.xml'
+-i18n.merge_file(metainfo,
++i18n.merge_file(
+   input: metainfo + '.in',
+   output: metainfo,
+   po_dir: po_dir,
+diff '--exclude=.git' -urN a/subprojects/extensions-tool/src/templates/meson.build b/subprojects/extensions-tool/src/templates/meson.build
+--- a/subprojects/extensions-tool/src/templates/meson.build	2021-08-17 18:33:58.000000000 -0500
++++ b/subprojects/extensions-tool/src/templates/meson.build	2022-08-06 23:29:49.919758917 -0500
+@@ -4,7 +4,7 @@
+ ]
+ template_deps = []
+ foreach template : template_metas
+-  template_deps += i18n.merge_file(template,
++  template_deps += i18n.merge_file(
+     input: template + '.in',
+     output: template,
+     po_dir: po_dir,

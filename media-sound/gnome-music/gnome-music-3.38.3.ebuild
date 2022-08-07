@@ -1,7 +1,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
-PYTHON_COMPAT=( python{3_8,3_9,3_10} )
+PYTHON_COMPAT=( python{3_8,3_9,3_10,3_11} )
 
 inherit gnome.org gnome2-utils meson python-single-r1 xdg
 
@@ -53,6 +53,12 @@ BDEPEND="
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 "
+
+PATCHES=(
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831936
+	"${FILESDIR}"/${PN}-40.1.1-fix-build-with-meson-0.61.1.patch
+)
 
 pkg_setup() {
 	python_setup

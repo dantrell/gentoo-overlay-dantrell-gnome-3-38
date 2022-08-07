@@ -1,7 +1,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
-PYTHON_COMPAT=( python{3_8,3_9,3_10} )
+PYTHON_COMPAT=( python{3_8,3_9,3_10,3_11} )
 
 inherit gnome.org gnome2-utils meson pax-utils python-single-r1 virtualx xdg
 
@@ -145,6 +145,10 @@ src_prepare() {
 
 	# Fix automagic gnome-bluetooth dep, bug #398145
 	eapply "${FILESDIR}"/${PN}-3.34.0-optional-bluetooth.patch
+
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831921
+	eapply "${FILESDIR}"/${PN}-3.38.6-fix-build-with-meson-0.61.1.patch
 
 	# Hack in correct python shebang
 	sed -e "s:python\.path():'/usr/bin/env ${EPYTHON}':" -i src/meson.build || die

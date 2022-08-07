@@ -1,7 +1,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
-PYTHON_COMPAT=( python{3_8,3_9,3_10} )
+PYTHON_COMPAT=( python{3_8,3_9,3_10,3_11} )
 
 inherit gnome.org gnome2-utils python-any-r1 meson udev virtualx xdg
 
@@ -81,6 +81,15 @@ DEPEND="${COMMON_DEPEND}
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 "
+
+PATCHES=(
+	# From GNOME:
+	# 	https://gitlab.gnome.org/GNOME/gnome-settings-daemon/-/commit/28e28e9e598342c897ae5ca350d0da6f4aea057b
+	"${FILESDIR}"/${PN}-40.0.1-build-fix-str-bool-comparison.patch
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831928
+	"${FILESDIR}"/${PN}-41.0-meson-0.61-build.patch
+)
 
 python_check_deps() {
 	if use test; then

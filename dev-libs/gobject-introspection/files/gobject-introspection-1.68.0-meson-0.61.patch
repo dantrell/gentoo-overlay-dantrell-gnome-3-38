@@ -1,0 +1,300 @@
+diff '--exclude=.git' -urN a/gir/meson.build b/gir/meson.build
+--- a/gir/meson.build	2021-03-19 09:22:12.000000000 -0500
++++ b/gir/meson.build	2022-04-06 10:42:02.174032440 -0500
+@@ -94,8 +94,8 @@
+ 
+ if dep_type == 'pkgconfig'
+   glib_command += ['--external-library', '--pkg=glib-2.0']
+-  glib_libdir = get_option('gi_cross_pkgconfig_sysroot_path') + glib_dep.get_pkgconfig_variable('libdir')
+-  glib_incdir = get_option('gi_cross_pkgconfig_sysroot_path') + join_paths(glib_dep.get_pkgconfig_variable('includedir'), 'glib-2.0')
++  glib_libdir = get_option('gi_cross_pkgconfig_sysroot_path') + glib_dep.get_variable(pkgconfig: 'libdir')
++  glib_incdir = get_option('gi_cross_pkgconfig_sysroot_path') + join_paths(glib_dep.get_variable(pkgconfig: 'includedir'), 'glib-2.0')
+   glib_libincdir = join_paths(glib_libdir, 'glib-2.0', 'include')
+   glib_files += join_paths(glib_incdir, 'gobject', 'glib-types.h')
+   glib_files += join_paths(glib_libincdir, 'glibconfig.h')
+@@ -151,13 +151,13 @@
+   # XXX: We need include paths to all glib dependencies too. We assume that the
+   # dependencies are only libffi and proxy-libintl, and that they are used as
+   # subprojects. In the worst case we add paths to non-existent directories.
+-  ffi_incdir = join_paths(meson.build_root(), subprojdir, 'libffi', 'include')
++  ffi_incdir = join_paths(meson.project_build_root(), subprojdir, 'libffi', 'include')
+   glib_includes += ['-I' + ffi_incdir]
+-  intl_incdir = join_paths(meson.source_root(), subprojdir, 'proxy-libintl')
++  intl_incdir = join_paths(meson.project_source_root(), subprojdir, 'proxy-libintl')
+   glib_includes += ['-I' + intl_incdir]
+ 
+-  ffi_libdir = join_paths(meson.build_root(), subprojdir, 'libffi', 'src')
+-  intl_libdir = join_paths(meson.build_root(), subprojdir, 'proxy-libintl')
++  ffi_libdir = join_paths(meson.project_build_root(), subprojdir, 'libffi', 'src')
++  intl_libdir = join_paths(meson.project_build_root(), subprojdir, 'proxy-libintl')
+   glib_libpaths = ['-L' + ffi_libdir, '-L' + intl_libdir] + glib_libpaths
+ 
+   glib_command += glib_libpaths
+@@ -350,7 +350,7 @@
+   dep_type = giounix_dep.type_name()
+   if dep_type == 'pkgconfig'
+     gio_command += ['--pkg=gio-unix-2.0']
+-    giounix_includedir = get_option('gi_cross_pkgconfig_sysroot_path') + join_paths(giounix_dep.get_pkgconfig_variable('includedir'), 'gio-unix-2.0')
++    giounix_includedir = get_option('gi_cross_pkgconfig_sysroot_path') + join_paths(giounix_dep.get_variable(pkgconfig: 'includedir'), 'gio-unix-2.0')
+     # Get the installed gio-unix header list
+     ret = run_command(python, '-c', globber.format(join_paths(giounix_includedir, 'gio', '*.h')))
+     if ret.returncode() != 0
+diff '--exclude=.git' -urN a/giscanner/docmain.py b/giscanner/docmain.py
+--- a/giscanner/docmain.py	2021-03-19 09:22:12.000000000 -0500
++++ b/giscanner/docmain.py	2022-04-06 10:38:02.045086804 -0500
+@@ -51,6 +51,8 @@
+     parser.add_argument("-s", "--write-sections-file",
+                         action="store_const", dest="format", const="sections",
+                         help="Backwards-compatible equivalent to -f sections")
++    parser.add_argument("--templates-dir",
++                        action="store")
+ 
+     args = parser.parse_args(args[1:])
+     if not args.output:
+@@ -74,7 +76,7 @@
+         with open(args.output, 'w', encoding='utf-8') as fp:
+             write_sections_file(fp, sections_file)
+     else:
+-        writer = DocWriter(transformer, args.language, args.format)
++        writer = DocWriter(transformer, args.language, args.format, args.templates_dir)
+         writer.write(args.output)
+ 
+     return 0
+diff '--exclude=.git' -urN a/giscanner/doctemplates/devdocs/meson.build b/giscanner/doctemplates/devdocs/meson.build
+--- a/giscanner/doctemplates/devdocs/meson.build	1969-12-31 18:00:00.000000000 -0600
++++ b/giscanner/doctemplates/devdocs/meson.build	2022-04-06 10:38:02.045086804 -0500
+@@ -0,0 +1,19 @@
++doc_templates += files([
++  'Gjs/_doc.tmpl',
++  'Gjs/_index.tmpl',
++  'Gjs/_method.tmpl',
++  'Gjs/_methods.tmpl',
++  'Gjs/_properties.tmpl',
++  'Gjs/_signals.tmpl',
++  'Gjs/_staticmethods.tmpl',
++  'Gjs/_vfuncs.tmpl',
++  'Gjs/base.tmpl',
++  'Gjs/callback.tmpl',
++  'Gjs/class.tmpl',
++  'Gjs/default.tmpl',
++  'Gjs/enum.tmpl',
++  'Gjs/function.tmpl',
++  'Gjs/interface.tmpl',
++  'Gjs/method.tmpl',
++  'Gjs/namespace.tmpl',
++])
+diff '--exclude=.git' -urN a/giscanner/doctemplates/mallard/meson.build b/giscanner/doctemplates/mallard/meson.build
+--- a/giscanner/doctemplates/mallard/meson.build	1969-12-31 18:00:00.000000000 -0600
++++ b/giscanner/doctemplates/mallard/meson.build	2022-04-06 10:38:02.045086804 -0500
+@@ -0,0 +1,63 @@
++base_templates = files([
++  'base.tmpl',
++  'class.tmpl',
++  'namespace.tmpl',
++])
++
++c_templates = files([
++  'C/callback.tmpl',
++  'C/class.tmpl',
++  'C/constructor.tmpl',
++  'C/default.tmpl',
++  'C/enum.tmpl',
++  'C/field.tmpl',
++  'C/function.tmpl',
++  'C/interface.tmpl',
++  'C/method.tmpl',
++  'C/namespace.tmpl',
++  'C/property.tmpl',
++  'C/record.tmpl',
++  'C/signal.tmpl',
++  'C/vfunc.tmpl',
++])
++
++gjs_templates = files([
++  'Gjs/callback.tmpl',
++  'Gjs/class.tmpl',
++  'Gjs/constructor.tmpl',
++  'Gjs/default.tmpl',
++  'Gjs/enum.tmpl',
++  'Gjs/field.tmpl',
++  'Gjs/function.tmpl',
++  'Gjs/interface.tmpl',
++  'Gjs/method.tmpl',
++  'Gjs/namespace.tmpl',
++  'Gjs/property.tmpl',
++  'Gjs/record.tmpl',
++  'Gjs/signal.tmpl',
++  'Gjs/vfunc.tmpl',
++])
++
++py_templates = files([
++  'Python/callback.tmpl',
++  'Python/class.tmpl',
++  'Python/constructor.tmpl',
++  'Python/default.tmpl',
++  'Python/enum.tmpl',
++  'Python/field.tmpl',
++  'Python/function.tmpl',
++  'Python/interface.tmpl',
++  'Python/method.tmpl',
++  'Python/namespace.tmpl',
++  'Python/property.tmpl',
++  'Python/record.tmpl',
++  'Python/signal.tmpl',
++  'Python/vfunc.tmpl',
++])
++
++doc_templates += [
++  base_templates,
++  c_templates,
++  gjs_templates,
++  py_templates,
++]
+diff '--exclude=.git' -urN a/giscanner/docwriter.py b/giscanner/docwriter.py
+--- a/giscanner/docwriter.py	2021-03-19 09:22:12.000000000 -0500
++++ b/giscanner/docwriter.py	2022-04-06 10:38:02.045086804 -0500
+@@ -1288,7 +1288,7 @@
+ 
+ 
+ class DocWriter(object):
+-    def __init__(self, transformer, language, output_format):
++    def __init__(self, transformer, language, output_format, templates_dir=None):
+         self._transformer = transformer
+ 
+         try:
+@@ -1300,18 +1300,20 @@
+         self._formatter = formatter_class(self._transformer)
+         self._language = self._formatter.language
+         self._output_format = output_format
++        self._templates_dir = templates_dir
+ 
+         self._lookup = self._get_template_lookup()
+ 
+     def _get_template_lookup(self):
+-        if 'UNINSTALLED_INTROSPECTION_SRCDIR' in os.environ:
++        if self._templates_dir is not None:
++            srcdir = self._templates_dir
++        elif 'UNINSTALLED_INTROSPECTION_SRCDIR' in os.environ:
+             top_srcdir = os.environ['UNINSTALLED_INTROSPECTION_SRCDIR']
+-            srcdir = os.path.join(top_srcdir, 'giscanner')
++            srcdir = os.path.join(top_srcdir, 'giscanner', 'doctemplates')
+         else:
+-            srcdir = os.path.dirname(__file__)
++            srcdir = os.path.join(os.path.dirname(__file__), 'doctemplates')
+ 
+-        template_dir = os.path.join(srcdir, 'doctemplates',
+-                                    self._formatter.output_format)
++        template_dir = os.path.join(srcdir, self._formatter.output_format)
+ 
+         return TemplateLookup(directories=[template_dir],
+                               module_directory=tempfile.mkdtemp(),
+diff '--exclude=.git' -urN a/giscanner/meson.build b/giscanner/meson.build
+--- a/giscanner/meson.build	2021-03-19 09:22:12.000000000 -0500
++++ b/giscanner/meson.build	2022-04-06 10:38:02.046086800 -0500
+@@ -46,17 +46,9 @@
+ 
+ install_subdir('doctemplates', install_dir: giscannerdir)
+ 
+-# XXX: this doesn't track the input, but there is nothing to copy many files
+-# in meson.
+-doc_templates = custom_target('copy-templates',
+-  input : 'doctemplates',
+-  output : 'doctemplates',
+-  command : [
+-    python, '-c',
+-      'import sys, shutil;' +
+-      'shutil.rmtree(sys.argv[2], ignore_errors=True);' +
+-      'shutil.copytree(sys.argv[1], sys.argv[2])',
+-    '@INPUT@', '@OUTPUT@'])
++doc_templates = []
++subdir('doctemplates/devdocs')
++subdir('doctemplates/mallard')
+ 
+ flex = find_program('flex', 'win_flex')
+ bison = find_program('bison', 'win_bison')
+diff '--exclude=.git' -urN a/tests/meson.build b/tests/meson.build
+--- a/tests/meson.build	2021-03-19 09:22:12.000000000 -0500
++++ b/tests/meson.build	2022-04-06 10:38:02.046086800 -0500
+@@ -1,4 +1,4 @@
+-sub_build_root = join_paths(meson.build_root(), 'subprojects')
++sub_build_root = join_paths(meson.project_build_root(), 'subprojects')
+ test_env_common_path = []
+ if glib_dep.type_name() == 'internal' and host_system == 'windows'
+   test_env_common_path += [
+@@ -13,7 +13,7 @@
+ if libffi_dep.type_name() == 'internal' and host_system == 'windows'
+   test_env_common_path += [join_paths(sub_build_root, 'libffi',  'src')]
+ endif
+-test_env_common_pypath = [meson.build_root()]
++test_env_common_pypath = [meson.project_build_root()]
+ 
+ 
+ test_regress_sources = files('scanner/regress.c')
+diff '--exclude=.git' -urN a/tests/scanner/meson.build b/tests/scanner/meson.build
+--- a/tests/scanner/meson.build	2021-03-19 09:22:12.000000000 -0500
++++ b/tests/scanner/meson.build	2022-04-06 10:38:02.046086800 -0500
+@@ -533,19 +533,26 @@
+ endforeach
+ 
+ if has_girdoctool and glib_dep.type_name() == 'pkgconfig'
++  doctool_env = environment()
++  doctool_env.set('srcdir', meson.current_source_dir())
++  doctool_env.set('builddir', meson.current_build_dir())
++
+   foreach language : ['C', 'Python', 'Gjs']
+     regress_docs = custom_target(
+       'generate-docs-' + language,
+       input: regress_gir,
+-      depends: [doc_templates],
++      depend_files: doc_templates,
+       build_by_default: not cairo_deps_found,
++      env: doctool_env,
+       output: 'Regress-1.0-' + language,
+       command: [
+         python, girdoctool,
+         '--add-include-path=' + join_paths(build_root, 'gir'),
+         '--add-include-path=' + meson.current_build_dir(),
+         '--language', language,
+-        '@INPUT@', '-o', '@OUTPUT@'],
++        '--templates-dir=' + join_paths(meson.current_source_dir(), '../../giscanner/doctemplates'),
++        '@INPUT@', '-o', '@OUTPUT@',
++      ],
+     )
+ 
+     if cairo_deps_found
+@@ -554,10 +561,7 @@
+         python,
+         args: [gi_tester, 'Regress-1.0-' + language],
+         depends: [regress_docs],
+-        env: [
+-          'srcdir=' + meson.current_source_dir(),
+-          'builddir=' + meson.current_build_dir(),
+-        ],
++        env: doctool_env,
+       )
+     endif
+   endforeach
+@@ -565,9 +569,10 @@
+   regress_sections = custom_target(
+     'generate-docs-sections',
+     input: regress_gir,
+-    depends: [doc_templates],
++    depend_files: [doc_templates],
+     build_by_default: not cairo_deps_found,
+     output: 'Regress-1.0-sections.txt',
++    env: doctool_env,
+     command: [
+       python, girdoctool,
+       '--add-include-path=' + join_paths(build_root, 'gir'),
+@@ -582,10 +587,7 @@
+       python,
+       args: [gi_tester, 'Regress-1.0-sections.txt'],
+       depends: [regress_sections],
+-      env: [
+-        'srcdir=' + meson.current_source_dir(),
+-        'builddir=' + meson.current_build_dir(),
+-      ],
++      env: doctool_env,
+     )
+   endif
+ endif
