@@ -15,7 +15,7 @@ IUSE="ldap zeroconf"
 
 RDEPEND="
 	>=dev-libs/glib-2.58:2
-	>=app-crypt/gcr-3.11.91:=
+	>=app-crypt/gcr-3.11.91:0=
 	>=app-crypt/gpgme-1.7.0
 	>=x11-libs/gtk+-3.22.0:3
 	>=app-crypt/gnupg-2.0.12
@@ -30,7 +30,7 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	$(vala_depend)
 	dev-libs/libxml2:2
-	app-crypt/gcr[vala]
+	app-crypt/gcr:0=[vala]
 	app-crypt/libsecret[vala]
 	gui-libs/libhandy:1[vala]
 "

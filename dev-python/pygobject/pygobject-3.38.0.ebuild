@@ -1,6 +1,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
+EAPI="8"
 
 PYTHON_COMPAT=( python{3_8,3_9,3_10,3_11} )
 
@@ -24,9 +24,11 @@ RDEPEND="${PYTHON_DEPS}
 	dev-libs/libffi:=
 	cairo? (
 		>=dev-python/pycairo-1.11.1[${PYTHON_USEDEP}]
-		x11-libs/cairo[glib] )
+		x11-libs/cairo[glib]
+	)
 "
-DEPEND="${RDEPEND}
+DEPEND="
+	${RDEPEND}
 	test? (
 		dev-libs/atk[introspection]
 		dev-python/pytest[${PYTHON_USEDEP}]
@@ -60,7 +62,7 @@ src_test() {
 
 	testing() {
 		local -x XDG_CACHE_HOME="${T}/${EPYTHON}"
-		meson_src_test || die "test failed for ${EPYTHON}"
+		meson_src_test --timeout-multiplier 3 || die "test failed for ${EPYTHON}"
 	}
 	virtx python_foreach_impl testing
 }

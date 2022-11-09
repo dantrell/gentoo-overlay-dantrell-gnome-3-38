@@ -20,7 +20,7 @@ RDEPEND="
 	>=media-libs/gsound-0.98
 	>=dev-libs/libgweather-3.32.0:2=
 	>=gnome-base/gnome-desktop-3.8:3=
-	>=sci-geosciences/geocode-glib-1
+	>=sci-geosciences/geocode-glib-1:0
 	>=app-misc/geoclue-2.4:2.0
 	>=gui-libs/libhandy-1.0.0:1
 "

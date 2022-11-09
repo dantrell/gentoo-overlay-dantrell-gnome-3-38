@@ -28,7 +28,7 @@ RDEPEND="
 	>=dev-libs/glib-2.57.2:2
 	afp? ( >=dev-libs/libgcrypt-1.2.2:0= )
 	sys-apps/dbus
-	app-crypt/gcr:=
+	app-crypt/gcr:0=
 	policykit? (
 		>=sys-auth/polkit-0.114
 		sys-libs/libcap )

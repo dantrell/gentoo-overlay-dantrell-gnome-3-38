@@ -5,7 +5,7 @@ EAPI="7"
 inherit gnome2
 
 DESCRIPTION="GNOME Flashback applets"
-HOMEPAGE="https://gitlab.gnome.org/GNOME/gnome-applets/"
+HOMEPAGE="https://gitlab.gnome.org/GNOME/gnome-applets"
 
 LICENSE="GPL-2+ FDL-1.1"
 SLOT="0"

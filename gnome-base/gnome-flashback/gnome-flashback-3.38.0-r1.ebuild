@@ -5,7 +5,7 @@ EAPI="7"
 inherit gnome2 toolchain-funcs
 
 DESCRIPTION="GNOME Flashback session"
-HOMEPAGE="https://gitlab.gnome.org/GNOME/gnome-flashback/"
+HOMEPAGE="https://gitlab.gnome.org/GNOME/gnome-flashback"
 
 LICENSE="GPL-3+"
 SLOT="0"

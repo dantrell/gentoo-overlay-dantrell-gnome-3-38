@@ -26,7 +26,7 @@ RDEPEND="
 
 	exif? ( >=media-libs/libexif-0.6.14 )
 	lcms? ( media-libs/lcms:2 )
-	xmp? ( media-libs/exempi:2 )
+	xmp? ( media-libs/exempi:2= )
 	jpeg? ( media-libs/libjpeg-turbo:0= )
 	introspection? ( >=dev-libs/gobject-introspection-1.54:= )
 	svg? ( >=gnome-base/librsvg-2.44.0:2 )
