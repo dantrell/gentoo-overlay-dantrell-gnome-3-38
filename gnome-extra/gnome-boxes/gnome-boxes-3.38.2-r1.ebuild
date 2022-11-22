@@ -1,7 +1,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
-VALA_USE_DEPEND="vapigen"
+EAPI="8"
 VALA_MIN_API_VERSION="0.48"
 VALA_MAX_API_VERSION="0.50"
 
@@ -76,6 +75,12 @@ BDEPEND="
 	virtual/pkgconfig
 "
 
+PATCHES=(
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831934
+	"${FILESDIR}"/${PN}-41.3-fix-build-with-meson-0.61.1.patch
+)
+
 DISABLE_AUTOFORMATTING="yes"
 DOC_CONTENTS="Before running gnome-boxes for local VMs, you will need to load the KVM modules.
 If you have an Intel Processor, run:
@@ -96,12 +101,14 @@ pkg_pretend() {
 }
 
 src_prepare() {
+	default
+
 	# Work around -Werror=incompatible-pointer-types (GCC 11 default)
 	sed -e '/Werror=incompatible-pointer-types/d' \
 		-i subprojects/libhandy/meson.build || die
 
-	xdg_src_prepare
-	vala_src_prepare
+	vala_setup
+	xdg_environment_reset
 }
 
 src_configure() {

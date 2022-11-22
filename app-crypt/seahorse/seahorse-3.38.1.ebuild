@@ -30,7 +30,7 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	$(vala_depend)
 	dev-libs/libxml2:2
-	app-crypt/gcr:0=[vala]
+	app-crypt/gcr:0=[vala(+)]
 	app-crypt/libsecret[vala]
 	gui-libs/libhandy:1[vala]
 "

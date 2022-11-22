@@ -35,6 +35,12 @@ BDEPEND="
 	x11-base/xorg-proto
 "
 
+PATCHES=(
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831745
+	"${FILESDIR}"/${PN}-41.0-fix-meson-0.61-build.patch
+)
+
 DOC_CONTENTS="${P} saves screenshots in ~/Pictures/ and defaults to
 	non-interactive mode when launched from a terminal. If you want to choose
 	where to save the screenshot, run 'gnome-screenshot --interactive'"

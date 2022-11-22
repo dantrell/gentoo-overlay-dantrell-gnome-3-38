@@ -2,7 +2,7 @@
 
 EAPI="7"
 PYTHON_COMPAT=( python{3_8,3_9,3_10,3_11} )
-PYTHON_REQ_USE="xml"
+PYTHON_REQ_USE="xml(+)"
 VALA_MIN_API_VERSION="0.28"
 
 inherit gnome.org gnome2-utils meson python-single-r1 vala xdg

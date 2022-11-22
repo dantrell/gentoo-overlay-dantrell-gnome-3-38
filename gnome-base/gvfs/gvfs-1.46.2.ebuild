@@ -31,40 +31,46 @@ RDEPEND="
 	app-crypt/gcr:0=
 	policykit? (
 		>=sys-auth/polkit-0.114
-		sys-libs/libcap )
+		sys-libs/libcap
+	)
 	http? (
 		dev-libs/libxml2:2
-		>=net-libs/libsoup-2.58.0:2.4 )
+		>=net-libs/libsoup-2.58.0:2.4
+	)
 	zeroconf? ( >=net-dns/avahi-0.6[dbus] )
 	udev? ( >=dev-libs/libgudev-147:= )
-	fuse? ( >=sys-fs/fuse-3:3 )
+	fuse? (
+		>=sys-fs/fuse-3.0.0:3
+	)
 	udisks? ( >=sys-fs/udisks-1.97:2 )
 	systemd? ( >=sys-apps/systemd-206:0= )
 	elogind? ( >=sys-auth/elogind-229:0= )
 	ios? (
 		>=app-pda/libimobiledevice-1.2:=
-		>=app-pda/libplist-1:= )
+		>=app-pda/libplist-1:=
+	)
 	gnome-online-accounts? ( >=net-libs/gnome-online-accounts-3.17.1:= )
 	gnome-keyring? ( app-crypt/libsecret )
 	bluray? ( media-libs/libbluray:= )
 	mtp? (
-		>=dev-libs/libusb-1.0.21
-		>=media-libs/libmtp-1.1.15 )
+		virtual/libusb:1
+		>=media-libs/libmtp-1.1.15
+	)
 	samba? (
 		sys-libs/libunwind:=
 		>=net-fs/samba-4[client] )
 	archive? ( app-arch/libarchive:= )
 	cdda? (
 		dev-libs/libcdio:0=
-		>=dev-libs/libcdio-paranoia-0.78.2 )
+		>=dev-libs/libcdio-paranoia-0.78.2
+	)
 	google? ( >=dev-libs/libgdata-0.17.9:=[crypt,gnome-online-accounts] )
 	gphoto2? ( >=media-libs/libgphoto2-2.5.0:= )
-	nfs? ( >=net-fs/libnfs-1.9.8:= )
+	nfs? ( >=net-fs/libnfs-1.9.8 )
 	net-misc/openssh
 "
 DEPEND="${RDEPEND}"
 BDEPEND="
-	>=dev-util/meson-0.49
 	app-text/docbook-xsl-stylesheets
 	app-text/docbook-xml-dtd:4.2
 	dev-libs/libxslt
@@ -72,6 +78,12 @@ BDEPEND="
 	virtual/pkgconfig
 	dev-util/gdbus-codegen
 "
+
+PATCHES=(
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831474
+	"${FILESDIR}"/${PN}-1.46.2-fix-build-with-meson-0.61.patch
+)
 
 src_configure() {
 	local enable_logind="false"

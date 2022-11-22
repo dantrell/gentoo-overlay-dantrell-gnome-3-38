@@ -92,6 +92,10 @@ src_prepare() {
 	# 	https://gitlab.gnome.org/GNOME/gnome-session/commit/9de6e40f12e8878f524f8d429d85724c156a0517
 	eapply "${FILESDIR}"/${PN}-3.38.0-exit-conflict-systemd247.patch
 
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831474
+	eapply "${FILESDIR}"/${PN}-3.38.0-fix-build-with-meson-0.61.patch
+
 	xdg_src_prepare
 }
 

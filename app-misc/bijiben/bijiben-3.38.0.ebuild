@@ -32,6 +32,12 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 "
 
+PATCHES=(
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831929
+	"${FILESDIR}"/${PN}-40.1-meson-0.61.patch
+)
+
 src_configure() {
 	local emesonargs=(
 		-D zeitgeist=false

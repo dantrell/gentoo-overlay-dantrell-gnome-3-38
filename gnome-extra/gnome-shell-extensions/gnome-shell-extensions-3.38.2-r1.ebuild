@@ -48,6 +48,12 @@ you can use the https://extensions.gnome.org/ web interface, the
 gnome-extra/gnome-tweaks GUI, or modify the org.gnome.shell
 enabled-extensions gsettings key from the command line or a script."
 
+PATCHES=(
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831938
+	"${FILESDIR}"/${PN}-41.1-meson-0.61.patch
+)
+
 src_prepare() {
 	# Provided by gnome-base/gnome-shell-common
 	sed -e '/.*calendar-today.svg.*/d' \

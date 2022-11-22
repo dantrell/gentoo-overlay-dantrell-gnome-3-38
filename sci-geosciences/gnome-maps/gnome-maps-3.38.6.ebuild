@@ -11,8 +11,6 @@ LICENSE="GPL-2+ LGPL-2+ MIT CC-BY-3.0 CC-BY-SA-3.0"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE=""
-
 # Pure introspection dependencies found by grepping imports.gi in ${S}
 RDEPEND="
 	>=dev-libs/glib-2.44.0:2
@@ -21,7 +19,7 @@ RDEPEND="
 	>=x11-libs/gtk+-3.22:3[introspection]
 	>=app-misc/geoclue-1.99.3:2.0[introspection]
 	>=dev-libs/libgee-0.16:0.8[introspection]
-	>=dev-libs/folks-0.10
+	>=dev-libs/folks-0.10:=
 	>=sci-geosciences/geocode-glib-3.15.2:0[introspection]
 	>=media-libs/libchamplain-0.12.14:0.12[gtk,introspection]
 	dev-libs/libxml2:2
@@ -41,6 +39,12 @@ BDEPEND="
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 "
+
+PATCHES=(
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831655
+	"${FILESDIR}"/${PN}-40.0-meson-0.61.patch
+)
 
 pkg_postinst() {
 	xdg_pkg_postinst

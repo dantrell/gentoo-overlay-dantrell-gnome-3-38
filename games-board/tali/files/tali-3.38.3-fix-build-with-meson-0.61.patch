@@ -1,0 +1,21 @@
+diff '--exclude=.git' -urN a/data/meson.build b/data/meson.build
+--- a/data/meson.build	2021-01-09 15:41:00.000000000 -0600
++++ b/data/meson.build	2022-11-21 15:50:40.680672957 -0600
+@@ -22,7 +22,7 @@
+ install_data (project_id + '.gschema.xml',
+               install_dir: join_paths (datadir, 'glib-2.0', 'schemas'))
+ 
+-desktop_file = i18n.merge_file ('desktop-file',
++desktop_file = i18n.merge_file (
+                  input: project_id + '.desktop.in',
+                  output: project_id + '.desktop',
+                  install: true,
+@@ -41,7 +41,7 @@
+   )
+ endif
+ 
+-appdata_file = i18n.merge_file ('appdata-file',
++appdata_file = i18n.merge_file (
+                  input: project_id + '.appdata.xml.in',
+                  output: project_id + '.appdata.xml',
+                  install: true,

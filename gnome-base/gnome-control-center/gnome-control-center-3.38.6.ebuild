@@ -126,6 +126,10 @@ PATCHES=(
 	# Make some panels and dependencies optional
 	# https://bugzilla.gnome.org/686840, 697478, 700145
 	"${FILESDIR}"/${PN}-3.38.6-optional.patch
+
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831474
+	"${FILESDIR}"/${PN}-3.38.6-fix-build-with-meson-0.61.patch
 )
 
 src_configure() {

@@ -1,0 +1,395 @@
+diff '--exclude=.git' -urN a/panels/applications/meson.build b/panels/applications/meson.build
+--- a/panels/applications/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/applications/meson.build	2022-11-21 17:37:18.942750711 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-       desktop,
+          type : 'desktop',
+         input : desktop_in,
+        output : desktop,
+diff '--exclude=.git' -urN a/panels/background/meson.build b/panels/background/meson.build
+--- a/panels/background/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/background/meson.build	2022-11-21 17:37:18.944750705 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/bluetooth/meson.build b/panels/bluetooth/meson.build
+--- a/panels/bluetooth/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/bluetooth/meson.build	2022-11-21 17:37:18.944750705 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/camera/meson.build b/panels/camera/meson.build
+--- a/panels/camera/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/camera/meson.build	2022-11-21 17:37:18.944750705 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/color/meson.build b/panels/color/meson.build
+--- a/panels/color/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/color/meson.build	2022-11-21 17:37:18.945750701 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/datetime/meson.build b/panels/datetime/meson.build
+--- a/panels/datetime/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/datetime/meson.build	2022-11-21 17:37:18.945750701 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+@@ -20,7 +19,6 @@
+ polkit = 'org.gnome.controlcenter.@0@.policy'.format(cappletname)
+ 
+ i18n.merge_file(
+-  polkit,
+   input: polkit + '.in',
+   output: polkit,
+   po_dir: po_dir,
+diff '--exclude=.git' -urN a/panels/default-apps/meson.build b/panels/default-apps/meson.build
+--- a/panels/default-apps/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/default-apps/meson.build	2022-11-21 17:37:18.946750698 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/diagnostics/meson.build b/panels/diagnostics/meson.build
+--- a/panels/diagnostics/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/diagnostics/meson.build	2022-11-21 17:37:18.946750698 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/display/meson.build b/panels/display/meson.build
+--- a/panels/display/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/display/meson.build	2022-11-21 17:37:18.946750698 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/info-overview/meson.build b/panels/info-overview/meson.build
+--- a/panels/info-overview/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/info-overview/meson.build	2022-11-21 17:37:18.947750695 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/keyboard/meson.build b/panels/keyboard/meson.build
+--- a/panels/keyboard/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/keyboard/meson.build	2022-11-21 17:39:22.484343739 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+@@ -45,7 +44,6 @@
+ 
+ foreach file: xml_files
+   i18n.merge_file(
+-    file,
+     input: file + '.in',
+     output: file,
+     po_dir: po_dir,
+diff '--exclude=.git' -urN a/panels/location/meson.build b/panels/location/meson.build
+--- a/panels/location/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/location/meson.build	2022-11-21 17:37:18.947750695 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/lock/meson.build b/panels/lock/meson.build
+--- a/panels/lock/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/lock/meson.build	2022-11-21 17:37:18.947750695 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/microphone/meson.build b/panels/microphone/meson.build
+--- a/panels/microphone/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/microphone/meson.build	2022-11-21 17:37:18.948750692 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/mouse/meson.build b/panels/mouse/meson.build
+--- a/panels/mouse/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/mouse/meson.build	2022-11-21 17:37:18.948750692 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/network/meson.build b/panels/network/meson.build
+--- a/panels/network/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/network/meson.build	2022-11-21 17:39:22.485343735 -0600
+@@ -25,7 +25,6 @@
+   )
+ 
+   i18n.merge_file(
+-    desktop,
+     type: 'desktop',
+     input: desktop_in,
+     output: desktop,
+diff '--exclude=.git' -urN a/panels/notifications/meson.build b/panels/notifications/meson.build
+--- a/panels/notifications/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/notifications/meson.build	2022-11-21 17:37:18.948750692 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/online-accounts/meson.build b/panels/online-accounts/meson.build
+--- a/panels/online-accounts/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/online-accounts/meson.build	2022-11-21 17:37:18.949750688 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/power/meson.build b/panels/power/meson.build
+--- a/panels/power/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/power/meson.build	2022-11-21 17:37:18.949750688 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/printers/meson.build b/panels/printers/meson.build
+--- a/panels/printers/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/printers/meson.build	2022-11-21 17:37:18.949750688 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/region/meson.build b/panels/region/meson.build
+--- a/panels/region/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/region/meson.build	2022-11-21 17:37:18.949750688 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/removable-media/meson.build b/panels/removable-media/meson.build
+--- a/panels/removable-media/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/removable-media/meson.build	2022-11-21 17:37:18.950750685 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/search/meson.build b/panels/search/meson.build
+--- a/panels/search/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/search/meson.build	2022-11-21 17:37:18.950750685 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/sharing/meson.build b/panels/sharing/meson.build
+--- a/panels/sharing/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/sharing/meson.build	2022-11-21 17:39:22.486343732 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+@@ -29,7 +28,6 @@
+ )
+ 
+ i18n.merge_file(
+-  polkit,
+   input: polkit_in,
+   output: polkit,
+   po_dir: po_dir,
+diff '--exclude=.git' -urN a/panels/sound/meson.build b/panels/sound/meson.build
+--- a/panels/sound/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/sound/meson.build	2022-11-21 17:37:18.951750682 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/thunderbolt/meson.build b/panels/thunderbolt/meson.build
+--- a/panels/thunderbolt/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/thunderbolt/meson.build	2022-11-21 17:37:18.951750682 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/universal-access/meson.build b/panels/universal-access/meson.build
+--- a/panels/universal-access/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/universal-access/meson.build	2022-11-21 17:37:18.951750682 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/usage/meson.build b/panels/usage/meson.build
+--- a/panels/usage/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/usage/meson.build	2022-11-21 17:37:18.952750679 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+diff '--exclude=.git' -urN a/panels/user-accounts/meson.build b/panels/user-accounts/meson.build
+--- a/panels/user-accounts/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/user-accounts/meson.build	2022-11-21 17:39:22.486343732 -0600
+@@ -8,7 +8,6 @@
+ )
+ 
+ i18n.merge_file(
+-  desktop,
+   type: 'desktop',
+   input: desktop_in,
+   output: desktop,
+@@ -85,7 +84,6 @@
+ polkit = 'org.gnome.controlcenter.@0@.policy'.format(cappletname)
+ 
+ i18n.merge_file(
+-  polkit,
+   input: polkit + '.in',
+   output: polkit,
+   po_dir: po_dir,
+diff '--exclude=.git' -urN a/panels/wacom/meson.build b/panels/wacom/meson.build
+--- a/panels/wacom/meson.build	2021-05-02 16:54:52.000000000 -0500
++++ b/panels/wacom/meson.build	2022-11-21 17:37:18.952750679 -0600
+@@ -30,7 +30,6 @@
+ )
+ 
+ i18n.merge_file(
+-       desktop,
+          type : 'desktop',
+         input : desktop_in,
+        output : desktop,
+diff '--exclude=.git' -urN a/shell/appdata/meson.build b/shell/appdata/meson.build
+--- a/shell/appdata/meson.build	2021-05-02 16:54:53.000000000 -0500
++++ b/shell/appdata/meson.build	2022-11-21 17:39:22.486343732 -0600
+@@ -1,7 +1,6 @@
+ appdata = 'gnome-control-center.appdata.xml'
+ 
+ i18n.merge_file(
+-  appdata,
+   input: appdata + '.in',
+   output: appdata,
+   po_dir: po_dir,
+diff '--exclude=.git' -urN a/shell/meson.build b/shell/meson.build
+--- a/shell/meson.build	2021-05-02 16:54:53.000000000 -0500
++++ b/shell/meson.build	2022-11-21 17:37:18.953750675 -0600
+@@ -23,7 +23,6 @@
+ )
+ 
+ i18n.merge_file(
+-       desktop,
+          type : 'desktop',
+         input : desktop_in,
+        output : desktop,
+diff '--exclude=.git' -urN a/tests/interactive-panels/applications/meson.build b/tests/interactive-panels/applications/meson.build
+--- a/tests/interactive-panels/applications/meson.build	2021-05-02 16:54:53.000000000 -0500
++++ b/tests/interactive-panels/applications/meson.build	2022-11-21 17:39:22.486343732 -0600
+@@ -12,7 +12,6 @@
+ 
+ foreach desktop_file : desktop_files
+   i18n.merge_file(
+-              desktop,
+                 type : 'desktop',
+                input : 'gtp-@0@.desktop.in'.format(desktop_file),
+               output : 'gnome-@0@-panel.desktop'.format(desktop_file),

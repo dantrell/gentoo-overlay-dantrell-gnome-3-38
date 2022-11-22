@@ -1,6 +1,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
+EAPI="8"
 
 inherit gnome.org gnome2-utils meson xdg
 
@@ -40,6 +40,12 @@ BDEPEND="
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 "
+
+PATCHES=(
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831552
+	"${FILESDIR}"/${PN}-41.0-meson-0.61-build.patch
+)
 
 src_configure() {
 	local emesonargs=(

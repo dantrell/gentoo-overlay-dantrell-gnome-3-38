@@ -1,6 +1,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
+EAPI="8"
 
 inherit gnome.org gnome2-utils meson xdg
 
@@ -11,8 +11,6 @@ LICENSE="GPL-2+ FDL-1.1+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE=""
-
 DEPEND="
 	dev-libs/glib:2
 	>=x11-libs/gtk+-3.16:3
@@ -21,12 +19,19 @@ DEPEND="
 RDEPEND="${DEPEND}
 	>=gnome-base/librsvg-2.32:2
 "
-DEPEND="
+BDEPEND="
+	${PYTHON_DEPS}
 	dev-libs/appstream-glib
 	dev-util/itstool
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 "
+
+PATCHES=(
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831474
+	"${FILESDIR}"/${PN}-3.38.3-fix-build-with-meson-0.61.patch
+)
 
 pkg_postinst() {
 	xdg_pkg_postinst

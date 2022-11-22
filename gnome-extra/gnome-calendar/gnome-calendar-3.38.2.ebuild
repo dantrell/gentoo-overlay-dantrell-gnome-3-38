@@ -1,6 +1,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
+EAPI="8"
 
 inherit gnome.org gnome2-utils meson virtualx xdg
 
@@ -10,10 +10,6 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Calendar"
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="*"
-
-IUSE=""
-
-RESTRICT="!test? ( test )"
 
 # >=libical-1.0.1 for https://bugzilla.gnome.org/show_bug.cgi?id=751244
 DEPEND="
@@ -38,6 +34,12 @@ BDEPEND="
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 "
+
+PATCHES=(
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831926
+	"${FILESDIR}"/${PN}-40.2-meson-0.61.patch
+)
 
 src_test() {
 	virtx meson_src_test

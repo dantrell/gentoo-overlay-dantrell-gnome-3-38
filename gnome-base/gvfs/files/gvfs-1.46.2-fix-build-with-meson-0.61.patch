@@ -1,0 +1,11 @@
+diff '--exclude=.git' -urN a/daemon/meson.build b/daemon/meson.build
+--- a/daemon/meson.build	2021-01-08 06:48:39.000000000 -0600
++++ b/daemon/meson.build	2022-11-21 16:02:16.925093055 -0600
+@@ -366,7 +366,6 @@
+   )
+ 
+   i18n.merge_file(
+-    policy,
+     input: policy_in,
+     output: '@BASENAME@',
+     po_dir: po_dir,

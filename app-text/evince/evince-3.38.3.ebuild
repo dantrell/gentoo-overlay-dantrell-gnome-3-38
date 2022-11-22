@@ -64,6 +64,12 @@ DEPEND="${COMMON_DEPEND}
 	app-text/yelp-tools
 "
 
+PATCHES=(
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831853
+	"${FILESDIR}"/${PN}-41.3-fix-build-with-meson-0.61.1.patch
+)
+
 src_configure() {
 	local emesonargs=(
 		-Dplatform="gnome"

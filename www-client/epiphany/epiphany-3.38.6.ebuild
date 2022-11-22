@@ -1,6 +1,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
+EAPI="8"
 
 inherit gnome.org gnome2-utils meson xdg virtualx
 
@@ -54,6 +54,10 @@ PATCHES=(
 	# From GNOME:
 	# 	https://gitlab.gnome.org/GNOME/epiphany/commit/afd155430075cee5380334a9c263cc28426fc79c
 	"${FILESDIR}"/${PN}-3.38.6-build-allow-libportal-support-to-be-disabled.patch
+
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831923
+	"${FILESDIR}"/${PN}-41.3-fix-build-with-meson-0.61.1.patch
 )
 
 src_configure() {
