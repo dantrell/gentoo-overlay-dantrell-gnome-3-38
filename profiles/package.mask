@@ -6,6 +6,7 @@ app-crypt/gcr::gentoo
 app-crypt/seahorse::gentoo
 app-editors/gedit-plugins::gentoo
 app-editors/gedit::gentoo
+app-editors/gnome-latex::gentoo
 app-misc/bijiben::gentoo
 app-misc/gnote::gentoo
 app-text/evince::gentoo
