@@ -14,14 +14,14 @@ KEYWORDS="*"
 IUSE="+introspection +latexmk rubber"
 
 DEPEND="
-	>=app-text/gspell-1.8:0=
 	>=dev-libs/glib-2.56:2
+	>=x11-libs/gtk+-3.22:3
+	>=app-text/gspell-1.8:0=
+	>=gui-libs/amtk-5.2:5=
+	>=x11-libs/gtksourceview-4.0:4
+	>=gui-libs/tepl-5.0:5=
 	>=dev-libs/libgee-0.10:0.8=
 	gnome-base/gsettings-desktop-schemas
-	>=x11-libs/gtk+-3.22:3
-	>=x11-libs/gtksourceview-4.0:4
-	>=gui-libs/amtk-5.2:5
-	>=gui-libs/tepl-5.0:5
 	x11-libs/gdk-pixbuf:2
 	x11-libs/pango
 	introspection? ( >=dev-libs/gobject-introspection-1.30.0:= )
