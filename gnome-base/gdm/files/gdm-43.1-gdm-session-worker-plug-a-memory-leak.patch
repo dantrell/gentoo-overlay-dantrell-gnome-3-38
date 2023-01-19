@@ -1,0 +1,26 @@
+From 8edb5c4aef9bfa3a1d12a496c289644d330d3407 Mon Sep 17 00:00:00 2001
+From: Alessandro Bono <alessandro.bono369@gmail.com>
+Date: Tue, 13 Sep 2022 16:11:04 +0200
+Subject: gdm-session-worker: Plug a memory leak
+
+If we can't pass the replies to the caller, free them.
+---
+ daemon/gdm-session-worker.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/daemon/gdm-session-worker.c b/daemon/gdm-session-worker.c
+index a264ea1dc..7e6ad76ca 100644
+--- a/daemon/gdm-session-worker.c
++++ b/daemon/gdm-session-worker.c
+@@ -858,7 +858,7 @@ gdm_session_worker_pam_new_messages_handler (int                        number_o
+         return_value = PAM_SUCCESS;
+ 
+  out:
+-        if (return_value != PAM_SUCCESS) {
++        if (return_value != PAM_SUCCESS || responses == NULL) {
+                 for (i = 0; i < number_of_messages; i++) {
+                         if (replies[i].resp != NULL) {
+                                 memset (replies[i].resp, 0, strlen (replies[i].resp));
+-- 
+cgit v1.2.3
+

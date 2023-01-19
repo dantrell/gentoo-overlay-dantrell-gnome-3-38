@@ -1,0 +1,86 @@
+From de7df6f24aee51fe89bab096f784e22578a83cbb Mon Sep 17 00:00:00 2001
+From: Ray Strode <rstrode@redhat.com>
+Date: Thu, 25 Feb 2021 12:41:36 -0500
+Subject: daemon,common,libgdm: Drop use of sd_seat_can_multi_session
+
+It's deprecated now, and always returns TRUE.
+---
+ common/gdm-common.c                | 18 ------------------
+ daemon/gdm-local-display-factory.c |  2 +-
+ libgdm/gdm-user-switching.c        | 18 ------------------
+ 3 files changed, 1 insertion(+), 37 deletions(-)
+
+diff --git a/common/gdm-common.c b/common/gdm-common.c
+index 2e9114f20..bf8364a89 100644
+--- a/common/gdm-common.c
++++ b/common/gdm-common.c
+@@ -512,24 +512,6 @@ goto_login_session (GDBusConnection  *connection,
+                 return FALSE;
+         }
+ 
+-        res = sd_seat_can_multi_session (seat_id);
+-        if (res < 0) {
+-                free (seat_id);
+-
+-                g_debug ("failed to determine whether seat can do multi session: %s", strerror (-res));
+-                g_set_error (error, GDM_COMMON_ERROR, 0, _("The system is unable to determine whether to switch to an existing login screen or start up a new login screen."));
+-
+-                return FALSE;
+-        }
+-
+-        if (res == 0) {
+-                free (seat_id);
+-
+-                g_set_error (error, GDM_COMMON_ERROR, 0, _("The system is unable to start up a new login screen."));
+-
+-                return FALSE;
+-        }
+-
+         res = gdm_get_login_window_session_id (seat_id, &session_id);
+         if (res && session_id != NULL) {
+                 res = gdm_activate_session_by_id (connection, seat_id, session_id);
+diff --git a/daemon/gdm-local-display-factory.c b/daemon/gdm-local-display-factory.c
+index e7cafeb10..d0be782c0 100644
+--- a/daemon/gdm-local-display-factory.c
++++ b/daemon/gdm-local-display-factory.c
+@@ -473,7 +473,7 @@ create_display (GdmLocalDisplayFactory *factory,
+                  session_type? : "X11", seat_id);
+         store = gdm_display_factory_get_display_store (GDM_DISPLAY_FACTORY (factory));
+ 
+-        if (sd_seat_can_multi_session (seat_id))
++        if (g_strcmp0 (seat_id, "seat0") == 0)
+                 display = gdm_display_store_find (store, lookup_prepared_display_by_seat_id, (gpointer) seat_id);
+         else
+                 display = gdm_display_store_find (store, lookup_by_seat_id, (gpointer) seat_id);
+diff --git a/libgdm/gdm-user-switching.c b/libgdm/gdm-user-switching.c
+index 20235fd82..b39d21db0 100644
+--- a/libgdm/gdm-user-switching.c
++++ b/libgdm/gdm-user-switching.c
+@@ -218,24 +218,6 @@ goto_login_session (GDBusConnection  *connection,
+                 return FALSE;
+         }
+ 
+-        res = sd_seat_can_multi_session (seat_id);
+-        if (res < 0) {
+-                free (seat_id);
+-
+-                g_debug ("failed to determine whether seat can do multi session: %s", strerror (-res));
+-                g_set_error (error, GDM_CLIENT_ERROR, 0, _("The system is unable to determine whether to switch to an existing login screen or start up a new login screen."));
+-
+-                return FALSE;
+-        }
+-
+-        if (res == 0) {
+-                free (seat_id);
+-
+-                g_set_error (error, GDM_CLIENT_ERROR, 0, _("The system is unable to start up a new login screen."));
+-
+-                return FALSE;
+-        }
+-
+         res = get_login_window_session_id (seat_id, &session_id);
+         if (res && session_id != NULL) {
+                 res = activate_session_id (connection, cancellable, seat_id, session_id, error);
+-- 
+cgit v1.2.3
+

@@ -12,7 +12,7 @@ LICENSE="GPL-2+ LGPL-2+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="+bluetooth deprecated-background elogind gtk-doc +ibus +networkmanager systemd telepathy tools vanilla-async vanilla-gc vanilla-motd vanilla-screen wayland"
+IUSE="+bluetooth deprecated-background elogind gtk-doc +ibus +networkmanager screencast systemd telepathy tools vanilla-async vanilla-gc vanilla-motd vanilla-screen wayland"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}
 	?? ( elogind systemd )
 "
@@ -34,6 +34,13 @@ COMMON_DEPEND="
 	>=app-i18n/ibus-1.5.2
 	bluetooth? ( >=net-wireless/gnome-bluetooth-3.9[introspection] )
 	>=media-libs/gstreamer-0.11.92:1.0
+	screencast? (
+		>=media-video/pipewire-0.3.0:=
+		media-libs/gstreamer[introspection]
+		media-libs/gst-plugins-base[introspection]
+		media-libs/gst-plugins-good
+		media-plugins/gst-plugins-vpx
+	)
 	networkmanager? (
 		>=net-misc/networkmanager-1.10.4:=[introspection]
 		>=app-crypt/libsecret-0.18

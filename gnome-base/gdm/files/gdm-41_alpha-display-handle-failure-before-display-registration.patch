@@ -1,0 +1,47 @@
+From 2e7636d431fff0b3a808184c086a60e2c136c1a1 Mon Sep 17 00:00:00 2001
+From: Ray Strode <rstrode@redhat.com>
+Date: Tue, 1 Sep 2020 13:49:27 -0400
+Subject: display: Handle failure before display registration
+
+Normally, e.g., gdm-wayland-session would register its display
+before starting the session.  This display registration is how
+the display moves to the "managed" state.  We currently detect
+session failure in gdm_display_unmanage. If gdm-wayland-session
+is killed before it registers the display, gdm_display_unmanage
+won't run, and failure won't be detected.
+
+This commit make gdm_display_unmanage get called, even if the
+display isn't yet fully managed.
+---
+ daemon/gdm-display.c | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
+
+diff --git a/daemon/gdm-display.c b/daemon/gdm-display.c
+index 7c954ad24..3a260923a 100644
+--- a/daemon/gdm-display.c
++++ b/daemon/gdm-display.c
+@@ -675,8 +675,6 @@ gdm_display_unmanage (GdmDisplay *self)
+ 
+         priv = gdm_display_get_instance_private (self);
+ 
+-        g_debug ("GdmDisplay: unmanage display");
+-
+         gdm_display_disconnect (self);
+ 
+         if (priv->user_access_file != NULL) {
+@@ -1473,9 +1471,9 @@ static void
+ self_destruct (GdmDisplay *self)
+ {
+         g_object_ref (self);
+-        if (gdm_display_get_status (self) == GDM_DISPLAY_MANAGED) {
+-                gdm_display_unmanage (self);
+-        }
++
++        g_debug ("GdmDisplay: initiating display self-destruct");
++        gdm_display_unmanage (self);
+ 
+         if (gdm_display_get_status (self) != GDM_DISPLAY_FINISHED) {
+                 queue_finish (self);
+-- 
+cgit v1.2.3
+

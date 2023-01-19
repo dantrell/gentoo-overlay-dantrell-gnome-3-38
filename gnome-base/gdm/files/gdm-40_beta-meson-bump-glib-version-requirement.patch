@@ -1,0 +1,26 @@
+From eae6dc60ec79be63b85f6eeae4238c99acae3956 Mon Sep 17 00:00:00 2001
+From: Ray Strode <rstrode@redhat.com>
+Date: Mon, 16 Nov 2020 13:18:58 -0500
+Subject: meson: Bump glib version requirement
+
+It's been out of date for a while.
+---
+ meson.build | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meson.build b/meson.build
+index 7fb3f030e..19f8fa9c1 100644
+--- a/meson.build
++++ b/meson.build
+@@ -40,7 +40,7 @@ config_h_dir = include_directories('.')
+ # Dependencies
+ udev_dep = dependency('udev')
+ 
+-glib_min_version = '2.44.0'
++glib_min_version = '2.56.0'
+ 
+ glib_dep = dependency('glib-2.0', version: '>=' + glib_min_version)
+ gobject_dep = dependency('gobject-2.0', version: '>=' + glib_min_version)
+-- 
+cgit v1.2.3
+

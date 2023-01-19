@@ -1,0 +1,30 @@
+From 304d25de77d89740f12b31f251ac771a54f8dc55 Mon Sep 17 00:00:00 2001
+From: Chingkai Chu <3013329+chuchingkai@users.noreply.github.com>
+Date: Thu, 12 Aug 2021 10:34:01 +0800
+Subject: session-worker: Set session_vt=0 out of pam uninitialization
+
+MR GNOME/gdm!123 moved jump_to_vt and session_vt reseting to a
+separate function, so we don't need to reset session_vt in pam
+uninitialization.
+
+https://gitlab.gnome.org/GNOME/gdm/-/issues/719
+---
+ daemon/gdm-session-worker.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/daemon/gdm-session-worker.c b/daemon/gdm-session-worker.c
+index 7d7d2496e..3ad94e2ab 100644
+--- a/daemon/gdm-session-worker.c
++++ b/daemon/gdm-session-worker.c
+@@ -1103,8 +1103,6 @@ gdm_session_worker_uninitialize_pam (GdmSessionWorker *worker,
+ 
+         gdm_session_worker_stop_auditor (worker);
+ 
+-        worker->priv->session_vt = 0;
+-
+         g_debug ("GdmSessionWorker: state NONE");
+         gdm_session_worker_set_state (worker, GDM_SESSION_WORKER_STATE_NONE);
+ }
+-- 
+cgit v1.2.3
+

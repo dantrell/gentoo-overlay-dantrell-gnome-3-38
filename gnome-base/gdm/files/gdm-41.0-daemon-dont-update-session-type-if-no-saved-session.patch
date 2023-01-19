@@ -1,0 +1,55 @@
+From d17fdb8521576f90191c077806b7f470f6a37be0 Mon Sep 17 00:00:00 2001
+From: Ray Strode <rstrode@redhat.com>
+Date: Mon, 6 Sep 2021 08:40:46 -0400
+Subject: daemon: Don't update session type if no saved session
+
+At the moment we always set the session type when the session name
+is read. But users don't always have a session type specified.
+
+If they don't, then don't set the session type.
+
+https://gitlab.gnome.org/GNOME/gdm/-/merge_requests/153
+---
+ daemon/gdm-session.c | 23 +++++++++++++----------
+ 1 file changed, 13 insertions(+), 10 deletions(-)
+
+diff --git a/daemon/gdm-session.c b/daemon/gdm-session.c
+index 11762bfb5..c1e2be008 100644
+--- a/daemon/gdm-session.c
++++ b/daemon/gdm-session.c
+@@ -1022,19 +1022,22 @@ worker_on_saved_session_name_read (GdmDBusWorker          *worker,
+                 g_debug ("GdmSession: not using invalid .dmrc session: %s", session_name);
+                 g_free (self->saved_session);
+                 self->saved_session = NULL;
+-        } else if (strcmp (session_name,
+-                   get_default_session_name (self)) != 0) {
+-                g_free (self->saved_session);
+-                self->saved_session = g_strdup (session_name);
+-
+-                if (self->greeter_interface != NULL) {
+-                        gdm_dbus_greeter_emit_default_session_name_changed (self->greeter_interface,
+-                                                                            session_name);
++                update_session_type (self);
++        } else {
++                if (strcmp (session_name,
++                            get_default_session_name (self)) != 0) {
++                        g_free (self->saved_session);
++                        self->saved_session = g_strdup (session_name);
++
++                        if (self->greeter_interface != NULL) {
++                                gdm_dbus_greeter_emit_default_session_name_changed (self->greeter_interface,
++                                                                                    session_name);
++                        }
+                 }
++                if (self->saved_session_type != NULL)
++                        set_session_type (self, self->saved_session_type);
+         }
+ 
+-        update_session_type (self);
+-
+ }
+ 
+ static void
+-- 
+cgit v1.2.3
+

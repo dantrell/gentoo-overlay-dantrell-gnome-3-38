@@ -1,0 +1,127 @@
+From c4f81c020aa08458cbad8b21509913a48c91926a Mon Sep 17 00:00:00 2001
+From: Ray Strode <rstrode@redhat.com>
+Date: Tue, 15 Feb 2022 14:33:22 -0500
+Subject: common: Add API to reload settings from disk
+
+Ideally we would reread /run/gdm/custom.conf after we've decided
+graphics setup is complete.  This is because the file may not
+get written out by udev until after GDM is already started and waiting.
+
+As a first step to get there, this commit adds an API for rereading
+the file, and changes the SIGHUP handler to use it (instead of
+the complete teardown and reinitialization it was doing before).
+---
+ common/gdm-settings-direct.c |  9 +++++++++
+ common/gdm-settings-direct.h |  2 ++
+ common/gdm-settings.c        | 14 ++++++++++++--
+ common/gdm-settings.h        |  1 +
+ daemon/main.c                | 12 ++----------
+ 5 files changed, 26 insertions(+), 12 deletions(-)
+
+diff --git a/common/gdm-settings-direct.c b/common/gdm-settings-direct.c
+index ddb31908e..5fbe0326d 100644
+--- a/common/gdm-settings-direct.c
++++ b/common/gdm-settings-direct.c
+@@ -251,6 +251,15 @@ gdm_settings_direct_init (GdmSettings *settings,
+         return TRUE;
+ }
+ 
++void
++gdm_settings_direct_reload (void)
++{
++    if (!settings_object)
++            return;
++
++    gdm_settings_reload (settings_object);
++}
++
+ void
+ gdm_settings_direct_shutdown (void)
+ {
+diff --git a/common/gdm-settings-direct.h b/common/gdm-settings-direct.h
+index 156489cd8..6754955f1 100644
+--- a/common/gdm-settings-direct.h
++++ b/common/gdm-settings-direct.h
+@@ -30,6 +30,8 @@ G_BEGIN_DECLS
+ gboolean              gdm_settings_direct_init                       (GdmSettings       *settings,
+                                                                       const char        *schemas_file,
+                                                                       const char        *root);
++
++void                  gdm_settings_direct_reload                     (void);
+ void                  gdm_settings_direct_shutdown                   (void);
+ 
+ gboolean              gdm_settings_direct_get                        (const char        *key,
+diff --git a/common/gdm-settings.c b/common/gdm-settings.c
+index e6f46ec35..96c2f8d3e 100644
+--- a/common/gdm-settings.c
++++ b/common/gdm-settings.c
+@@ -184,12 +184,16 @@ backend_value_changed (GdmSettingsBackend *backend,
+         g_signal_emit (settings, signals [VALUE_CHANGED], 0, key, old_value, new_value);
+ }
+ 
+-static void
+-gdm_settings_init (GdmSettings *settings)
++void
++gdm_settings_reload (GdmSettings *settings)
+ {
+         GList *l;
+         GdmSettingsBackend *backend;
+ 
++        g_list_foreach (settings->backends, (GFunc) g_object_unref, NULL);
++        g_list_free (settings->backends);
++        settings->backends = NULL;
++
+         backend = gdm_settings_desktop_backend_new (GDM_CUSTOM_CONF);
+         if (backend)
+                 settings->backends = g_list_prepend (NULL, backend);
+@@ -208,6 +212,12 @@ gdm_settings_init (GdmSettings *settings)
+         }
+ }
+ 
++static void
++gdm_settings_init (GdmSettings *settings)
++{
++        gdm_settings_reload (settings);
++}
++
+ static void
+ gdm_settings_finalize (GObject *object)
+ {
+diff --git a/common/gdm-settings.h b/common/gdm-settings.h
+index 786868a94..07b647856 100644
+--- a/common/gdm-settings.h
++++ b/common/gdm-settings.h
+@@ -40,6 +40,7 @@ typedef enum
+ GQuark              gdm_settings_error_quark                    (void);
+ 
+ GdmSettings *       gdm_settings_new                            (void);
++void                gdm_settings_reload                         (GdmSettings *settings);
+ 
+ /* exported */
+ 
+diff --git a/daemon/main.c b/daemon/main.c
+index 1b893fe0f..344d1b74d 100644
+--- a/daemon/main.c
++++ b/daemon/main.c
+@@ -267,16 +267,8 @@ static gboolean
+ on_sighup_cb (gpointer user_data)
+ {
+         g_debug ("Got HUP signal");
+-        /* Reread config stuff like system config files, VPN service
+-         * files, etc
+-         */
+-        g_object_unref (settings);
+-        settings = gdm_settings_new ();
+-        if (settings != NULL) {
+-                if (! gdm_settings_direct_init (settings, DATADIR "/gdm/gdm.schemas", "/")) {
+-                        g_warning ("Unable to initialize settings");
+-                }
+-        }
++
++        gdm_settings_reload (settings);
+ 
+         return TRUE;
+ }
+-- 
+cgit v1.2.3
+

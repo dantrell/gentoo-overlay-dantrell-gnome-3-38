@@ -1,0 +1,51 @@
+From b1367915672ea51c99b21ac764a8452d0529a5ea Mon Sep 17 00:00:00 2001
+From: Ray Strode <rstrode@redhat.com>
+Date: Wed, 28 Jul 2021 12:13:57 -0400
+Subject: session: Fix gdm_session_is_wayland_session
+
+gdm_session_is_wayland_session has two problems:
+
+1. it's leaking the full patch returned
+2. It's not honoring the supported-session-types
+preference ordered list when determining which session to pick.
+
+This commit fixes both issues.
+---
+ daemon/gdm-session.c | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
+
+diff --git a/daemon/gdm-session.c b/daemon/gdm-session.c
+index e3e6410d2..11762bfb5 100644
+--- a/daemon/gdm-session.c
++++ b/daemon/gdm-session.c
+@@ -3204,21 +3204,19 @@ gdm_session_is_wayland_session (GdmSession *self)
+ {
+         GKeyFile   *key_file;
+         gboolean    is_wayland_session = FALSE;
+-        char       *filename;
+-        char       *full_path = NULL;
++        char            *filename;
++        g_autofree char *full_path = NULL;
+ 
+         g_return_val_if_fail (self != NULL, FALSE);
+         g_return_val_if_fail (GDM_IS_SESSION (self), FALSE);
+ 
+         filename = get_session_filename (self);
+ 
+-        if (supports_session_type (self, "wayland")) {
+-        	key_file = load_key_file_for_file (self, filename, "wayland", &full_path);
++        key_file = load_key_file_for_file (self, filename, NULL, &full_path);
+ 
+-		if (key_file == NULL) {
+-			goto out;
+-		}
+-	}
++        if (key_file == NULL) {
++                goto out;
++        }
+ 
+         if (full_path != NULL && strstr (full_path, "/wayland-sessions/") != NULL) {
+                 is_wayland_session = TRUE;
+-- 
+cgit v1.2.3
+

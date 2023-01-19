@@ -1,0 +1,32 @@
+From 36c040fd8daccafc3105407d7fa4ef7bc3d2d73c Mon Sep 17 00:00:00 2001
+From: Benjamin Berg <bberg@redhat.com>
+Date: Mon, 15 Mar 2021 12:38:36 +0100
+Subject: local-display-factory: Fix wait for graphical
+
+In commit a37e5a950fbd ("local-display-factory: Wait for seats to become
+graphical") we introduced logic to wait for up to 10s for the seat to
+become graphical before trying to use it. Unfortunately, the logic was
+slightly wrong, resulting us to immediately do the fallback rather than
+waiting.
+---
+ daemon/gdm-local-display-factory.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/daemon/gdm-local-display-factory.c b/daemon/gdm-local-display-factory.c
+index bc55f0c47..8a4ef06cd 100644
+--- a/daemon/gdm-local-display-factory.c
++++ b/daemon/gdm-local-display-factory.c
+@@ -544,8 +544,9 @@ ensure_display_for_seat (GdmLocalDisplayFactory *factory,
+                                 } else {
+                                         /* It is not yet time to force X11 fallback. */
+                                         g_debug ("GdmLocalDisplayFactory: seat0 display requested when there is no graphics support before graphics check timeout.");
+-                                        return;
+                                 }
++
++                                return;
+                         }
+ 
+                         g_debug ("GdmLocalDisplayFactory: Assuming we can use seat0 for X11 even though system says it doesn't support graphics!");
+-- 
+cgit v1.2.3
+

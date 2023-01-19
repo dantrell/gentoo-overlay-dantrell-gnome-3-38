@@ -1,0 +1,32 @@
+From 724381820fe83be7f6f54299278566ac6dcf915b Mon Sep 17 00:00:00 2001
+From: Ray Strode <rstrode@redhat.com>
+Date: Thu, 12 Nov 2020 16:40:55 -0500
+Subject: libgdm: Fix typo where user data is grabbed from wrong place
+
+Since commit 2615fb4ffe05b2640c15f4a9706796fe3b1376a9 user verifier
+extensions are stored as user data on the user verifier object.
+
+Unfortunately that commit, mixed up where the user verifier object
+was in place.
+
+This commit fixes that.
+---
+ libgdm/gdm-client.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/libgdm/gdm-client.c b/libgdm/gdm-client.c
+index 5ac739443..686b383d7 100644
+--- a/libgdm/gdm-client.c
++++ b/libgdm/gdm-client.c
+@@ -176,7 +176,7 @@ maybe_complete_user_verifier_proxy_operation (GdmClient          *client,
+         GHashTableIter iter;
+         gpointer key, value;
+ 
+-        user_verifier_extensions = g_object_get_data (G_OBJECT (client->user_verifier), "gdm-client-user-verifier-extensions");
++        user_verifier_extensions = g_object_get_data (G_OBJECT (data->user_verifier), "gdm-client-user-verifier-extensions");
+         if (user_verifier_extensions != NULL) {
+                 g_hash_table_iter_init (&iter, user_verifier_extensions);
+                 while (g_hash_table_iter_next (&iter, &key, &value)) {
+-- 
+cgit v1.2.3
+

@@ -1,0 +1,40 @@
+From 887e462fbc4840bf9b97f101f15c6015b461f11f Mon Sep 17 00:00:00 2001
+From: Ray Strode <rstrode@redhat.com>
+Date: Wed, 28 Jul 2021 11:39:57 -0400
+Subject: session: Fix operators when computing session dirs
+
+The loop that computes the list of session directories to check
+used the wrong operator, so it was computing the list incorrectly.
+
+This commit fixes that.
+---
+ daemon/gdm-session.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/daemon/gdm-session.c b/daemon/gdm-session.c
+index dcdbb40a6..e3e6410d2 100644
+--- a/daemon/gdm-session.c
++++ b/daemon/gdm-session.c
+@@ -378,7 +378,7 @@ get_system_session_dirs (GdmSession *self,
+         for (j = 0; self->supported_session_types[j] != NULL; j++) {
+                 const char *supported_type = self->supported_session_types[j];
+ 
+-                if (g_str_equal (supported_type, "x11") ||
++                if (g_str_equal (supported_type, "x11") &&
+                     (type == NULL || g_str_equal (type, supported_type))) {
+                         for (i = 0; system_data_dirs[i]; i++) {
+                                 gchar *dir = g_build_filename (system_data_dirs[i], "xsessions", NULL);
+@@ -388,8 +388,9 @@ get_system_session_dirs (GdmSession *self,
+                         g_array_append_vals (search_array, x_search_dirs, G_N_ELEMENTS (x_search_dirs));
+                 }
+ 
++
+ #ifdef ENABLE_WAYLAND_SUPPORT
+-                if (g_str_equal (supported_type, "wayland") ||
++                if (g_str_equal (supported_type, "wayland") &&
+                     (type == NULL || g_str_equal (type, supported_type))) {
+                         for (i = 0; system_data_dirs[i]; i++) {
+                                 gchar *dir = g_build_filename (system_data_dirs[i], "wayland-sessions", NULL);
+-- 
+cgit v1.2.3
+

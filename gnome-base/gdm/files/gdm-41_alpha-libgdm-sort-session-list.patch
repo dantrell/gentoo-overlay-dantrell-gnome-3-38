@@ -1,0 +1,52 @@
+From ae81d9bdd1e378598cf805c84af4313f8e10b3ed Mon Sep 17 00:00:00 2001
+From: Ray Strode <rstrode@redhat.com>
+Date: Tue, 20 Jul 2021 13:36:45 -0400
+Subject: libgdm: Sort session list
+
+Right now the session list comes out in hash table order.
+
+This commit changes the code to sort by description.
+---
+ libgdm/gdm-sessions.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/libgdm/gdm-sessions.c b/libgdm/gdm-sessions.c
+index 97ed5ef3d..f078e04b8 100644
+--- a/libgdm/gdm-sessions.c
++++ b/libgdm/gdm-sessions.c
+@@ -338,6 +338,23 @@ collect_sessions (void)
+                                      names_seen_before);
+ }
+ 
++static gint
++compare_session_ids (gconstpointer  a,
++                     gconstpointer  b)
++{
++        GdmSessionFile *session_a, *session_b;
++        session_a = (GdmSessionFile *) g_hash_table_lookup (gdm_available_sessions_map, a);
++        session_b = (GdmSessionFile *) g_hash_table_lookup (gdm_available_sessions_map, b);
++
++        if (session_a == NULL)
++                return -1;
++
++        if (session_b == NULL)
++                return 1;
++
++        return g_strcmp0 (session_a->translated_name, session_b->translated_name);
++}
++
+ /**
+  * gdm_get_session_ids:
+  *
+@@ -370,6 +387,8 @@ gdm_get_session_ids (void)
+         }
+         g_ptr_array_add (array, NULL);
+ 
++        g_ptr_array_sort (array, compare_session_ids);
++
+         return (char **) g_ptr_array_free (array, FALSE);
+ }
+ 
+-- 
+cgit v1.2.3
+

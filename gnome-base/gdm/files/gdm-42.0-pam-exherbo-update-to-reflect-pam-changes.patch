@@ -1,0 +1,145 @@
+From be8d893ab1ad78e7e72068145c5481f82462267e Mon Sep 17 00:00:00 2001
+From: Marc-Antoine Perennou <Marc-Antoine@Perennou.com>
+Date: Wed, 26 Jan 2022 15:57:18 +0100
+Subject: pam-exherbo: update to reflect pam changes
+
+Signed-off-by: Marc-Antoine Perennou <Marc-Antoine@Perennou.com>
+---
+ data/pam-exherbo/gdm-autologin.pam          |  8 +++-----
+ data/pam-exherbo/gdm-fingerprint.pam        | 18 ++++++++++++------
+ data/pam-exherbo/gdm-launch-environment.pam | 13 +++++++------
+ data/pam-exherbo/gdm-password.pam           | 12 +++++++-----
+ data/pam-exherbo/gdm-smartcard.pam          | 16 +++++++---------
+ 5 files changed, 36 insertions(+), 31 deletions(-)
+
+diff --git a/data/pam-exherbo/gdm-autologin.pam b/data/pam-exherbo/gdm-autologin.pam
+index 1324f36d8..283cd870a 100644
+--- a/data/pam-exherbo/gdm-autologin.pam
++++ b/data/pam-exherbo/gdm-autologin.pam
+@@ -1,9 +1,7 @@
+-# mirrors system-auth / system(-local)-login
+-# except for the authentication method, which is:
+-# always permit login
++#%PAM-1.0
+ 
+ auth        [success=ok default=1] pam_gdm.so
+--auth       optional    pam_gnome_keyring.so
++auth        optional    pam_gnome_keyring.so
+ auth        sufficient  pam_permit.so
+ 
+ account     include     system-local-login
+@@ -11,4 +9,4 @@ account     include     system-local-login
+ password    include     system-local-login
+ 
+ session     include     system-local-login
+--session    optional    pam_gnome_keyring.so auto_start
++session     optional    pam_gnome_keyring.so auto_start
+diff --git a/data/pam-exherbo/gdm-fingerprint.pam b/data/pam-exherbo/gdm-fingerprint.pam
+index 41639ece1..ab8f7bafc 100644
+--- a/data/pam-exherbo/gdm-fingerprint.pam
++++ b/data/pam-exherbo/gdm-fingerprint.pam
+@@ -1,10 +1,16 @@
+-account  include  system-login
++#%PAM-1.0
+ 
+-auth     substack fingerprint-auth
+-auth     optional pam_gnome_keyring.so
++auth        required    pam_shells.so
++auth        required    pam_nologin.so
++auth        required    pam_faillock.so preauth
++auth        required    pam_fprintd.so
++auth        required    pam_env.so
++auth        [success=ok default=1] pam_gdm.so
++auth        optional    pam_gnome_keyring.so
+ 
+-password required pam_deny.so
++account     include     system-local-login
+ 
+-session  substack system-login
+-session  optional pam_gnome_keyring.so auto_start
++password    include     system-local-login
+ 
++session     include     system-local-login
++session     optional    pam_gnome_keyring.so auto_start
+diff --git a/data/pam-exherbo/gdm-launch-environment.pam b/data/pam-exherbo/gdm-launch-environment.pam
+index 51a8e0032..5df4c1ab0 100644
+--- a/data/pam-exherbo/gdm-launch-environment.pam
++++ b/data/pam-exherbo/gdm-launch-environment.pam
+@@ -1,15 +1,16 @@
+-account     required    pam_nologin.so
+-account     required    pam_succeed_if.so audit quiet_success user = gdm
+-account     required    pam_permit.so
++#%PAM-1.0
+ 
+-auth        required    pam_env.so
+ auth        required    pam_succeed_if.so audit quiet_success user = gdm
+ auth        required    pam_permit.so
++auth        required    pam_env.so
++
++account     required    pam_succeed_if.so audit quiet_success user = gdm
++account     required    pam_permit.so
+ 
+ password    required    pam_deny.so
+ 
+--session    optional    pam_systemd.so
++session     optional    pam_loginuid.so
+ session     optional    pam_keyinit.so force revoke
+ session     required    pam_succeed_if.so audit quiet_success user = gdm
+ session     required    pam_permit.so
+-
++-session    optional    pam_systemd.so
+diff --git a/data/pam-exherbo/gdm-password.pam b/data/pam-exherbo/gdm-password.pam
+index d223f660d..d462030a2 100644
+--- a/data/pam-exherbo/gdm-password.pam
++++ b/data/pam-exherbo/gdm-password.pam
+@@ -1,10 +1,12 @@
+-account  include  system-login
++#%PAM-1.0
+ 
+-auth     substack system-login
++auth     include  system-local-login
+ auth     optional pam_gnome_keyring.so
+ 
+-password required pam_deny.so
++account  include  system-local-login
+ 
+-session  substack system-login
+-session  optional pam_gnome_keyring.so auto_start
++password include  system-local-login
++password optional pam_gnome_keyring.so use_authtok
+ 
++session  include  system-local-login
++session  optional pam_gnome_keyring.so auto_start
+diff --git a/data/pam-exherbo/gdm-smartcard.pam b/data/pam-exherbo/gdm-smartcard.pam
+index 0623c6ed5..da650b860 100644
+--- a/data/pam-exherbo/gdm-smartcard.pam
++++ b/data/pam-exherbo/gdm-smartcard.pam
+@@ -1,18 +1,16 @@
+-# mirrors system-auth / system(-local)-login
+-# except for the authentication method, which is:
+-# smartcard login
++#%PAM-1.0
+ 
+-auth        required    pam_env.so
+-auth        required    pam_tally.so file=/var/log/faillog onerr=succeed
+ auth        required    pam_shells.so
+ auth        required    pam_nologin.so
+-auth [success=done ignore=ignore default=die] pam_pkcs11.so wait_for_card card_only
+--auth       optional    pam_gnome_keyring.so
++auth        required    pam_faillock.so preauth
++auth        required    pam_pkcs11.so wait_for_card card_only
++auth        required    pam_env.so
++auth        [success=ok default=1] pam_gdm.so
++auth        optional    pam_gnome_keyring.so
+ 
+ account     include     system-local-login
+ 
+ password    include     system-local-login
+ 
+ session     include     system-local-login
+--session    optional    pam_gnome_keyring.so auto_start
+-
++session     optional    pam_gnome_keyring.so auto_start
+-- 
+cgit v1.2.3
+

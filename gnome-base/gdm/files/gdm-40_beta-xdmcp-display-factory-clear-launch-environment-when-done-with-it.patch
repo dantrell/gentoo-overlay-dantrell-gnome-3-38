@@ -1,0 +1,32 @@
+From 5b4844aeeb2430a5e9b20ef4148cecd13b418357 Mon Sep 17 00:00:00 2001
+From: Ray Strode <rstrode@redhat.com>
+Date: Tue, 15 Sep 2020 11:28:48 -0400
+Subject: xdmcp-display-factory: Clear launch environment when done with it
+
+The XDMCP disply factory examines the sessions of its displays'
+launch environments when the displays change status.
+
+Unfortunately it leaks a reference to the launch environment when
+doing that.
+
+This commit fixes the reference leak which leads to an fd leak.
+---
+ daemon/gdm-xdmcp-display-factory.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/daemon/gdm-xdmcp-display-factory.c b/daemon/gdm-xdmcp-display-factory.c
+index 220ee3af6..ce8f026e1 100644
+--- a/daemon/gdm-xdmcp-display-factory.c
++++ b/daemon/gdm-xdmcp-display-factory.c
+@@ -2118,6 +2118,8 @@ on_display_status_changed (GdmDisplay             *display,
+                 g_assert_not_reached ();
+                 break;
+         }
++
++        g_clear_object (&launch_environment);
+ }
+ 
+ static GdmDisplay *
+-- 
+cgit v1.2.3
+

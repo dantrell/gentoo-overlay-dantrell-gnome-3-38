@@ -1,0 +1,45 @@
+From cf4664891ede9648d096569900e8b95abd91a633 Mon Sep 17 00:00:00 2001
+From: Ray Strode <rstrode@redhat.com>
+Date: Thu, 7 Apr 2022 12:44:10 -0400
+Subject: session-settings: Explicitly cache remote users
+
+Right now a user's cache file won't get written out if they are logging
+in with entirely default settings.
+
+This means remote users have to type in their usernames manually until
+they change their session.
+
+This commit explicitly caches remote users.
+
+Closes: https://gitlab.gnome.org/GNOME/gdm/-/issues/743
+---
+ daemon/gdm-session-settings.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/daemon/gdm-session-settings.c b/daemon/gdm-session-settings.c
+index 5b64cb65b..ef5d72e7f 100644
+--- a/daemon/gdm-session-settings.c
++++ b/daemon/gdm-session-settings.c
+@@ -406,6 +406,19 @@ gdm_session_settings_save (GdmSessionSettings  *settings,
+         if (settings->priv->language_name != NULL) {
+                 act_user_set_language (user, settings->priv->language_name);
+         }
++
++        if (!act_user_is_local_account (user)) {
++                g_autoptr (GError) error = NULL;
++
++                act_user_manager_cache_user (settings->priv->user_manager, username, &error);
++
++                if (error != NULL) {
++                        g_debug ("GdmSessionSettings: Could not locally cache remote user: %s", error->message);
++                        g_object_unref (user);
++                        return FALSE;
++                }
++
++        }
+         g_object_unref (user);
+ 
+         return TRUE;
+-- 
+cgit v1.2.3
+

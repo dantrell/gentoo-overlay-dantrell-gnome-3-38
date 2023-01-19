@@ -1,0 +1,47 @@
+From 45daec660b6288748f4bec6410765829eed926c2 Mon Sep 17 00:00:00 2001
+From: Ray Strode <rstrode@redhat.com>
+Date: Tue, 15 Feb 2022 14:33:22 -0500
+Subject: common: Reload settings when graphics initialize
+
+If GDM starts faster than graphics initialize, then the
+udev rules that write out /run/gdm/custom.conf might get
+run too late for GDM to notice.
+
+This commit changes GDM to reread its config after graphicals
+initialization completes.
+
+https://gitlab.gnome.org/GNOME/gdm/-/issues/763
+---
+ daemon/gdm-local-display-factory.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/daemon/gdm-local-display-factory.c b/daemon/gdm-local-display-factory.c
+index 9150548f1..7de7b99cf 100644
+--- a/daemon/gdm-local-display-factory.c
++++ b/daemon/gdm-local-display-factory.c
+@@ -1051,10 +1051,12 @@ on_seat_properties_changed (GDBusConnection *connection,
+         if (ret < 0)
+                 return;
+ 
+-        if (ret != 0)
++        if (ret != 0) {
++                gdm_settings_direct_reload ();
+                 ensure_display_for_seat (GDM_LOCAL_DISPLAY_FACTORY (user_data), seat);
+-        else
++        } else {
+                 delete_display (GDM_LOCAL_DISPLAY_FACTORY (user_data), seat);
++        }
+ }
+ 
+ static gboolean
+@@ -1288,6 +1290,7 @@ on_uevent (GUdevClient *client,
+         g_signal_handler_disconnect (factory->gudev_client, factory->uevent_handler_id);
+         factory->uevent_handler_id = 0;
+ 
++        gdm_settings_direct_reload ();
+         ensure_display_for_seat (factory, "seat0");
+ }
+ #endif
+-- 
+cgit v1.2.3
+

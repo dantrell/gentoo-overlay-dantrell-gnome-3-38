@@ -1,0 +1,31 @@
+From a4de923d3a666e1c30b9e268dab750b7ec1c5d5d Mon Sep 17 00:00:00 2001
+From: Ray Strode <rstrode@redhat.com>
+Date: Fri, 18 Sep 2020 15:46:50 -0400
+Subject: manager: Clean up user session when finished with display
+
+The display object stores its associated user session with it
+as object data.  It never clears this session from its object
+data when its done with it however, leading to the session leaking.
+
+This commit plugs the leak and an associated file descriptor leak
+at logout.
+---
+ daemon/gdm-manager.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/daemon/gdm-manager.c b/daemon/gdm-manager.c
+index f19a6746a..9c10adff3 100644
+--- a/daemon/gdm-manager.c
++++ b/daemon/gdm-manager.c
+@@ -1545,6 +1545,8 @@ on_display_status_changed (GdmDisplay *display,
+                         }
+ #endif
+ 
++                        g_object_set_data (G_OBJECT (display), "gdm-user-session", NULL);
++
+                         if (display == manager->priv->automatic_login_display) {
+                                 g_clear_weak_pointer (&manager->priv->automatic_login_display);
+ 
+-- 
+cgit v1.2.3
+

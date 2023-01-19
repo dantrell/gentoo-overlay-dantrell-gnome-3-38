@@ -1,0 +1,59 @@
+From 4e6e5335d29c039bed820c43bfd1c19cb62539ff Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marco=20Trevisan=20=28Trevi=C3=B1o=29?= <mail@3v1n0.net>
+Date: Tue, 27 Oct 2020 15:38:28 +0100
+Subject: display: Use autoptr to handle errors in look for existing users
+
+It will make things just cleaner
+---
+ daemon/gdm-display.c | 17 +++++++----------
+ 1 file changed, 7 insertions(+), 10 deletions(-)
+
+diff --git a/daemon/gdm-display.c b/daemon/gdm-display.c
+index 687e7da4b..7c954ad24 100644
+--- a/daemon/gdm-display.c
++++ b/daemon/gdm-display.c
+@@ -514,9 +514,9 @@ static gboolean
+ look_for_existing_users_sync (GdmDisplay *self)
+ {
+         GdmDisplayPrivate *priv;
+-        GError *error = NULL;
+-        GVariant *call_result;
+-        GVariant *user_list;
++        g_autoptr(GError) error = NULL;
++        g_autoptr(GVariant) call_result = NULL;
++        g_autoptr(GVariant) user_list = NULL;
+ 
+         priv = gdm_display_get_instance_private (self);
+         priv->accountsservice_proxy = g_dbus_proxy_new_sync (priv->connection,
+@@ -529,7 +529,7 @@ look_for_existing_users_sync (GdmDisplay *self)
+ 
+         if (!priv->accountsservice_proxy) {
+                 g_critical ("Failed to contact accountsservice: %s", error->message);
+-                goto out;
++                return FALSE;
+         }
+ 
+         call_result = g_dbus_proxy_call_sync (priv->accountsservice_proxy,
+@@ -542,16 +542,13 @@ look_for_existing_users_sync (GdmDisplay *self)
+ 
+         if (!call_result) {
+                 g_critical ("Failed to list cached users: %s", error->message);
+-                goto out;
++                return FALSE;
+         }
+ 
+         g_variant_get (call_result, "(@ao)", &user_list);
+         priv->have_existing_user_accounts = g_variant_n_children (user_list) > 0;
+-        g_variant_unref (user_list);
+-        g_variant_unref (call_result);
+-out:
+-        g_clear_error (&error);
+-        return priv->accountsservice_proxy != NULL && call_result != NULL;
++
++        return TRUE;
+ }
+ 
+ gboolean
+-- 
+cgit v1.2.3
+

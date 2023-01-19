@@ -1,0 +1,69 @@
+From 527186cef3d87c641e0f767a59a6f23d24118e72 Mon Sep 17 00:00:00 2001
+From: Benjamin Berg <bberg@redhat.com>
+Date: Wed, 10 Mar 2021 11:43:00 +0100
+Subject: session: Initialize DBus error domain before resolving errors
+
+We would not initialize the DBus error domain before we retrieved the
+first error, but only did so to compare the error after receiving them.
+This means that the first error we received will not be resolved
+correctly, while all subsequent ones are resolved.
+
+Fix this by calling GDM_SESSION_WORKER_ERROR from gdm_session_class_init
+and add gdm_dbus_error_ensure to make sure this can never be optimized
+away.
+---
+ daemon/gdm-dbus-util.c | 14 ++++++++++++++
+ daemon/gdm-dbus-util.h |  2 ++
+ daemon/gdm-session.c   |  3 +++
+ 3 files changed, 19 insertions(+)
+
+diff --git a/daemon/gdm-dbus-util.c b/daemon/gdm-dbus-util.c
+index b71da7fd8..844d60abf 100644
+--- a/daemon/gdm-dbus-util.c
++++ b/daemon/gdm-dbus-util.c
+@@ -183,3 +183,17 @@ gdm_dbus_get_uid_for_name (const char  *system_bus_name,
+ 
+         return retval;
+ }
++
++void
++gdm_dbus_error_ensure (GQuark domain)
++{
++        /* The primary purpose of this function is to make sure the error quark
++         * is registered internally with gdbus before any bus traffic occurs,
++         * so we get remote errors mapped correctly to their local counterparts.
++         * This error quark registration happens implicitly the first time the
++         * quark is used.
++         * Note that g_debug is never optimized away, only the output is suppressed.
++         */
++        g_debug ("GdmDBusUtils: Registered DBus error domain '%s'",
++                 g_quark_to_string (domain));
++}
+diff --git a/daemon/gdm-dbus-util.h b/daemon/gdm-dbus-util.h
+index 47654de25..32dc31963 100644
+--- a/daemon/gdm-dbus-util.h
++++ b/daemon/gdm-dbus-util.h
+@@ -35,4 +35,6 @@ gboolean gdm_dbus_get_pid_for_name (const char  *system_bus_name,
+ gboolean gdm_dbus_get_uid_for_name (const char  *system_bus_name,
+                                     uid_t       *out_uid,
+                                     GError     **error);
++
++void gdm_dbus_error_ensure (GQuark domain);
+ #endif
+diff --git a/daemon/gdm-session.c b/daemon/gdm-session.c
+index a6f00b66d..5c5903a49 100644
+--- a/daemon/gdm-session.c
++++ b/daemon/gdm-session.c
+@@ -3998,6 +3998,9 @@ gdm_session_class_init (GdmSessionClass *session_class)
+                                                                FALSE,
+                                                                G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS));
+ #endif
++
++        /* Ensure we can resolve errors */
++        gdm_dbus_error_ensure (GDM_SESSION_WORKER_ERROR);
+ }
+ 
+ GdmSession *
+-- 
+cgit v1.2.3
+

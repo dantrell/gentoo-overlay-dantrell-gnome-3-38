@@ -1,0 +1,48 @@
+From 46c30254806a53cfc9d5a342eb7486cdf6475186 Mon Sep 17 00:00:00 2001
+From: Ray Strode <rstrode@redhat.com>
+Date: Sun, 27 Sep 2020 01:06:37 -0400
+Subject: libgdm: Fix client leaks from g_async_result_get_source_object
+
+There are are few places in the code where the client object is
+retrieved via g_async_result_get_source_object.  Those calls
+return a fresh reference that is never unreferenced later.
+
+This commit plugs those leaks by using g_autoptr's
+---
+ libgdm/gdm-client.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/libgdm/gdm-client.c b/libgdm/gdm-client.c
+index 1686161d6..2c7b86731 100644
+--- a/libgdm/gdm-client.c
++++ b/libgdm/gdm-client.c
+@@ -191,7 +191,7 @@ on_user_verifier_choice_list_proxy_created (GObject            *source,
+                                             GAsyncResult       *result,
+                                             UserVerifierData   *data)
+ {
+-        GdmClient                 *client;
++        g_autoptr(GdmClient)       client = NULL;
+         GdmUserVerifierChoiceList *choice_list;
+         g_autoptr(GError)          error = NULL;
+ 
+@@ -214,7 +214,7 @@ on_user_verifier_extensions_enabled (GdmUserVerifier    *user_verifier,
+                                      GAsyncResult       *result,
+                                      UserVerifierData   *data)
+ {
+-        GdmClient *client;
++        g_autoptr(GdmClient)       client = NULL;
+         GCancellable *cancellable;
+         GDBusConnection *connection;
+         g_autoptr(GError) error = NULL;
+@@ -277,7 +277,7 @@ on_user_verifier_proxy_created (GObject            *source,
+                                 GAsyncResult       *result,
+                                 gpointer            user_data)
+ {
+-        GdmClient       *self;
++        g_autoptr(GdmClient)       self = NULL;
+         GCancellable    *cancellable = NULL;
+         g_autoptr(GdmUserVerifier) user_verifier = NULL;
+         g_autoptr(GTask)           task = user_data;
+-- 
+cgit v1.2.3
+

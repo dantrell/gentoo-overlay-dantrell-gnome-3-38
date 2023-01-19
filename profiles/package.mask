@@ -27,6 +27,7 @@ games-board/tali::gentoo
 games-puzzle/gnome-sudoku::gentoo
 games-puzzle/lightsoff::gentoo
 games-puzzle/quadrapassel::gentoo
+gnome-base/gdm::gentoo
 gnome-base/gnome-applets::gentoo
 gnome-base/gnome-control-center::gentoo
 gnome-base/gnome-core-apps::gentoo

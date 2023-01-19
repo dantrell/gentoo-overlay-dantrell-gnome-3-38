@@ -1,0 +1,33 @@
+From 97ca4b1268e78a21041d9fda9512b892ce344d92 Mon Sep 17 00:00:00 2001
+From: Ray Strode <rstrode@redhat.com>
+Date: Tue, 15 Sep 2020 00:41:00 -0400
+Subject: session: Don't leak remote greeter interface
+
+XDMCP login screens get a "Remote Geeter Interface" exported over
+the bus connection (so the login window can provide a Disconnect
+button).
+
+This interface is getting leaked when the session object is disposed,
+leaving the bus connection itself undisposed, which causes an fd
+leak.
+
+This commit plugs the interface leak, and thus the fd leak.
+---
+ daemon/gdm-session.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/daemon/gdm-session.c b/daemon/gdm-session.c
+index ca7d98f16..b07ffa820 100644
+--- a/daemon/gdm-session.c
++++ b/daemon/gdm-session.c
+@@ -3590,6 +3590,7 @@ gdm_session_dispose (GObject *object)
+         g_clear_pointer (&self->user_verifier_extensions,
+                          g_hash_table_unref);
+         g_clear_object (&self->greeter_interface);
++        g_clear_object (&self->remote_greeter_interface);
+         g_clear_object (&self->chooser_interface);
+ 
+         g_free (self->display_name);
+-- 
+cgit v1.2.3
+

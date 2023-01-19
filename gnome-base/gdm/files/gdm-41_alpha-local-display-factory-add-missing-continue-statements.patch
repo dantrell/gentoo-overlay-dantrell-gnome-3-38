@@ -1,0 +1,40 @@
+From bf9ecc62100032ede9d981529ff5943c07315509 Mon Sep 17 00:00:00 2001
+From: Ray Strode <rstrode@redhat.com>
+Date: Tue, 27 Jul 2021 07:03:47 -0400
+Subject: local-display-factory: Add missing continue statements
+
+commit f4922c046607c45d76e2911aa8f133d0ad4f9223 tried to
+fix an overrun in the code, but it neglected to add
+
+"continue" statements to the loops, so it was stuffing
+two different values into the same element of an array,
+which leads to the wrong session type getting preference.
+
+This commit fixes that.
+---
+ daemon/gdm-local-display-factory.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/daemon/gdm-local-display-factory.c b/daemon/gdm-local-display-factory.c
+index f2da3b6e4..141d64c6b 100644
+--- a/daemon/gdm-local-display-factory.c
++++ b/daemon/gdm-local-display-factory.c
+@@ -246,6 +246,7 @@ gdm_local_display_factory_get_session_type (GdmLocalDisplayFactory *factory,
+                     if (gdm_settings_direct_get_boolean (GDM_KEY_WAYLAND_ENABLE, &wayland_enabled)) {
+                             if (wayland_enabled && g_file_test ("/usr/bin/Xwayland", G_FILE_TEST_IS_EXECUTABLE)) {
+                                     session_types[i] = "wayland";
++                                    continue;
+                             }
+                     }
+             }
+@@ -257,6 +258,7 @@ gdm_local_display_factory_get_session_type (GdmLocalDisplayFactory *factory,
+                     if (gdm_settings_direct_get_boolean (GDM_KEY_XORG_ENABLE, &xorg_enabled)) {
+                             if (xorg_enabled && g_file_test ("/usr/bin/Xorg", G_FILE_TEST_IS_EXECUTABLE)) {
+                                     session_types[i] = "x11";
++                                    continue;
+                             }
+                     }
+             }
+-- 
+cgit v1.2.3
+

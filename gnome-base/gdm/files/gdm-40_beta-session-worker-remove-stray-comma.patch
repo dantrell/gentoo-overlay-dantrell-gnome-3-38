@@ -1,0 +1,25 @@
+From 40bf4d3e0bb94a4953f16daad8ce307f82231b75 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marco=20Trevisan=20=28Trevi=C3=B1o=29?= <mail@3v1n0.net>
+Date: Mon, 21 Dec 2020 16:53:55 +0100
+Subject: session-worker: Remove stray comma
+
+---
+ daemon/gdm-session-worker.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/daemon/gdm-session-worker.c b/daemon/gdm-session-worker.c
+index 162c1a9ff..e4d2e3fa8 100644
+--- a/daemon/gdm-session-worker.c
++++ b/daemon/gdm-session-worker.c
+@@ -774,7 +774,7 @@ get_generic_error_message (GdmSessionWorker *worker)
+                 return _("Sorry, PIN authentication didn’t work. Please try again.");
+ 
+         if (g_strcmp0 (worker->priv->service, "gdm-autologin") == 0)
+-                return _("Sorry, auto login, didn’t work. Please try again.");
++                return _("Sorry, auto login didn’t work. Please try again.");
+ 
+         if (g_strcmp0 (worker->priv->service, "gdm-fingerprint") == 0)
+                 return _("Sorry, fingerprint authentication didn’t work. Please try again.");
+-- 
+cgit v1.2.3
+
