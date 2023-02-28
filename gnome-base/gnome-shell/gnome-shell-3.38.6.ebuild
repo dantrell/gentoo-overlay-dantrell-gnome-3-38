@@ -1,7 +1,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
-PYTHON_COMPAT=( python{3_8,3_9,3_10,3_11} )
+PYTHON_COMPAT=( python{3_9,3_10,3_11} )
 
 inherit gnome.org gnome2-utils meson pax-utils python-single-r1 virtualx xdg
 
@@ -156,6 +156,10 @@ src_prepare() {
 	# From Gentoo:
 	# 	https://bugs.gentoo.org/831921
 	eapply "${FILESDIR}"/${PN}-3.38.6-fix-build-with-meson-0.61.1.patch
+
+	# From GNOME:
+	# 	https://gitlab.gnome.org/GNOME/gnome-shell/-/commit/1d0a08b5e25fea7b0e792ec9798e68a7c5606a75
+	eapply "${FILESDIR}"/${PN}-43_alpha-build-do-not-redefine-polkit-autocleanup.patch
 
 	# Hack in correct python shebang
 	sed -e "s:python\.path():'/usr/bin/env ${EPYTHON}':" -i src/meson.build || die
