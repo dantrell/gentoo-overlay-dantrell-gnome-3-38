@@ -4,8 +4,8 @@ EAPI="7"
 
 inherit gnome.org gnome2-utils meson xdg
 
-DESCRIPTION="An IRC client for Gnome"
-HOMEPAGE="https://wiki.gnome.org/Apps/Polari"
+DESCRIPTION="An IRC client for GNOME"
+HOMEPAGE="https://wiki.gnome.org/Apps/Polari https://gitlab.gnome.org/GNOME/polari"
 
 LICENSE="GPL-2+"
 SLOT="0"
@@ -40,6 +40,12 @@ BDEPEND="
 	virtual/pkgconfig
 	test? ( dev-lang/spidermonkey:78 )
 "
+
+PATCHES=(
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/831922
+	"${FILESDIR}"/${PN}-40.0-fix-build-with-meson-0.61.1.patch
+)
 
 pkg_postinst() {
 	xdg_pkg_postinst

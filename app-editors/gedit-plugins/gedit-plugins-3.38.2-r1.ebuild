@@ -1,6 +1,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
+EAPI="8"
 PYTHON_COMPAT=( python{3_9,3_10,3_11} )
 PYTHON_REQ_USE="xml(+)"
 VALA_MIN_API_VERSION="0.28"
@@ -33,7 +33,7 @@ RDEPEND="
 	python? (
 		${PYTHON_DEPS}
 		$(python_gen_cond_dep '
-			>=app-editors/gedit-3.36[python,${PYTHON_SINGLE_USEDEP}]
+			app-editors/gedit[python,${PYTHON_SINGLE_USEDEP}]
 			dev-libs/libpeas[python,${PYTHON_SINGLE_USEDEP}]
 			>=dev-python/dbus-python-0.82[${PYTHON_USEDEP}]
 			dev-python/pycairo[${PYTHON_USEDEP}]
@@ -57,13 +57,20 @@ BDEPEND="
 	vala? ( $(vala_depend) )
 "
 
+PATCHES=(
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/832315
+	"${FILESDIR}"/${PN}-40.1-meson-0.61.patch
+)
+
 pkg_setup() {
 	use python && python-single-r1_pkg_setup
 }
 
 src_prepare() {
-	use vala && vala_src_prepare
-	xdg_src_prepare
+	default
+	use vala && vala_setup
+	xdg_environment_reset
 }
 
 src_configure() {

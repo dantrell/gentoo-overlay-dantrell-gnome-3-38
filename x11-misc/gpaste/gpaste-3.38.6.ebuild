@@ -61,6 +61,12 @@ RDEPEND="${DEPEND}
 
 S="${WORKDIR}/GPaste-${PV}"
 
+PATCHES=(
+	# From GPaste:
+	# 	https://github.com/Keruspe/GPaste/commit/1ec2699daa600e34d73b8d200dd7bb22f4eace27
+	"${FILESDIR}"/${PN}-3.42.3-fix-build-with-meson-0-60.patch
+)
+
 src_prepare() {
 	use vala && vala_src_prepare
 	default
