@@ -52,7 +52,7 @@ PATCHES=(
 	"${FILESDIR}"/var-tmp-tests.patch
 
 	# From GNOME:
-	# 	https://gitlab.gnome.org/GNOME/epiphany/commit/afd155430075cee5380334a9c263cc28426fc79c
+	# 	https://gitlab.gnome.org/GNOME/epiphany/-/commit/afd155430075cee5380334a9c263cc28426fc79c
 	"${FILESDIR}"/${PN}-3.38.6-build-allow-libportal-support-to-be-disabled.patch
 
 	# From Gentoo:

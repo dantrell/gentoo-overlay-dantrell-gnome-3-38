@@ -70,7 +70,7 @@ RDEPEND="
 		|| ( sys-auth/elogind sys-apps/systemd )
 		>=dev-libs/libgudev-232:=
 		>=virtual/libudev-136:=
-		x11-base/xorg-server[wayland]
+		x11-base/xwayland
 		x11-libs/libdrm:=
 	)
 "
@@ -84,7 +84,7 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	# From GNOME:
-	# 	https://gitlab.gnome.org/GNOME/mutter/commit/d3dc7d6f493f820a67c9c40a50ebc544a0d50331
+	# 	https://gitlab.gnome.org/GNOME/mutter/-/commit/d3dc7d6f493f820a67c9c40a50ebc544a0d50331
 	eapply "${FILESDIR}"/${PN}-3.32.0-support-eudev.patch
 
 	if use deprecated-background; then
@@ -92,7 +92,7 @@ src_prepare() {
 	fi
 
 	# From GNOME:
-	# 	https://gitlab.gnome.org/GNOME/mutter/merge_requests/89
+	# 	https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/89
 	if ! use vanilla-mipmapping; then
 		eapply "${FILESDIR}"/${PN}-3.32.0-metashapedtexture-disable-mipmapping-emulation.patch
 	fi
